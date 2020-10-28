@@ -9,11 +9,16 @@
 </template>
 
 <script>
+// import request from '@/utils/request'
 export default {
   name: 'APP',
-  data () {
+  data() {
     return {}
-  }
+  },
+  mounted() {
+    console.log(this.$store.state.test.b)
+  },
+  methods: {},
 }
 </script>
 
