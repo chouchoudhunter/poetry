@@ -2,24 +2,39 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 Vue.use(Vuex)
+
 // 管理所有请求的状态
 const requestStatus = {
-  namespace: true,
-  state: { links: { } },
+  namespaced: true,
+  state: { links: {} },
   mutations: {
     addLinks(state, _ref) {
-      state.links[_ref.linkName] = _ref.linkStatus
+      Vue.set(state.links, _ref.linkName, _ref.linkStatus)
     },
   },
   actions: {},
-  modules: {},
+  getters: {
+    links(state) {
+      return state.links
+    },
+  },
 }
 const test = {
-  namespace: true,
+  namespaced: true,
   state: { b: 10 },
-  mutations: {},
-  actions: {},
-  modules: {},
+  mutations: {
+    edit(state, val) {
+      state.b = val
+    },
+    addLinks(state, _ref) {
+      state[_ref.linkName] = _ref.linkStatus
+    },
+  },
+  getters: {
+    getb(state) {
+      return state
+    },
+  },
 }
 const modules = {
   requestStatus: requestStatus,

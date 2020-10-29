@@ -1,4 +1,5 @@
 import axios from 'axios'
+// eslint-disable-next-line
 import store from '@/store'
 // eslint-disable-next-line
 const codeMessage = {
@@ -9,28 +10,28 @@ const codeMessage = {
 }
 
 const request = axios.create({
-  baseURL: '',
+  baseURL: '/api',
   timeout: 50000,
 })
 // 请求拦截，把链接的状态添加到store里
 request.interceptors.request.use((config) => {
-  editLinkStatus(config,false)
+  editLinkStatus(config, true)
   return config
 })
 // 请求完成后修改对应连接的状态
-request.interceptors.response.use((res)=>{
-  editLinkStatus(res.config,false)
-  return res;
-},(err)=>{
-  editLinkStatus(err.config,false)
+request.interceptors.response.use((res) => {
+  editLinkStatus(res.config, false)
+  return res
+}, (err) => {
+  editLinkStatus(err.config, false)
   return Promise.reject(err)
 })
-
-editLinkStatus(config,status){
+var editLinkStatus = function(config, status) {
   const linkName = config.method + config.url.replace(config.baseURL, '')
   store.commit('requestStatus/addLinks', {
     linkName: linkName,
     linkStatus: status,
   })
+  console.log(store.state)
 }
 export default request
