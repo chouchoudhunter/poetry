@@ -31,6 +31,15 @@ npm install
     "diffEditor.ignoreTrimWhitespace": true,
 ```
 
+### 目录结构
+src
+    assets-静态资源
+    components-vue公共组件
+    router-路由
+    store-vuex
+    untils-自定义工具
+    view-页面
+
 ### 运行项目
 ```
 npm run serve

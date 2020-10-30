@@ -12,7 +12,6 @@
 <script>
 import request from '@/utils/request'
 import { mapGetters } from 'vuex'
-var a = true
 export default {
   name: 'APP',
   data() {
@@ -24,16 +23,11 @@ export default {
   },
   methods: {
     test() {
-      a = !a
       request({
         url: '/sug?code=utf-8&q=%E5%8D%AB%E8%A1%A3&callback=cb',
         method: 'get',
       }).then((res) => {
-        this.$store.commit('test/addLinks', {
-          linkName: 'c',
-          linkStatus: a,
-        })
-        console.log(this.links['get/sug?code=utf-8&q=%E5%8D%AB%E8%A1%A3&callback=cb'])
+        console.log()
       })
     },
   },
