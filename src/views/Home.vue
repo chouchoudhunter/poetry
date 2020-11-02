@@ -2,6 +2,7 @@
   <div class="home">
     <div class="poem-content header-center animate__animated animate__fadeInUp">
       <h1>众里寻他千百度，蓦然回首那人却在灯火阑珊处。</h1>
+      <h4><i style="font-weight:lighter">苏轼</i></h4>
       <el-popover
         placement="bottom"
         title="点亮星星"
