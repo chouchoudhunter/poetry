@@ -1,16 +1,53 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div class="poem-content header-center animate__animated animate__fadeInUp">
+      <h1>众里寻他千百度，蓦然回首那人却在灯火阑珊处。</h1>
+      <div class="star animate__animated animate__bounce animate__delay-1s" @click="changeStar()">
+        <i :class="isStar?'el-icon-star-on':'el-icon-star-off'"></i>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
   name: 'Home',
-  components: { HelloWorld },
+  components: {},
+  data() {
+    return { isStar: false }
+  },
+  methods: {
+    changeStar() {
+      this.isStar = !this.isStar
+    },
+  },
 }
 </script>
+<style lang="scss">
+.home{
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  .poem-content {
+    align-self: center;
+    margin: 0 auto;
+    cursor: pointer;
+    .star {
+      width: 40px;
+      height: 40px;
+      line-height: 43px;
+      margin: 40px auto 0 auto;
+      border-radius: 50%;
+      background-color: white;
+      box-shadow: 0 0 7px 1px rgba(211, 211, 211, 0.815);
+      cursor: pointer;
+      i {
+        font-size: 22px;
+        color: red;
+      }
+    }
+  }
+}
+
+</style>

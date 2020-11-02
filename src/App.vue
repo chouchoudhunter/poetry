@@ -1,19 +1,30 @@
 <template>
   <div id="app">
-    <el-button type="primary" class="animate__animated animate__headShake" @click="test()">dfdf</el-button>
-    <div id="nav" v-loading="links['get/sug?code=utf-8&q=%E5%8D%AB%E8%A1%A3&callback=cb']">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <el-container>
+      <el-header>
+        <Header></Header>
+      </el-header>
+      <el-main>
+        <router-view/>
+      </el-main>
+      <el-footer>
+        <Footer></Footer>
+      </el-footer>
+    </el-container>
   </div>
 </template>
 
 <script>
 import request from '@/utils/request'
+import Header from './views/common/Header'
+import Footer from './views/common/Footer'
 import { mapGetters } from 'vuex'
 export default {
   name: 'APP',
+  components: {
+    Header,
+    Footer,
+  },
   data() {
     return {}
   },
@@ -35,12 +46,25 @@ export default {
 </script>
 
 <style lang="scss">
+html,body{
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
+  height: 100%;
+  .el-container{
+    height: 100%;
+  }
+  .el-header{
+    padding: 20px;
+  }
+  .el-main{
+    text-align: center;
+    height: 100%;
+  }
 }
 
 #nav {
