@@ -13,16 +13,16 @@
           <i :class="isStar?'el-icon-star-on':'el-icon-star-off'"></i>
         </div>
       </el-popover>
-
+      <!-- <Modal :visible="true"></Modal> -->
     </div>
   </div>
 </template>
 
 <script>
-
+import Modal from '@/components/Modal'
 export default {
   name: 'Home',
-  components: {},
+  components: { Modal },
   data() {
     return { isStar: false }
   },
