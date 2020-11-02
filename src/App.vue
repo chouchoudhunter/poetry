@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <el-button type="primary" @click="test()">dfdf</el-button>
+    <el-button type="primary" class="animate__animated animate__headShake" @click="test()">dfdf</el-button>
     <div id="nav" v-loading="links['get/sug?code=utf-8&q=%E5%8D%AB%E8%A1%A3&callback=cb']">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
