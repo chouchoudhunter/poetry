@@ -2,9 +2,17 @@
   <div class="home">
     <div class="poem-content header-center animate__animated animate__fadeInUp">
       <h1>众里寻他千百度，蓦然回首那人却在灯火阑珊处。</h1>
-      <div class="star animate__animated animate__bounce animate__delay-1s" @click="changeStar()">
-        <i :class="isStar?'el-icon-star-on':'el-icon-star-off'"></i>
-      </div>
+      <el-popover
+        placement="bottom"
+        title="点亮星星"
+        width="200"
+        trigger="hover"
+        content="我们会根据喜好给您推送诗句！">
+        <div slot="reference" class="star animate__animated animate__bounce animate__delay-1s" @click="changeStar()">
+          <i :class="isStar?'el-icon-star-on':'el-icon-star-off'"></i>
+        </div>
+      </el-popover>
+
     </div>
   </div>
 </template>
@@ -49,5 +57,4 @@ export default {
     }
   }
 }
-
 </style>

@@ -46,6 +46,9 @@ export default {
 </script>
 
 <style lang="scss">
+*{
+  -webkit-tap-highlight-color:transparent;
+}
 html,body{
   height: 100%;
   margin: 0;
