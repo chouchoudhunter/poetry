@@ -32,6 +32,6 @@ var editLinkStatus = function(config, status) {
     linkName: linkName,
     linkStatus: status,
   })
-  console.log(store.state)
+  // console.log(store.state)
 }
 export default request
