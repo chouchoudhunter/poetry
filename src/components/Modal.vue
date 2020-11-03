@@ -2,7 +2,7 @@
   <div v-if="visible" class="modal">
     <div class="modal-bg">
       <div class="modal-content">
-        <div class="modal-header"><i>x</i></div>
+        <div class="modal-header"><i class="el-icon-close"></i></div>
         <div class="modal-main">
           <slot></slot>
         </div>
