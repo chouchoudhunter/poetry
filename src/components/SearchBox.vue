@@ -1,5 +1,5 @@
 <template>
-  <div class="search-box" :class="{'animation-search-box':isShowSearch}">
+  <div class="search-box" :class="{'animation-search-box':showSearch}">
     <input type="text" class="search-input">
     <div @click="switchSearchBox()"><i class="el-icon-search" ></i></div>
   </div>
@@ -7,13 +7,19 @@
 <script>
 import '@/style/animation.css'
 export default {
+  props: {
+    showSearch: {
+      type: Boolean,
+      default: false,
+    },
+  },
   data() {
-    return { isShowSearch: false }
+    return { }
   },
   methods: {
     switchSearchBox() {
-      this.isShowSearch = !this.isShowSearch
-      console.log(this.isShowSearch)
+      this.$emit('update:showSearch', !this.showSearch)
+      this.$emit('click-icon')
     },
   },
 }

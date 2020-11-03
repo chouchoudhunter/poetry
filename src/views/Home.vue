@@ -14,28 +14,19 @@
         </div>
       </el-popover>
     </div>
-    <Modal :visible.sync="temp"></Modal>
   </div>
 </template>
 
 <script>
-import Modal from '@/components/Modal'
 export default {
   name: 'Home',
-  components: { Modal },
+  components: { },
   data() {
-    return {
-      isStar: false,
-      temp: false,
-    }
+    return { isStar: false }
   },
   methods: {
     changeStar() {
       this.isStar = !this.isStar
-      this.showModal()
-    },
-    showModal() {
-      this.temp = !this.temp
     },
   },
 }
@@ -48,6 +39,7 @@ export default {
   .poem-content {
     align-self: center;
     margin: 0 auto;
+    z-index: 100;
     cursor: pointer;
     .star {
       width: 40px;

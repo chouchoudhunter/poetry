@@ -2,7 +2,7 @@
   <div class="header">
     <el-row :gutter="24">
       <el-col :span="8" class="animate__animated animate__fadeInLeft">
-        <SearchBox></SearchBox>
+        <SearchBox :showSearch.sync="searchShow" @click-icon="openSearchModal()"></SearchBox>
       </el-col>
       <el-col :span="8" class="header-center animate__animated animate__fadeInDown">
         LOGO
@@ -13,19 +13,33 @@
         </div>
       </el-col>
     </el-row>
+    <Modal :visible.sync="modalShow" @close-modal="clickCloseModalBtn()"></Modal>
   </div>
 </template>
 <script>
 import SearchBox from '@/components/SearchBox'
+import Modal from '@/components/Modal'
 export default {
   name: 'Header',
-  components: { SearchBox },
+  components: {
+    SearchBox,
+    Modal,
+  },
   data() {
-    return {}
+    return {
+      modalShow: false,
+      searchShow: false,
+    }
   },
   methods: {
     openLoginWindow() {
       this.$alert('xxx', '登陆', { dangerouslyUseHTMLString: true })
+    },
+    openSearchModal() {
+      this.modalShow = !this.modalShow
+    },
+    clickCloseModalBtn() {
+      this.searchShow = !this.searchShow
     },
   },
 }

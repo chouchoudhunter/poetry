@@ -13,7 +13,6 @@
             ></i>
           </div>
           <div class="modal-main">
-            {{ visible }}
             <slot></slot>
           </div>
         </div>
@@ -41,8 +40,8 @@ export default {
       this.isCloseHover = status
     },
     close() {
-      this.isShow = false
       this.$emit('update:visible', false)
+      this.$emit('close-modal')
     },
   },
 }
@@ -56,10 +55,12 @@ export default {
   bottom: 0;
   left: 0;
   overflow: hidden;
+  pointer-events: none;
   .modal-bg{
     height: 100%;
     width: 100%;
     .modal-content{
+      pointer-events: auto;
       box-shadow: 0 0 7px 1px rgba(211, 211, 211, 0.815);
       border-radius: 20px 20px 0 0;
       background-color: white;
