@@ -21,7 +21,7 @@
   </transition>
 </template>
 <script>
-import '@/style/animation.css'
+import '@/style/animation.scss'
 export default {
   name: 'Modal',
   props: {

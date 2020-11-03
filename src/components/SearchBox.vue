@@ -1,11 +1,11 @@
 <template>
-  <div class="search-box" :class="{'animation-search-box':showSearch}">
+  <div class="search-box" :class="{'animation-search-box':showSearch,'animation-search-box-hide':!showSearch&&autoPlay}">
     <input type="text" class="search-input">
     <div @click="switchSearchBox()"><i class="el-icon-search" ></i></div>
   </div>
 </template>
 <script>
-import '@/style/animation.css'
+import '@/style/animation.scss'
 export default {
   props: {
     showSearch: {
@@ -14,11 +14,14 @@ export default {
     },
   },
   data() {
-    return { }
+    return { autoPlay: false }
   },
   methods: {
     switchSearchBox() {
       this.$emit('update:showSearch', !this.showSearch)
+      if (this.showSearch === false) {
+        this.autoPlay = true
+      }
       this.$emit('click-icon')
     },
   },
@@ -26,7 +29,6 @@ export default {
 </script>
 <style lang="scss">
   .search-box{
-    background-color: rgb(218, 218, 218);
     border-radius: 15px;
     padding: 0;
     display: flex;
@@ -37,7 +39,7 @@ export default {
     .search-input{
       outline: none;
       border: none;
-      background-color:rgb(218, 218, 218);
+      background-color:rgba(218, 218, 218, 0);
       width: 100%;
       padding: 0px;
     }
