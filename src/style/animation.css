@@ -19,3 +19,16 @@
     margin-top: -5px;
   }
 }
+/* 旋转动画 */
+.animation-rotate{
+  animation: rotate-custom 2s ease;
+  animation-fill-mode: forwards;
+}
+@keyframes rotate-custom {
+  0%{
+    transform: rotateX('0deg');
+  }
+  100%{
+    transform: rotate('360deg');
+  }
+}

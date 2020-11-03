@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home" style="">
     <div class="poem-content header-center animate__animated animate__fadeInUp">
       <h1>众里寻他千百度，蓦然回首那人却在灯火阑珊处。</h1>
       <h4><i style="font-weight:lighter">苏轼</i></h4>
@@ -13,8 +13,8 @@
           <i :class="isStar?'el-icon-star-on':'el-icon-star-off'"></i>
         </div>
       </el-popover>
-      <!-- <Modal :visible="true"></Modal> -->
     </div>
+    <Modal :visible="true"></Modal>
   </div>
 </template>
 
@@ -29,6 +29,7 @@ export default {
   methods: {
     changeStar() {
       this.isStar = !this.isStar
+      this.$modal.show('test')
     },
   },
 }

@@ -51,6 +51,7 @@ export default {
 }
 html,body{
   height: 100%;
+  width: 100%;
   margin: 0;
   padding: 0;
   overflow: hidden;
@@ -58,6 +59,7 @@ html,body{
 #app {
   color: #2c3e50;
   height: 100%;
+  width: 100%;
   .el-container{
     height: 100%;
   }
