@@ -69,6 +69,7 @@ html,body{
   .el-main{
     text-align: center;
     height: 100%;
+    overflow: hidden;
   }
 }
 
