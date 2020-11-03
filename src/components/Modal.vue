@@ -1,14 +1,25 @@
 <template>
-  <div v-if="visible" class="modal">
-    <div class="modal-bg">
-      <div class="modal-content">
-        <div class="modal-header"><i class="el-icon-close animation-rotate" :class="{}"></i></div>
-        <div class="modal-main">
-          <slot></slot>
+  <transition enter-active-class="animation-modal-in" leave-active-class="animation-modal-out">
+    <div v-show="visible" class="modal">
+      <div class="modal-bg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <i
+              class="el-icon-close"
+              :class="{'animation-rotate-right':isCloseHover,'animation-rotate-left':!isCloseHover}"
+              @mouseenter="switchCloseHover(true)"
+              @mouseleave="switchCloseHover(false)"
+              @click="close()"
+            ></i>
+          </div>
+          <div class="modal-main">
+            {{ visible }}
+            <slot></slot>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </transition>
 </template>
 <script>
 import '@/style/animation.css'
@@ -22,9 +33,18 @@ export default {
     },
   },
   data() {
-    return {}
+    return { isCloseHover: false }
   },
-  methods: {},
+  computed: {},
+  methods: {
+    switchCloseHover(status) {
+      this.isCloseHover = status
+    },
+    close() {
+      this.isShow = false
+      this.$emit('update:visible', false)
+    },
+  },
 }
 </script>
 <style lang="scss">
@@ -35,6 +55,7 @@ export default {
   width: 100%;
   bottom: 0;
   left: 0;
+  overflow: hidden;
   .modal-bg{
     height: 100%;
     width: 100%;
@@ -52,8 +73,9 @@ export default {
         flex-direction: row;
         justify-content: flex-end;
         i{
-          padding: 15px;
+          margin: 15px;
           font-size: 18px;
+          display: inline-block;
         }
       }
     }

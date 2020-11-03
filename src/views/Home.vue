@@ -14,7 +14,7 @@
         </div>
       </el-popover>
     </div>
-    <Modal :visible="true"></Modal>
+    <Modal :visible.sync="temp"></Modal>
   </div>
 </template>
 
@@ -24,12 +24,18 @@ export default {
   name: 'Home',
   components: { Modal },
   data() {
-    return { isStar: false }
+    return {
+      isStar: false,
+      temp: false,
+    }
   },
   methods: {
     changeStar() {
       this.isStar = !this.isStar
-      this.$modal.show('test')
+      this.showModal()
+    },
+    showModal() {
+      this.temp = !this.temp
     },
   },
 }
