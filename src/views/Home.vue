@@ -40,7 +40,7 @@ export default {
   .poem-content {
     align-self: center;
     margin: 0 auto;
-    z-index: 100;
+    z-index: 102;
     cursor: pointer;
     .star {
       width: 40px;
