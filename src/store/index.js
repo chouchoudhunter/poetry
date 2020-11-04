@@ -19,6 +19,23 @@ const requestStatus = {
     },
   },
 }
+const animationStatus = {
+  namespaced: true,
+  state: { anims: {} },
+  mutations: {
+    addAnimStatus(state, _ref) {
+      Vue.set(state.anims, _ref.name, _ref.status)
+    },
+    editAnimStatus(state, _ref) {
+      state.anims[_ref.name] = _ref.status
+    },
+  },
+  getters: {
+    anims(state) {
+      return state.anims
+    },
+  },
+}
 const test = {
   namespaced: true,
   state: { b: 10 },
@@ -38,6 +55,7 @@ const test = {
 }
 const modules = {
   requestStatus: requestStatus,
+  animationStatus: animationStatus,
   test: test,
 }
 

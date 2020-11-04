@@ -13,7 +13,7 @@
         </div>
       </el-col>
     </el-row>
-    <Modal :visible.sync="modalShow" @close-modal="clickCloseModalBtn()"></Modal>
+    <Modal :visible.sync="searchShow"></Modal>
     <PopBox :visible.sync="popBoxShow"></PopBox>
   </div>
 </template>
@@ -21,6 +21,7 @@
 import SearchBox from '@/components/SearchBox'
 import Modal from '@/components/Modal'
 import PopBox from '@/components/PopBox'
+import { mapGetters } from 'vuex'
 export default {
   name: 'Header',
   components: {
@@ -30,20 +31,32 @@ export default {
   },
   data() {
     return {
-      modalShow: false,
       searchShow: false,
       popBoxShow: false,
     }
+  },
+  computed: { ...mapGetters('animationStatus', ['anims']) },
+  watch: {
+    // 监听searhShow的值的变化修改searchModal状态的值
+    searchShow: function(oldVal, newVal) {
+      this.$store.commit('animationStatus/editAnimStatus', {
+        name: 'serachModal',
+        status: newVal,
+      })
+    },
   },
   methods: {
     openLoginWindow() {
       this.popBoxShow = !this.popBoxShow
     },
+    // 打开搜索模态框
     openSearchModal() {
-      this.modalShow = !this.modalShow
-    },
-    clickCloseModalBtn() {
-      this.searchShow = !this.searchShow
+      if (!this.anims.serachModal) {
+        this.$store.commit('animationStatus/addAnimStatus', {
+          name: 'serachModal',
+          status: true,
+        })
+      }
     },
   },
 }
