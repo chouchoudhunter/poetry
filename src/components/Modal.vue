@@ -49,7 +49,7 @@ export default {
 <style lang="scss">
 .modal{
   position: absolute;
-  z-index: 99;
+  z-index: 101;
   height: 100%;
   width: 100%;
   bottom: 0;

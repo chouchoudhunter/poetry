@@ -92,3 +92,20 @@ $search-box-bg:rgba(218, 218, 218);
     height: 0%;
   }
 }
+/* 弹出框动画 */
+.animation-popBox-in{
+  animation: zoomIn 1s ease;
+  animation-fill-mode: forwards;
+}
+.animation-popBox-out{
+  animation: zoomOut 1s ease;
+  animation-fill-mode: forwards;
+}
+.animation-popBox-bg-in{
+  animation: fadeIn 1s ease;
+  animation-fill-mode: forwards;
+}
+.animation-popBox-bg-out{
+  animation: fadeOut 1s ease;
+  animation-fill-mode: forwards;
+}
