@@ -1,6 +1,11 @@
 <template>
   <div class="home">
-    <div class="poem-content header-center animate__animated animate__fadeInUp">
+    <div
+      class="poem-content header-center"
+      :class="{'animation-poem-move-down':!anims.serachModal&&!autoPlayAnim,
+               'animation-poem-move-up':anims.serachModal&&!autoPlayAnim,
+               'animate__animated animate__fadeInUp':autoPlayAnim
+      }">
       <h1>众里寻他千百度，蓦然回首那人却在灯火阑珊处。</h1>
       <h4><i style="font-weight:lighter">苏轼</i></h4>
       <el-popover
@@ -19,11 +24,26 @@
 
 <script>
 import '@/style/animation.scss'
+import { mapGetters } from 'vuex'
 export default {
   name: 'Home',
   components: { },
   data() {
-    return { isStar: false }
+    return {
+      isStar: false,
+      autoPlayAnim: true,
+    }
+  },
+  computed: { ...mapGetters('animationStatus', ['anims']) },
+  watch: {
+    'anims.serachModal': function(newVal, oldVal) {
+      console.log(oldVal, 555)
+      if (oldVal === false) {
+        this.autoPlayAnim = false
+      }
+    },
+  },
+  mounted() {
   },
   methods: {
     changeStar() {
@@ -42,15 +62,17 @@ export default {
     margin: 0 auto;
     z-index: 102;
     cursor: pointer;
+    pointer-events: none;
     .star {
       width: 40px;
       height: 40px;
       line-height: 43px;
-      margin: 40px auto 0 auto;
+      margin: 20px auto;
       border-radius: 50%;
       background-color: white;
       box-shadow: 0 0 7px 1px rgba(211, 211, 211, 0.815);
       cursor: pointer;
+      pointer-events: auto;
       i {
         font-size: 22px;
         color: red;

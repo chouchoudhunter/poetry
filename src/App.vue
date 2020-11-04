@@ -5,7 +5,9 @@
         <Header></Header>
       </el-header>
       <el-main>
-        <router-view/>
+        <transition name="slide-left" mode="out-in">
+          <router-view/>
+        </transition>
       </el-main>
       <el-footer>
         <Footer></Footer>
@@ -18,6 +20,7 @@
 import request from '@/utils/request'
 import Header from './views/common/Header'
 import Footer from './views/common/Footer'
+import '@/style/animation.scss'
 import { mapGetters } from 'vuex'
 export default {
   name: 'APP',

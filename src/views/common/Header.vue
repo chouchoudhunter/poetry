@@ -2,7 +2,7 @@
   <div class="header">
     <el-row :gutter="24">
       <el-col :span="8" class="animate__animated animate__fadeInLeft">
-        <SearchBox :showSearch.sync="searchShow" @click-icon="openSearchModal()"></SearchBox>
+        <SearchBox :showSearch.sync="searchShow"></SearchBox>
       </el-col>
       <el-col :span="8" class="header-center animate__animated animate__fadeInDown">
         LOGO
@@ -38,7 +38,7 @@ export default {
   computed: { ...mapGetters('animationStatus', ['anims']) },
   watch: {
     // 监听searhShow的值的变化修改searchModal状态的值
-    searchShow: function(oldVal, newVal) {
+    searchShow: function(newVal, oldVal) {
       this.$store.commit('animationStatus/editAnimStatus', {
         name: 'serachModal',
         status: newVal,
@@ -48,15 +48,6 @@ export default {
   methods: {
     openLoginWindow() {
       this.popBoxShow = !this.popBoxShow
-    },
-    // 打开搜索模态框
-    openSearchModal() {
-      if (!this.anims.serachModal) {
-        this.$store.commit('animationStatus/addAnimStatus', {
-          name: 'serachModal',
-          status: true,
-        })
-      }
     },
   },
 }

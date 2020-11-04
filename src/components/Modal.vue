@@ -77,6 +77,8 @@ export default {
           margin: 15px;
           font-size: 18px;
           display: inline-block;
+          position: relative;
+          z-index: 110;
         }
       }
     }

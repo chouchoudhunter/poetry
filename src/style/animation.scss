@@ -109,3 +109,56 @@ $search-box-bg:rgba(218, 218, 218);
     animation-fill-mode: forwards;
   }
 }
+/*推荐诗句移动动画*/
+.animation-poem-move-up{
+  animation: poem-move-up 1s ease;
+  animation-fill-mode: forwards;
+}
+.animation-poem-move-down{
+  animation: poem-move-down 1s ease;
+  animation-fill-mode: forwards;
+}
+@keyframes poem-move-up {
+  0%{
+    position: relative;
+    top: 0%;
+  }
+  100%{
+    position: relative;
+    top: -30%;
+  }
+}
+@keyframes poem-move-down {
+  0%{
+    position: relative;
+    top: -30%
+  }
+  100%{
+    position: relative;
+    top: 0%;
+  }
+}
+
+/*页面划入划出*/
+.animation-back-out{
+  animation: fadeInLeft 1s ease;
+  animation-fill-mode: forwards;
+}
+.animation-back-in{
+  animation: fadeInRight 1s ease;
+  animation-fill-mode: forwards;
+}
+.slide-left-enter {
+  opacity: 0;
+  //transform: translate(30px, 0);
+}
+.slide-left-enter-active{
+  transition: all 0.3s ease;
+}
+.slide-left-leave-to{
+  opacity: 0;
+ // transform: translate(-30px, 0);
+}
+.slide-left-leave-active {
+  transition: all 0.3s ease;
+}

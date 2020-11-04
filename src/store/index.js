@@ -21,7 +21,7 @@ const requestStatus = {
 }
 const animationStatus = {
   namespaced: true,
-  state: { anims: {} },
+  state: { anims: { serachModal: false } },
   mutations: {
     addAnimStatus(state, _ref) {
       Vue.set(state.anims, _ref.name, _ref.status)
