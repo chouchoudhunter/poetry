@@ -37,7 +37,6 @@ export default {
   computed: { ...mapGetters('animationStatus', ['anims']) },
   watch: {
     'anims.serachModal': function(newVal, oldVal) {
-      console.log(oldVal, 555)
       if (oldVal === false) {
         this.autoPlayAnim = false
       }

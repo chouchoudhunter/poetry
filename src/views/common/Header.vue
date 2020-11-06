@@ -13,7 +13,25 @@
         </div>
       </el-col>
     </el-row>
-    <Modal :visible.sync="searchShow"></Modal>
+    <Modal :visible.sync="searchShow">
+      <div class="modal-padding"></div>
+      <div class="poem-item">
+        <div class="poem-left">
+          <div class="poem-left-box">
+            <div class="poem-author">李清照</div>
+          </div>
+        </div>
+        <div class="poem-center">
+          <div class="poem-title">点绛唇·蹴罢秋千</div>
+          <div class="poem-desc">
+            蹴罢秋千，起来慵整纤纤手。露浓花瘦，薄汗轻衣透。见客入来，袜刬金钗溜。和羞走，倚门回首，却把青梅嗅。
+          </div>
+        </div>
+        <div class="poem-right">
+          <i :class="isStar?'el-icon-star-on':'el-icon-star-off'"></i>
+        </div>
+      </div>
+    </Modal>
     <PopBox :visible.sync="popBoxShow"></PopBox>
   </div>
 </template>
@@ -33,6 +51,7 @@ export default {
     return {
       searchShow: false,
       popBoxShow: false,
+      isStar: false,
     }
   },
   computed: { ...mapGetters('animationStatus', ['anims']) },
@@ -53,6 +72,11 @@ export default {
 }
 </script>
 <style lang="scss">
+.modal-padding{
+  height: 160px;
+  width: 100%;
+  display: block;
+}
 .header{
   i{
       font-size: 20px;
@@ -62,6 +86,72 @@ export default {
   }
   .header-right{
     text-align: right;
+  }
+  .poem-item{
+    height: 80px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
+    margin: 0 5px;
+    border-radius: 5px;
+    overflow: hidden;
+    .poem-left{
+      width:200px;
+      height: 100%;
+      background-color: rgb(255, 147, 46);
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      margin-right: 15px;
+    }
+    .poem-left::after{
+      content: '';
+      height: 0;
+      width: 0;
+      position: absolute;
+      right: -19px;
+      top: 50%;
+      margin-top: -10px;
+      border: rgba(255, 255, 255, 0) 10px solid;
+      border-left: rgb(255, 147, 46) 10px solid;
+    }
+    .poem-center{
+      flex-grow: 1;
+      .poem-title{
+        font-size: 18px;
+        font-weight: bold;
+      }
+      .poem-desc{
+        font-size: 16px;
+        height: 40px;
+        overflow: auto;
+        scrollbar-width: none;
+      }
+      .poem-desc::-webkit-scrollbar {
+          display: none; /* Chrome Safari */
+        }
+    }
+    .poem-right{
+      width: 100px;
+      background-color: rgb(255, 147, 46);
+      height: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+    .poem-author{
+      font-size: 16px;
+      font-weight: bold;
+      height: 50px;
+      writing-mode: vertical-rl;
+      margin: 0 auto;
+      color: white;
+    }
   }
 }
 </style>
