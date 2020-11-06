@@ -28,7 +28,7 @@
           </div>
         </div>
         <div class="poem-right">
-          <i :class="isStar?'el-icon-star-on':'el-icon-star-off'"></i>
+          <i :class="isStar?'el-icon-star-on':'el-icon-star-off'" @click="isStar=!isStar"></i>
         </div>
       </div>
     </Modal>
@@ -143,6 +143,9 @@ export default {
       align-items: center;
       justify-content: center;
       color: white;
+      i{
+        cursor: pointer;
+      }
     }
     .poem-author{
       font-size: 16px;

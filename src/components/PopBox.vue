@@ -56,8 +56,8 @@ export default {
     z-index: 999;
     background-color: rgba(255, 255, 255);
     box-shadow: 0 0 7px 1px rgba(211, 211, 211, 0.7);
-    min-width: 300px;
-    min-height: 250px;
+    min-width: 70%;
+    min-height: 40%;
   }
 }
 </style>

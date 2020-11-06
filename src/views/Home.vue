@@ -7,7 +7,7 @@
                'animate__animated animate__fadeInUp':autoPlayAnim
       }">
       <h1>众里寻他千百度，蓦然回首那人却在灯火阑珊处。</h1>
-      <h4><i style="font-weight:lighter">苏轼</i></h4>
+      <h4><i style="font-weight:lighter">苏轼 《青玉案》</i></h4>
       <el-popover
         placement="bottom"
         title="点亮星星"
@@ -23,6 +23,7 @@
 </template>
 
 <script>
+
 import '@/style/animation.scss'
 import { mapGetters } from 'vuex'
 export default {
