@@ -32,13 +32,16 @@
         </div>
       </div>
     </Modal>
-    <PopBox :visible.sync="popBoxShow"></PopBox>
+    <PopBox :visible.sync="popBoxShow">
+      <Login></Login>
+    </PopBox>
   </div>
 </template>
 <script>
 import SearchBox from '@/components/SearchBox'
 import Modal from '@/components/Modal'
 import PopBox from '@/components/PopBox'
+import Login from '@/components/Login'
 import { mapGetters } from 'vuex'
 export default {
   name: 'Header',
@@ -46,6 +49,7 @@ export default {
     SearchBox,
     Modal,
     PopBox,
+    Login,
   },
   data() {
     return {
