@@ -1,5 +1,5 @@
 import axios from 'axios'
-// eslint-disable-next-line
+import Vue from 'vue'
 import store from '@/store'
 // eslint-disable-next-line
 const codeMessage = {
@@ -24,6 +24,14 @@ request.interceptors.response.use((res) => {
   return res
 }, (err) => {
   editLinkStatus(err.config, false)
+  if (err.response.status === 400) {
+    Vue.prototype.$message({
+      message: err.response.data.message,
+      type: 'error',
+    })
+  } else {
+
+  }
   return Promise.reject(err)
 })
 var editLinkStatus = function(config, status) {
