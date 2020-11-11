@@ -10,7 +10,7 @@
     >
       <div class="poem-content-d" @click="getEverydayPoem()">
         <h1>{{ poem.content }}</h1>
-        <h4><i style="font-weight:lighter">{{ poem.author }} {{ poem.title }}</i></h4>
+        <h4><i style="font-weight: lighter;">{{ poem.author }} {{ poem.title }}</i></h4>
       </div>
       <el-popover
         placement="bottom"
@@ -75,19 +75,22 @@ export default {
 }
 </script>
 <style lang="scss">
-.home{
+.home {
   height: 100%;
   display: flex;
   flex-direction: row;
+
   .poem-content {
     align-self: center;
     margin: 0 auto;
     z-index: 102;
     cursor: pointer;
     pointer-events: none;
-    .poem-content-d{
+
+    .poem-content-d {
       pointer-events: auto;
     }
+
     .star {
       width: 40px;
       height: 40px;
@@ -98,6 +101,7 @@ export default {
       box-shadow: 0 0 7px 1px rgba(211, 211, 211, 0.815);
       cursor: pointer;
       pointer-events: auto;
+
       i {
         font-size: 22px;
         color: red;
