@@ -15,6 +15,7 @@ const request = axios.create({
 })
 // 请求拦截，把链接的状态添加到store里
 request.interceptors.request.use((config) => {
+  // config.headers.Authorization = `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjaG91IiwiZXhwIjoxNjA1MDgxOTM1LCJuYmYiOjE2MDQ5MDkxMzUsImlhdCI6MTYwNDkwOTEzNSwidWlkIjoxfQ.gjCheNdrqLbyqV-raX_jvZqV4TxIOebsNAMhrihtYqA`
   editLinkStatus(config, true)
   return config
 })
@@ -29,8 +30,16 @@ request.interceptors.response.use((res) => {
       message: err.response.data.message,
       type: 'error',
     })
-  } else {
-
+  } else if (err.response.status === 402) {
+    const config = err.config
+    // console.log(err.response)
+    // config.Authorization = `Bearer ${err.response.data.data.token}`
+    request(config).then(res => {
+      // console.log(res)
+      return Promise.resolve(res)
+    }).catch(err => {
+      return Promise.reject(err)
+    })
   }
   return Promise.reject(err)
 })

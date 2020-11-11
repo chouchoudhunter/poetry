@@ -38,8 +38,8 @@ export default {
   methods: {
     test() {
       request({
-        url: '/login',
-        method: 'post',
+        url: '/poem/everydaypoem',
+        method: 'get',
         data: {
           username: 'diyyouxi',
           password: '9630289381',
