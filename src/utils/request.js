@@ -1,6 +1,7 @@
 import axios from 'axios'
 import Vue from 'vue'
 import store from '@/store'
+import { getToken, setToken } from './auth.js'
 // eslint-disable-next-line
 const codeMessage = {
   400: '参数错误',
@@ -15,14 +16,14 @@ const request = axios.create({
 })
 // 请求拦截，把链接的状态添加到store里
 request.interceptors.request.use((config) => {
-  // config.headers.Authorization = `Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjaG91IiwiZXhwIjoxNjA1MDgxOTM1LCJuYmYiOjE2MDQ5MDkxMzUsImlhdCI6MTYwNDkwOTEzNSwidWlkIjoxfQ.gjCheNdrqLbyqV-raX_jvZqV4TxIOebsNAMhrihtYqA`
+  config.headers.Authorization = `Bearer ${getToken()}`
   editLinkStatus(config, true)
   return config
 })
 // 请求完成后修改对应连接的状态
 request.interceptors.response.use((res) => {
   editLinkStatus(res.config, false)
-  return res
+  return res.data
 }, (err) => {
   editLinkStatus(err.config, false)
   if (err.response.status === 400) {
@@ -32,11 +33,9 @@ request.interceptors.response.use((res) => {
     })
   } else if (err.response.status === 402) {
     const config = err.config
-    // console.log(err.response)
-    // config.Authorization = `Bearer ${err.response.data.data.token}`
-    request(config).then(res => {
-      // console.log(res)
-      return Promise.resolve(res)
+    setToken(err.response.data.data.token)
+    return request(config).then(res => {
+      return Promise.resolve(res.data)
     }).catch(err => {
       return Promise.reject(err)
     })

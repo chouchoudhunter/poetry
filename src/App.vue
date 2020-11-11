@@ -17,11 +17,10 @@
 </template>
 
 <script>
-import request from '@/utils/request'
 import Header from './views/common/Header'
 import Footer from './views/common/Footer'
 import '@/style/animation.scss'
-import { mapGetters } from 'vuex'
+import { setToken } from './utils/auth.js'
 export default {
   name: 'APP',
   components: {
@@ -29,25 +28,13 @@ export default {
     Footer,
   },
   data() {
-    return {}
+    return { td: 'null' }
   },
-  computed: { ...mapGetters('requestStatus', ['links']) },
+  computed: { },
   mounted() {
-    this.test()
+    setToken('eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjaG91IiwiZXhwIjoxNjA1MDgxOTM1LCJuYmYiOjE2MDQ5MDkxMzUsImlhdCI6MTYwNDkwOTEzNSwidWlkIjoxfQ.gjCheNdrqLbyqV-raX_jvZqV4TxIOebsNAMhrihtYqA')
   },
-  methods: {
-    test() {
-      request({
-        url: '/poem/everydaypoem',
-        method: 'get',
-        data: {
-          username: 'diyyouxi',
-          password: '9630289381',
-        },
-      }).then((res) => {
-      })
-    },
-  },
+  methods: {},
 }
 </script>
 
