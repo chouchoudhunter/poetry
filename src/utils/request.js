@@ -26,11 +26,13 @@ request.interceptors.response.use((res) => {
   return res.data
 }, (err) => {
   editLinkStatus(err.config, false)
+  // 400
   if (err.response.status === 400) {
     Vue.prototype.$message({
       message: err.response.data.message,
       type: 'error',
     })
+    // 402代表token即将过期，使用新的token重新获取
   } else if (err.response.status === 402) {
     const config = err.config
     setToken(err.response.data.data.token)
@@ -39,6 +41,9 @@ request.interceptors.response.use((res) => {
     }).catch(err => {
       return Promise.reject(err)
     })
+    // 401错误说明当前请求需要登陆或者需要重新登录
+  } else if (err.response.status === 401) {
+    // 重置状态，打开登录弹窗
   }
   return Promise.reject(err)
 })
