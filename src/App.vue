@@ -38,8 +38,12 @@ export default {
   methods: {
     test() {
       request({
-        url: '/sug?code=utf-8&q=%E5%8D%AB%E8%A1%A3&callback=cb',
-        method: 'get',
+        url: '/login',
+        method: 'post',
+        data: {
+          username: 'diyyouxi',
+          password: '9630289381',
+        },
       }).then((res) => {
       })
     },

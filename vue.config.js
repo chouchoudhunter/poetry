@@ -7,7 +7,7 @@ module.exports = {
     hotOnly: false,
     proxy: {
       '/api': {
-        target: 'https://suggest.taobao.com', // API服务器的地址
+        target: 'http://api.poem.d-hunter.top', // API服务器的地址
         changeOrigin: true,
         pathRewrite: { '^/api': '' },
       },
