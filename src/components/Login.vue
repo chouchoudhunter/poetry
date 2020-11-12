@@ -1,114 +1,99 @@
 <template>
   <div id="login">
-    <div class="login-regist">
-      <el-menu
-        :default-active="activeIndex"
-        class="el-menu-demo"
-        mode="horizontal"
-        @select="handleSelect"
-      >
-        <el-menu-item index="1">登录</el-menu-item>
-        <el-menu-item index="2">注册</el-menu-item>
-      </el-menu>
-    </div>
-    <div
-      v-if="isShow1"
-      class="login-content"
-    >
-      <el-form
-        :model="ruleForm"
-        status-icon
-        :rules="rules"
-        ref="ruleForm"
-        label-width="55px"
-        class="demo-ruleForm"
-      >
-        <el-form-item
-          label="用户名"
-          prop="name"
+    <el-tabs>
+      <el-tab-pane label="登录">
+        <div>
+          <el-form
+            :model="ruleForm"
+            status-icon
+            :rules="rules"
+            ref="ruleForm"
+            label-width="55px"
+            class="demo-ruleForm"
+          >
+            <el-form-item
+              label="用户名"
+              prop="name1"
+            >
+              <el-input
+                size="small"
+                type="text"
+                v-model="ruleForm.name1"
+                autocomplete="off"
+              ></el-input>
+            </el-form-item>
+            <el-form-item
+              label="密码"
+              prop="pass1"
+            >
+              <el-input
+                size="small"
+                type="password"
+                v-model="ruleForm.pass1"
+                autocomplete="off"
+              ></el-input>
+            </el-form-item>
+          </el-form>
+        </div>
+        <div class="ebutton">
+          <el-button
+            type="primary"
+            @click="submitForm('ruleForm')"
+          >登录</el-button>
+        </div>
+      </el-tab-pane>
+      <el-tab-pane label="注册">
+        <el-form
+          ref="ruleForm"
+          :model="ruleForm"
+          status-icon
+          :rules="rules"
+          label-width="55px"
+          class="demo-ruleForm"
         >
-          <el-input
-            size="small"
-            type="text"
-            v-model="ruleForm.name"
-            autocomplete="off"
-          ></el-input>
-        </el-form-item>
-        <el-form-item
-          label="密码"
-          prop="pass"
-        >
-          <el-input
-            size="small"
-            type="password"
-            show-password
-            v-model="ruleForm.pass"
-            autocomplete="off"
-          ></el-input>
-        </el-form-item>
-      </el-form>
-      <div class="ebutton">
-        <el-button
-          type="primary"
-          @click="submitForm('ruleForm')"
-        >登录</el-button>
-      </div>
-    </div>
-    <div
-      v-if="isShow2"
-      class="login-content"
-    >
-      <el-form
-        ref="ruleForm"
-        :model="ruleForm"
-        status-icon
-        :rules="rules"
-        label-width="55px"
-        class="demo-ruleForm"
-      >
-        <el-form-item
-          label="用户名"
-          prop="name"
-        >
-          <el-input
-            size="small"
-            type="text"
-            maxlength="16"
-            v-model="ruleForm.name"
-            autocomplete="off"
-          ></el-input>
-        </el-form-item>
-        <el-form-item
-          label="邮箱"
-          prop="email"
-        >
-          <el-input
-            size="small"
-            type="text"
-            v-model="ruleForm.email"
-            autocomplete="off"
-          ></el-input>
-        </el-form-item>
-        <el-form-item
-          label="密码"
-          prop="pass"
-        >
-          <el-input
-            size="small"
-            type="password"
-            show-password
-            v-model="ruleForm.pass"
-            autocomplete="off"
-          ></el-input>
-        </el-form-item>
-      </el-form>
-      <div class="ebutton">
-        <el-button
-          type="primary"
-          @click="submitForm('ruleForm')"
-        >注册</el-button>
-      </div>
-    </div>
+          <el-form-item
+            label="用户名"
+            prop="name"
+          >
+            <el-input
+              size="small"
+              type="text"
+              maxlength="16"
+              v-model="ruleForm.name"
+              autocomplete="off"
+            ></el-input>
+          </el-form-item>
+          <el-form-item
+            label="邮箱"
+            prop="email"
+          >
+            <el-input
+              size="small"
+              type="text"
+              v-model="ruleForm.email"
+              autocomplete="off"
+            ></el-input>
+          </el-form-item>
+          <el-form-item
+            label="密码"
+            prop="pass"
+          >
+            <el-input
+              size="small"
+              type="password"
+              v-model="ruleForm.pass"
+              autocomplete="off"
+            ></el-input>
+          </el-form-item>
+        </el-form>
+        <div class="ebutton">
+          <el-button
+            type="primary"
+            @click="submitForm('ruleForm')"
+          >注册</el-button>
+        </div>
+      </el-tab-pane>
+    </el-tabs>
   </div>
 </template>
 
@@ -149,11 +134,9 @@ export default {
       }
     }
     return {
-      activeIndex: '1',
-      labelPosition: 'left',
-      isShow1: true,
-      isShow2: false,
       ruleForm: {
+        name1: '',
+        pass1: '',
         name: '',
         email: '',
         pass: '',
@@ -181,19 +164,6 @@ export default {
     }
   },
   methods: {
-    handleSelect(key) {
-      // console.log(key)
-      switch (key) {
-        case '1':
-          this.isShow1 = true
-          this.isShow2 = false
-          break
-        case '2':
-          this.isShow1 = false
-          this.isShow2 = true
-          break
-      }
-    },
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
@@ -209,38 +179,4 @@ export default {
 </script>
 
 <style lang="scss">
-#login {
-  padding: 0 5% 5%;
-  .login-regist {
-    width: 40%;
-    margin: 0 auto;
-    .el-menu-demo {
-      width: 100%;
-      margin: 0 auto;
-      border: none;
-      .el-menu-item {
-        width: 50%;
-        margin: 0 auto;
-        padding: 0;
-        text-align: center;
-      }
-    }
-  }
-  .login-content {
-    .demo-ruleForm {
-      margin: 20px auto;
-      .el-form-item {
-        width: 95%;
-        margin: 10px auto;
-      }
-    }
-    .ebutton {
-      width: 30%;
-      margin: 0 auto;
-      .el-button {
-        width: 100%;
-      }
-    }
-  }
-}
 </style>
