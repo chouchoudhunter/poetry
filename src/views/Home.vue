@@ -68,6 +68,7 @@ export default {
     },
     getEverydayPoem() {
       everyPoem().then((res) => {
+        this.isStar = false
         this.poem = res.data
       })
     },
