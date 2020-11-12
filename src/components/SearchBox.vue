@@ -28,20 +28,22 @@ export default {
 }
 </script>
 <style lang="scss">
-  .search-box{
+  .search-box {
     border-radius: 15px;
     padding: 0;
     display: flex;
     width: 0%;
-    i{
+
+    i {
       text-align: center;
     }
-    .search-input{
+
+    .search-input {
       outline: none;
       border: none;
-      background-color:rgba(218, 218, 218, 0);
+      background-color: rgba(218, 218, 218, 0);
       width: 100%;
-      padding: 0px;
+      padding: 0;
     }
   }
 

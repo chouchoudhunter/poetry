@@ -1,164 +1,199 @@
 /* 搜索框动画 */
 $search-box-bg:rgba(218, 218, 218);
-.animation-search-box{
+
+.animation-search-box {
   animation: search-show 1s linear;
   animation-fill-mode: forwards;
 }
-.animation-search-box-hide{
+
+.animation-search-box-hide {
   animation: search-hide 1s linear;
   animation-fill-mode: forwards;
 }
+
 @keyframes search-show {
-  0%{
+  0% {
     width: 0%;
     background-color: rgba(218, 218, 218, 0);
-    padding: 5px 0px;
-    margin-top: -5px;
-  }
-  70%{
-    background-color:$search-box-bg;
-  }
-  100%{
-    width: 100%;
-    padding: 5px 10px;
-    margin-top: -5px;
-    background-color: $search-box-bg;
-  }
-}
-@keyframes search-hide {
-  0%{
-    width: 100%;
-    padding: 5px 10px;
-    margin-top: -5px;
-    background-color: $search-box-bg;
-  }
-  30%{
-    background-color: $search-box-bg;
-  }
-  100%{
-    background-color: rgba(218, 218, 218,0);
     padding: 5px 0;
     margin-top: -5px;
-    width: 8%;
+  }
+
+  70% {
+    background-color: $search-box-bg;
+  }
+
+  100% {
+    width: 100%;
+    padding: 5px 10px;
+    margin-top: -5px;
+    background-color: $search-box-bg;
   }
 }
+
+@keyframes search-hide {
+  0% {
+    width: 100%;
+    padding: 5px 10px;
+    margin-top: -5px;
+    background-color: $search-box-bg;
+  }
+
+  30% {
+    background-color: $search-box-bg;
+  }
+
+  100% {
+    background-color: rgba(218, 218, 218, 0);
+    padding: 5px 0;
+    margin-top: -5px;
+    width: 0%;
+  }
+}
+
 /* 旋转动画 */
-.animation-rotate-right{
+.animation-rotate-right {
   animation: rotate-custom-right 1s ease;
   animation-fill-mode: forwards;
 }
-.animation-rotate-left{
+
+.animation-rotate-left {
   animation: rotate-custom-left 1s ease;
   animation-fill-mode: forwards;
 }
+
 @keyframes rotate-custom-right {
-  0%{
+  0% {
     transform: rotate(0deg);
   }
-  100%{
+
+  100% {
     transform: rotate(360deg);
   }
 }
+
 @keyframes rotate-custom-left {
-  0%{
+  0% {
     transform: rotate(0deg);
   }
-  100%{
+
+  100% {
     transform: rotate(-360deg);
   }
 }
+
 /* 模态框动画 */
-.animation-modal-in{
+.animation-modal-in {
   animation: modal-in 1s ease;
   animation-fill-mode: forwards;
 }
-.animation-modal-out{
+
+.animation-modal-out {
   animation: modal-out 1s ease;
   animation-fill-mode: forwards;
 }
+
 @keyframes modal-in {
-  0%{
+  0% {
     height: 0%;
   }
-  100%{
+
+  100% {
     height: 100%;
   }
 }
+
 @keyframes modal-out {
-  0%{
+  0% {
     height: 100%;
   }
-  100%{
+
+  100% {
     height: 0%;
   }
 }
+
 /* 弹出框动画 */
-.animation-popBox-bg-in{
+.animation-popBox-bg-in {
   animation: fadeIn 1s ease;
   animation-fill-mode: forwards;
-  .animation-popBox-in{
+
+  .animation-popBox-in {
     animation: zoomIn 1s ease;
     animation-fill-mode: forwards;
   }
 }
-.animation-popBox-bg-out{
+
+.animation-popBox-bg-out {
   animation: fadeOut 1s ease;
   animation-fill-mode: forwards;
-  .animation-popBox-out{
+
+  .animation-popBox-out {
     animation: zoomOut 1s ease;
     animation-fill-mode: forwards;
   }
 }
-/*推荐诗句移动动画*/
-.animation-poem-move-up{
+
+/* 推荐诗句移动动画 */
+.animation-poem-move-up {
   animation: poem-move-up 1s ease;
   animation-fill-mode: forwards;
 }
-.animation-poem-move-down{
+
+.animation-poem-move-down {
   animation: poem-move-down 1s ease;
   animation-fill-mode: forwards;
 }
+
 @keyframes poem-move-up {
-  0%{
+  0% {
     position: relative;
     top: 0%;
   }
-  100%{
+
+  100% {
     position: relative;
     top: -30%;
   }
 }
+
 @keyframes poem-move-down {
-  0%{
+  0% {
     position: relative;
-    top: -30%
+    top: -30%;
   }
-  100%{
+
+  100% {
     position: relative;
     top: 0%;
   }
 }
 
-/*页面划入划出*/
-.animation-back-out{
+/* 页面划入划出 */
+.animation-back-out {
   animation: fadeInLeft 1s ease;
   animation-fill-mode: forwards;
 }
-.animation-back-in{
+
+.animation-back-in {
   animation: fadeInRight 1s ease;
   animation-fill-mode: forwards;
 }
+
 .slide-left-enter {
   opacity: 0;
   //transform: translate(30px, 0);
 }
-.slide-left-enter-active{
+
+.slide-left-enter-active {
   transition: all 0.3s ease;
 }
-.slide-left-leave-to{
+
+.slide-left-leave-to {
   opacity: 0;
- // transform: translate(-30px, 0);
+  // transform: translate(-30px, 0);
 }
+
 .slide-left-leave-active {
   transition: all 0.3s ease;
 }
