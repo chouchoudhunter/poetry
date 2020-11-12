@@ -72,32 +72,37 @@ export default {
 }
 </script>
 <style lang="scss">
-.modal-padding{
+.modal-padding {
   height: 160px;
   width: 100%;
   display: block;
 }
-.header{
-  i{
-      font-size: 20px;
+
+.header {
+  i {
+    font-size: 20px;
   }
-  .header-center{
+
+  .header-center {
     text-align: center;
   }
-  .header-right{
+
+  .header-right {
     text-align: right;
   }
-  .poem-item{
+
+  .poem-item {
     height: 80px;
     display: flex;
     flex-direction: row;
     align-items: center;
-    box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
     margin: 0 5px;
     border-radius: 5px;
     overflow: hidden;
-    .poem-left{
-      width:200px;
+
+    .poem-left {
+      width: 200px;
       height: 100%;
       background-color: rgb(255, 147, 46);
       display: flex;
@@ -107,7 +112,8 @@ export default {
       position: relative;
       margin-right: 15px;
     }
-    .poem-left::after{
+
+    .poem-left::after {
       content: '';
       height: 0;
       width: 0;
@@ -118,23 +124,28 @@ export default {
       border: rgba(255, 255, 255, 0) 10px solid;
       border-left: rgb(255, 147, 46) 10px solid;
     }
-    .poem-center{
+
+    .poem-center {
       flex-grow: 1;
-      .poem-title{
+
+      .poem-title {
         font-size: 18px;
         font-weight: bold;
       }
-      .poem-desc{
+
+      .poem-desc {
         font-size: 16px;
         height: 40px;
         overflow: auto;
         scrollbar-width: none;
       }
+
       .poem-desc::-webkit-scrollbar {
-          display: none; /* Chrome Safari */
-        }
+        display: none; /* Chrome Safari */
+      }
     }
-    .poem-right{
+
+    .poem-right {
       width: 100px;
       background-color: rgb(255, 147, 46);
       height: 100%;
@@ -143,11 +154,13 @@ export default {
       align-items: center;
       justify-content: center;
       color: white;
-      i{
+
+      i {
         cursor: pointer;
       }
     }
-    .poem-author{
+
+    .poem-author {
       font-size: 16px;
       font-weight: bold;
       height: 50px;
