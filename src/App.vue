@@ -17,11 +17,10 @@
 </template>
 
 <script>
-import request from '@/utils/request'
 import Header from './views/common/Header'
 import Footer from './views/common/Footer'
 import '@/style/animation.scss'
-import { mapGetters } from 'vuex'
+import { setToken } from './utils/auth.js'
 export default {
   name: 'APP',
   components: {
@@ -29,51 +28,45 @@ export default {
     Footer,
   },
   data() {
-    return {}
+    return { td: 'null' }
   },
-  computed: { ...mapGetters('requestStatus', ['links']) },
+  computed: { },
   mounted() {
-    this.test()
+    setToken('eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjaG91IiwiZXhwIjoxNjA1MDgxOTM1LCJuYmYiOjE2MDQ5MDkxMzUsImlhdCI6MTYwNDkwOTEzNSwidWlkIjoxfQ.gjCheNdrqLbyqV-raX_jvZqV4TxIOebsNAMhrihtYqA')
   },
-  methods: {
-    test() {
-      request({
-        url: '/login',
-        method: 'post',
-        data: {
-          username: 'diyyouxi',
-          password: '9630289381',
-        },
-      }).then((res) => {
-      })
-    },
-  },
+  methods: {},
 }
 </script>
 
 <style lang="scss">
-*{
-  -webkit-tap-highlight-color:transparent;
-  font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+* {
+  -webkit-tap-highlight-color: transparent;
+  font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
 }
-html,body{
+
+html,
+body {
   height: 100%;
   width: 100%;
   margin: 0;
   padding: 0;
   overflow: hidden;
 }
+
 #app {
   color: #2c3e50;
   height: 100%;
   width: 100%;
-  .el-container{
+
+  .el-container {
     height: 100%;
   }
-  .el-header{
+
+  .el-header {
     padding: 20px;
   }
-  .el-main{
+
+  .el-main {
     text-align: center;
     height: 100%;
     overflow: hidden;
