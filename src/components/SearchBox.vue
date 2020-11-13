@@ -1,7 +1,13 @@
 <template>
-  <div class="search-box" :class="{'animation-search-box':showSearch,'animation-search-box-hide':!showSearch&&autoPlay}">
-    <input type="text" class="search-input">
-    <div @click="switchSearchBox()"><i class="el-icon-search" ></i></div>
+  <div
+    class="search-box"
+    :class="{'animation-search-box':showSearch,'animation-search-box-hide':!showSearch&&autoPlay}"
+  >
+    <input
+      type="text"
+      class="search-input"
+    >
+    <div @click="switchSearchBox()"><i class="el-icon-search"></i></div>
   </div>
 </template>
 <script>
@@ -28,21 +34,22 @@ export default {
 }
 </script>
 <style lang="scss">
-  .search-box{
-    border-radius: 15px;
-    padding: 0;
-    display: flex;
-    width: 0%;
-    i{
-      text-align: center;
-    }
-    .search-input{
-      outline: none;
-      border: none;
-      background-color:rgba(218, 218, 218, 0);
-      width: 100%;
-      padding: 0px;
-    }
+.search-box {
+  border-radius: 15px;
+  padding: 0;
+  display: flex;
+  width: 0%;
+
+  i {
+    text-align: center;
   }
 
+  .search-input {
+    outline: none;
+    border: none;
+    background-color: rgba(218, 218, 218, 0);
+    width: 100%;
+    padding: 0;
+  }
+}
 </style>

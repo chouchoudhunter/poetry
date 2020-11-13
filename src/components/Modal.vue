@@ -1,6 +1,12 @@
 <template>
-  <transition enter-active-class="animation-modal-in" leave-active-class="animation-modal-out">
-    <div v-show="visible" class="modal">
+  <transition
+    enter-active-class="animation-modal-in"
+    leave-active-class="animation-modal-out"
+  >
+    <div
+      v-show="visible"
+      class="modal"
+    >
       <div class="modal-bg">
         <div class="modal-content">
           <div class="modal-header">
@@ -47,7 +53,7 @@ export default {
 }
 </script>
 <style lang="scss">
-.modal{
+.modal {
   position: absolute;
   z-index: 101;
   height: 100%;
@@ -56,10 +62,12 @@ export default {
   left: 0;
   overflow: hidden;
   pointer-events: none;
-  .modal-bg{
+
+  .modal-bg {
     height: 100%;
     width: 100%;
-    .modal-content{
+
+    .modal-content {
       pointer-events: auto;
       box-shadow: 0 0 7px 1px rgba(211, 211, 211, 0.815);
       border-radius: 20px 20px 0 0;
@@ -69,11 +77,13 @@ export default {
       position: absolute;
       bottom: 0;
       left: 0;
-      .modal-header{
+
+      .modal-header {
         display: flex;
         flex-direction: row;
         justify-content: flex-end;
-        i{
+
+        i {
           margin: 15px;
           font-size: 18px;
           display: inline-block;
