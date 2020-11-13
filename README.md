@@ -52,6 +52,5 @@ npm run build
 
 ### 其他备注
 #### 简体繁体转换
-S = require("simplebig");
-console.log(S.t2s("太古遺產"));//太古遗产
-console.log(S.s2t("繁体中文"));//繁體中文
+import Chinese from 'chinese-s2t'
+ Chinese.t2s(this.poem.content)
