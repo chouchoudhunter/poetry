@@ -11,6 +11,7 @@
     "animate.css": "^4.1.1",
     "axios": "^0.21.0",
     "blueimp-md5": "^2.18.0",
+    "chinese-s2t": "^1.0.0",
     "core-js": "^3.6.5",
     "element-ui": "^2.13.2",
     "js-cookie": "^2.2.1",
