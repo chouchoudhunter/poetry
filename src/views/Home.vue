@@ -2,6 +2,7 @@
   <div class="home">
     <div id="logo-img" @>logo</div>
     <div
+      v-if="personShow"
       class="poem-content header-center"
       :class="{'animation-poem-move-down':!anims.serachModal&&!autoPlayAnim,
                'animation-poem-move-up':anims.serachModal&&!autoPlayAnim,
@@ -64,7 +65,7 @@ export default {
   .poem-content {
     align-self: center;
     margin: 0 auto;
-    z-index: 102;
+    z-index: 0;
     cursor: pointer;
     pointer-events: none;
     .star {
