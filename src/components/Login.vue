@@ -1,6 +1,6 @@
 <template>
   <div id="login">
-    <el-tabs v-if='isShow'>
+    <el-tabs v-if="isShow">
       <el-tab-pane label="登录">
         <div>
           <el-form
@@ -35,14 +35,15 @@
             </el-form-item>
           </el-form>
         </div>
-        <div class="ebutton">
+        <div class="bottom">
           <el-button
             type="primary"
             @click="submitForm('ruleForm')"
           >登录</el-button>
-        </div>
-        <div @click="showFind()">
-          <el-link target="_blank">忘记密码</el-link>
+          <el-link
+            target="_blank"
+            @click="showFind()"
+          >忘记密码</el-link>
         </div>
       </el-tab-pane>
       <el-tab-pane label="注册">
@@ -53,7 +54,7 @@
           :rules="rules"
           label-width="55px"
           class="demo-ruleForm"
-          hide-required-asterisk="false"
+          :hide-required-asterisk="true"
         >
           <el-form-item
             label="邮箱"
@@ -78,7 +79,7 @@
             ></el-input>
           </el-form-item>
         </el-form>
-        <div class="ebutton">
+        <div class="bottom">
           <el-button
             type="primary"
             @click="submitForm('ruleForm')"
@@ -86,8 +87,14 @@
         </div>
       </el-tab-pane>
     </el-tabs>
-    <div v-if='!isShow'>
-      找回密码
+    <div v-if="!isShow">
+      <div class="head">
+        <i
+          class="el-icon-arrow-left"
+          @click="!showFind()"
+        ></i>
+        <div class="head-center">找回密码</div>
+      </div>
       <el-form
         ref="ruleForm"
         :model="ruleForm"
@@ -95,7 +102,7 @@
         :rules="rules"
         label-width="55px"
         class="demo-ruleForm"
-        hide-required-asterisk="false"
+        :hide-required-asterisk="true"
       >
         <el-form-item
           label="邮箱"
@@ -239,5 +246,40 @@ export default {
 <style lang="scss">
 #login {
   padding: 5%;
+
+  .el-tabs {
+    // margin: 0 auto;
+    // background: azure;
+    .el-tabs__nav-wrap::after {
+      height: 0;
+    }
+
+    .el-tabs__nav-scroll {
+      width: 100%;
+      background: bisque;
+
+      .el-tabs__item {
+        width: 100px;
+        background: aquamarine;
+        padding: 0;
+        text-align: center;
+      }
+    }
+
+    .el-tab-pane {
+      width: 90%;
+      margin: 0 auto;
+
+      .bottom {
+        width: 100%;
+        margin: 0 auto;
+        text-align: center;
+
+        .el-button {
+          margin-right: 20px;
+        }
+      }
+    }
+  }
 }
 </style>
