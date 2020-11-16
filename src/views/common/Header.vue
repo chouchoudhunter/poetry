@@ -5,7 +5,13 @@
         <SearchBox :showSearch.sync="searchShow"></SearchBox>
       </el-col>
       <el-col :span="8" class="header-center animate__animated animate__fadeInDown">
-        LOGO
+<<<<<<< Updated upstream
+        <div id="person-img" @click="personWindow()" >
+=======
+        <div id="logo-img" @click="personWindow()">
+>>>>>>> Stashed changes
+          LOGO
+        </div>
       </el-col>
       <el-col :span="8" class="header-right animate__animated animate__fadeInRight">
         <div id="login-img" @click="openLoginWindow()">
@@ -32,13 +38,66 @@
         </div>
       </div>
     </Modal>
+    <Modal :visible.sync="personShow">
+      <div class="person-item">
+        <div class="demo-type">
+          <div>
+            <el-avatar src="https://tse4-mm.cn.bing.net/th/id/OIP.AFdT2f5J-qTBY0Ni09S3-wAAAA?pid=Api&rs=1"></el-avatar>
+          </div>
+        </div>
+        <div class="title">
+<<<<<<< Updated upstream
+          <el-row>
+            <div id="username">
+              <span>用户名</span>
+              <div class="button">
+                <el-button size="mini" >修改密码</el-button>
+                <el-button size="mini">退出</el-button>
+              </div>
+            </div>
+          </el-row>
+        </div>
+        <h3 style="">我的喜欢</h3>
+        <div class="table">
+          <el-table
+            :data="tableData"
+            stripe
+            style="background:#EEFFBB width: 100%">
+            <el-table-column
+              align="center"
+              prop="like"
+              width="auto">
+            </el-table-column>
+          </el-table>
+        </div>
+      </div>
+    </Modal>
+    <PopBox :visible.sync="popBoxShow">
+      <Login></Login>
+    </PopBox>
+=======
+          <span>用户名</span>
+          <button>修改密码</button><button>退出</button>
+        </div>
+        <h3>我的喜欢</h3>
+        <div class="table">
+          <table align="center" bgcolor="#FAFAD2" height="auto">
+            <tr><td>点绛唇·蹴罢秋千</td></tr>
+            <tr><td>木瓜</td></tr>
+            <tr><td>采薇</td></tr>
+          </table>
+        </div>
+      </div>
+    </Modal>
     <PopBox :visible.sync="popBoxShow"></PopBox>
+>>>>>>> Stashed changes
   </div>
 </template>
 <script>
 import SearchBox from '@/components/SearchBox'
 import Modal from '@/components/Modal'
 import PopBox from '@/components/PopBox'
+import Login from '@/components/Login'
 import { mapGetters } from 'vuex'
 export default {
   name: 'Header',
@@ -46,12 +105,18 @@ export default {
     SearchBox,
     Modal,
     PopBox,
+    Login,
   },
   data() {
     return {
       searchShow: false,
       popBoxShow: false,
       isStar: false,
+      personShow: false,
+<<<<<<< Updated upstream
+      tableData: [{ like: ' 木瓜' }, { like: '望岳' }, { like: '题西林壁' }],
+=======
+>>>>>>> Stashed changes
     }
   },
   computed: { ...mapGetters('animationStatus', ['anims']) },
@@ -68,6 +133,9 @@ export default {
     openLoginWindow() {
       this.popBoxShow = !this.popBoxShow
     },
+    personWindow() {
+      this.personShow = !this.personShow
+    },
   },
 }
 </script>
@@ -77,10 +145,21 @@ export default {
   width: 100%;
   display: block;
 }
+<<<<<<< Updated upstream
 
 .header {
   i {
     font-size: 20px;
+=======
+.modal-person{
+  height:240px;
+  width:100%;
+  display: block;
+}
+.header{
+  i{
+      font-size: 20px;
+>>>>>>> Stashed changes
   }
 
   .header-center {
@@ -100,6 +179,7 @@ export default {
     margin: 0 5px;
     border-radius: 5px;
     overflow: hidden;
+    z-index:8;
 
     .poem-left {
       width: 200px;
@@ -167,6 +247,48 @@ export default {
       writing-mode: vertical-rl;
       margin: 0 auto;
       color: white;
+    }
+  }
+  .person-item{
+<<<<<<< Updated upstream
+    margin: 0 auto;
+    width:100%;
+    height: 400px;
+=======
+    width: 100%;
+    height: 500px;
+>>>>>>> Stashed changes
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+<<<<<<< Updated upstream
+    border-radius: 5px;
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+    z-index: 6;
+=======
+>>>>>>> Stashed changes
+    .img{
+    width:100px;
+    height:60px ;
+    align-items: center;
+    }
+    .title{
+      margin: 0;
+      display: flex;
+      flex-direction: row;
+
+    }
+    .table{
+      width: 100%;
+      height: 350px;
+<<<<<<< Updated upstream
+      text-align: center;
+=======
+      .tr{
+        font-size: 18px;
+      }
+>>>>>>> Stashed changes
     }
   }
 }
