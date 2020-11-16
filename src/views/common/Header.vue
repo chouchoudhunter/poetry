@@ -5,7 +5,11 @@
         <SearchBox :showSearch.sync="searchShow"></SearchBox>
       </el-col>
       <el-col :span="8" class="header-center animate__animated animate__fadeInDown">
+<<<<<<< Updated upstream
         <div id="person-img" @click="personWindow()" >
+=======
+        <div id="logo-img" @click="personWindow()">
+>>>>>>> Stashed changes
           LOGO
         </div>
       </el-col>
@@ -42,6 +46,7 @@
           </div>
         </div>
         <div class="title">
+<<<<<<< Updated upstream
           <el-row>
             <div id="username">
               <span>用户名</span>
@@ -70,6 +75,22 @@
     <PopBox :visible.sync="popBoxShow">
       <Login></Login>
     </PopBox>
+=======
+          <span>用户名</span>
+          <button>修改密码</button><button>退出</button>
+        </div>
+        <h3>我的喜欢</h3>
+        <div class="table">
+          <table align="center" bgcolor="#FAFAD2" height="auto">
+            <tr><td>点绛唇·蹴罢秋千</td></tr>
+            <tr><td>木瓜</td></tr>
+            <tr><td>采薇</td></tr>
+          </table>
+        </div>
+      </div>
+    </Modal>
+    <PopBox :visible.sync="popBoxShow"></PopBox>
+>>>>>>> Stashed changes
   </div>
 </template>
 <script>
@@ -92,7 +113,10 @@ export default {
       popBoxShow: false,
       isStar: false,
       personShow: false,
+<<<<<<< Updated upstream
       tableData: [{ like: ' 木瓜' }, { like: '望岳' }, { like: '题西林壁' }],
+=======
+>>>>>>> Stashed changes
     }
   },
   computed: { ...mapGetters('animationStatus', ['anims']) },
@@ -121,10 +145,21 @@ export default {
   width: 100%;
   display: block;
 }
+<<<<<<< Updated upstream
 
 .header {
   i {
     font-size: 20px;
+=======
+.modal-person{
+  height:240px;
+  width:100%;
+  display: block;
+}
+.header{
+  i{
+      font-size: 20px;
+>>>>>>> Stashed changes
   }
 
   .header-center {
@@ -215,16 +250,24 @@ export default {
     }
   }
   .person-item{
+<<<<<<< Updated upstream
     margin: 0 auto;
     width:100%;
     height: 400px;
+=======
+    width: 100%;
+    height: 500px;
+>>>>>>> Stashed changes
     display: flex;
     flex-direction: column;
     align-items: center;
     overflow: hidden;
+<<<<<<< Updated upstream
     border-radius: 5px;
     box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
     z-index: 6;
+=======
+>>>>>>> Stashed changes
     .img{
     width:100px;
     height:60px ;
@@ -239,7 +282,13 @@ export default {
     .table{
       width: 100%;
       height: 350px;
+<<<<<<< Updated upstream
       text-align: center;
+=======
+      .tr{
+        font-size: 18px;
+      }
+>>>>>>> Stashed changes
     }
   }
 }
