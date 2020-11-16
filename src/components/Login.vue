@@ -248,8 +248,7 @@ export default {
   padding: 5%;
 
   .el-tabs {
-    // margin: 0 auto;
-    // background: azure;
+
     .el-tabs__nav-wrap::after {
       height: 0;
     }
