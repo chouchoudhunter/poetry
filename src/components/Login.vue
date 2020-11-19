@@ -172,7 +172,9 @@ export default {
     },
     login() {
       login(this.loginForm).then(res => {
-        setToken(res.data.token)
+        const { token, ...userInfo } = res.data
+        localStorage.setItem('userInfo', JSON.stringify(userInfo))
+        setToken(token)
       })
     },
     getCode() {
