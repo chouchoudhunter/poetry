@@ -44,6 +44,11 @@ request.interceptors.response.use((res) => {
     // 401错误说明当前请求需要登陆或者需要重新登录
   } else if (err.response.status === 401) {
     // 重置状态，打开登录弹窗
+  } else {
+    Vue.prototype.$message({
+      message: codeMessage[err.response.status],
+      type: 'error',
+    })
   }
   return Promise.reject(err)
 })

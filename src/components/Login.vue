@@ -5,6 +5,7 @@
         <div>
           <el-form
             ref="loginForm"
+            v-loading="loginLoad"
             :model="loginForm"
             :status-icon="true"
             :rules="rules"
@@ -13,16 +14,16 @@
             class="demo-ruleForm"
           >
             <el-form-item label="用户名">
-              <el-input v-model="loginForm.name" size="small" type="text" autocomplete="off"></el-input>
+              <el-input v-model="loginForm.username" size="small" type="text" autocomplete="off"></el-input>
             </el-form-item>
             <el-form-item label="密码">
               <el-input v-model="loginForm.password" size="small" type="password" autocomplete="off"></el-input>
             </el-form-item>
+            <el-form-item class="bottom">
+              <el-button type="primary" @click="login()">登录</el-button>
+              <el-link target="_blank" @click="showFind()">忘记密码</el-link>
+            </el-form-item>
           </el-form>
-        </div>
-        <div class="bottom">
-          <el-button type="primary" @click="submitForm('loginForm')">登录</el-button>
-          <el-link target="_blank" @click="showFind()">忘记密码</el-link>
         </div>
       </el-tab-pane>
       <el-tab-pane label="注册">
@@ -42,10 +43,10 @@
           <el-form-item label="密码" prop="password">
             <el-input v-model="regForm.password" size="small" type="password" autocomplete="off"></el-input>
           </el-form-item>
+          <el-form-item class="bottom">
+            <el-button type="primary" @click="submitForm('regForm')">注册</el-button>
+          </el-form-item>
         </el-form>
-        <div class="bottom">
-          <el-button type="primary" @click="submitForm('regForm')">注册</el-button>
-        </div>
       </el-tab-pane>
     </el-tabs>
     <div v-if="!isShow">
@@ -85,12 +86,16 @@
 </template>
 
 <script>
+// eslint-disable-next-line no-unused-vars
+import { login, loginLoading } from '@/api/user.js'
+import { mapGetters } from 'vuex'
+import { setToken } from '@/utils/auth'
 export default {
   name: 'Login',
   data() {
     return {
       isShow: true,
-      show: true,
+      show: true, // 倒计时按钮禁用状态
       count: '',
       timer: null,
       loginForm: {
@@ -142,6 +147,12 @@ export default {
       },
     }
   },
+  computed: {
+    ...mapGetters('requestStatus', ['links']),
+    loginLoad() {
+      return !!this.links[loginLoading]
+    },
+  },
   methods: {
     showFind() {
       this.isShow = !this.isShow
@@ -157,6 +168,11 @@ export default {
           })
           return false
         }
+      })
+    },
+    login() {
+      login(this.loginForm).then(res => {
+        setToken(res.data.token)
       })
     },
     getCode() {
@@ -187,12 +203,6 @@ export default {
     .el-tab-pane {
       width: 90%;
       margin: 0 auto;
-
-      .bottom {
-        width: 100%;
-        margin: 0 auto;
-        text-align: center;
-      }
     }
   }
 }
