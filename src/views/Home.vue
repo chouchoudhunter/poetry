@@ -19,7 +19,8 @@
         trigger="hover"
         content="我们会根据喜好给您推送诗句！">
         <div slot="reference" class="star animate__animated animate__bounce animate__delay-1s" @click="changeStar()">
-          <i :class="isStar?'el-icon-star-on':'el-icon-star-off'"></i>
+          <!-- <i :class="isStar?'el-icon-star-on':'el-icon-star-off'"></i> -->
+          <LikeIcon></LikeIcon>
         </div>
       </el-popover>
     </div>
@@ -29,11 +30,12 @@
 <script>
 // eslint-disable-next-line
 import { everyPoem , everyPoemLoading } from '@/api/poem'
+import LikeIcon from '@/components/LikeIcon'
 import '@/style/animation.scss'
 import { mapGetters } from 'vuex'
 export default {
   name: 'Home',
-  components: { },
+  components: { LikeIcon },
   data() {
     return {
       isStar: false,
@@ -85,13 +87,12 @@ export default {
     align-self: center;
     margin: 0 auto;
     z-index: 102;
+    cursor: pointer;
+    pointer-events: none;
 
     h1 {
       margin: 0;
     }
-
-    cursor: pointer;
-    pointer-events: none;
 
     .poem-content-d {
       pointer-events: auto;
@@ -100,19 +101,16 @@ export default {
     .star {
       width: 40px;
       height: 40px;
-      line-height: 43px;
       margin: 20px auto;
       border-radius: 50%;
-      background-color: white;
-      box-shadow: 0 0 7px 1px rgba(211, 211, 211, 0.815);
       cursor: pointer;
       pointer-events: auto;
-
-      i {
-        font-size: 22px;
-        color: red;
-      }
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
     }
   }
 }
+
 </style>

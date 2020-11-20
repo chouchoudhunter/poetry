@@ -20,7 +20,6 @@
 import Header from './views/common/Header'
 import Footer from './views/common/Footer'
 import '@/style/animation.scss'
-import { setToken } from './utils/auth.js'
 export default {
   name: 'APP',
   components: {
@@ -32,7 +31,7 @@ export default {
   },
   computed: { },
   mounted() {
-    setToken('eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjaG91IiwiZXhwIjoxNjA1MDgxOTM1LCJuYmYiOjE2MDQ5MDkxMzUsImlhdCI6MTYwNDkwOTEzNSwidWlkIjoxfQ.gjCheNdrqLbyqV-raX_jvZqV4TxIOebsNAMhrihtYqA')
+
   },
   methods: {},
 }
@@ -54,11 +53,15 @@ body {
 }
 
 #app {
-  color: #2c3e50;
+  //color: #2c3e50;
   height: 100%;
   width: 100%;
+  background: url('./assets/bg.jpg') no-repeat center center;
+  background-size: cover;
+  color: white;
 
   .el-container {
+    background-color: rgba(0, 0, 0, 0.1);
     height: 100%;
   }
 
