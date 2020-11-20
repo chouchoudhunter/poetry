@@ -1,15 +1,14 @@
 <template>
   <div class="about">
-    <h1>关于</h1>
-    <pre>
+    <font face="隶书" size="3"><pre>
       三五个字凝成故事，
       四五个韵独奏出岁月的回音。
-      诗、词、曲即使横越过发落寞与复兴不断更替的时光，
+  诗、词、曲即使横越过发落寞与复兴不断更替的时光，
       仍然具有其自己独特的哲学意味与民族价值，
       那些少男少艾欲言又止的情愫，
       那些名人志士们浩荡激昂的心神，
       用尽一生也无法踏遍的山川奇秀，
-      一世都难以参破禅缘佛与都凝在那短短三言两语里。
+    一世都难以参破禅缘佛与都凝在那短短三言两语里。
       本网站企图开启一场属于中华诗词的文艺再复兴，
       新的媒体形式将作为全新的载体，
       每日一诗词作为传达方式，
@@ -17,18 +16,79 @@
       让我们在文字里踏遍山川遍阅世事，
       记住早已远去缥缈在眉间心上的哀愁与思念，
       让我们记住贯穿在整个华夏大地的文化脉搏，
-      或许一切都从未远去。
+      或许一切都从未远去......
     </pre>
-  </div>
-</template>
+    </font>
+    <hr>
+    <div>
+      <div>
+        <el-row :gutter="24">
+          <el-col :span="8" class="animate__animated animate__fadeInRight">
+            <div id="a" class="w" @click="openLoginWindow1()"><b>团队介绍</b></div>
+          </el-col>
+        </el-row>
+        <el-row :gutter="20">
+          <el-col :span="8" class="animate__animated animate__fadeInRight">
+            <div id="a" class="w" @click="openLoginWindow2()"><b>联系我们</b></div>
+          </el-col>
+        </el-row>
+        <PopBox name="团队介绍" :visible.sync="popBoxShow1"><pre>
+        <ul>
+          <li>吴之宇</li>
+          <li>刘晓艳</li>
+          <li>王艳</li>
+          <li>唐子淋</li>
+        </ul>
+        </pre></PopBox>
+        <PopBox :visible.sync="popBoxShow2"><pre>
+        <ul>
+          <li>邮箱：xxxxxxxxxxx</li>
+          <li>QQ:xxxxxxxxxx</li>
+          <li>电话xxxxxx</li>
+        </ul>
+          </pre></PopBox>
+      </div>
+    </div>
+  </div></template>
 <script>
-export default {}
+import PopBox from '@/components/PopBox'
+export default {
+  name: 'About',
+  components: { PopBox },
+  data() {
+    return {
+      popBoxShow1: false,
+      popBoxShow2: false,
+    }
+  },
+  methods: {
+    openLoginWindow1() {
+      this.popBoxShow1 = !this.popBoxShow1
+    },
+    openLoginWindow2() {
+      this.popBoxShow2 = !this.popBoxShow2
+    },
+  },
+}
 </script>
 <style lang="scss">
-.about{
-  text-align: left;
-  pre{
-    font-size: 12px;
-  }
+.about {
+  line-height: 180%;
+  text-align: center;
+  overflow: hidden;
+}
+
+.w {
+  display: inline-block;
+}
+
+#a {
+  padding-top: 10px;
+  float: left;
+}
+
+#b {
+  padding-top: 10px;
+  float: right;
 }
 </style>
