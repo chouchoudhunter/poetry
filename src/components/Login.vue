@@ -2,6 +2,7 @@
   <div id="login">
     <el-tabs v-if="isShow" :stretch="true">
       <el-tab-pane label="登录">
+<<<<<<< Updated upstream
         <div>
           <el-form
             ref="loginForm"
@@ -24,6 +25,38 @@
               <el-link target="_blank" @click="showFind()">忘记密码</el-link>
             </el-form-item>
           </el-form>
+=======
+        <el-form
+          ref="loginForm"
+          v-loading="loginLoad"
+          :model="loginForm"
+          :status-icon="true"
+          :rules="rules"
+          label-position="left"
+          label-width="55px"
+          class="demo-ruleForm"
+        >
+          <el-form-item label="用户名">
+            <el-input
+              v-model="loginForm.username"
+              size="small"
+              type="text"
+              autocomplete="off"
+            ></el-input>
+          </el-form-item>
+          <el-form-item label="密码">
+            <el-input
+              v-model="loginForm.password"
+              size="small"
+              type="password"
+              autocomplete="off"
+            ></el-input>
+          </el-form-item>
+        </el-form>
+        <div class="bottom">
+          <el-button type="primary" @click="login()">登录</el-button>
+          <el-link target="_blank" @click="showFind()">忘记密码</el-link>
+>>>>>>> Stashed changes
         </div>
       </el-tab-pane>
       <el-tab-pane label="注册">
@@ -38,6 +71,7 @@
           :hide-required-asterisk="true"
         >
           <el-form-item label="邮箱" prop="username">
+<<<<<<< Updated upstream
             <el-input v-model="regForm.username" size="small" type="text" autocomplete="off"></el-input>
           </el-form-item>
           <el-form-item label="密码" prop="password">
@@ -54,6 +88,38 @@
         <i class="el-icon-arrow-left" @click="!showFind()"></i>
         <div class="head-center">找回密码</div>
       </div>
+=======
+            <el-input
+              v-model="regForm.username"
+              size="small"
+              type="text"
+              autocomplete="off"
+            ></el-input>
+          </el-form-item>
+          <el-form-item label="密码" prop="password">
+            <el-input
+              v-model="regForm.password"
+              size="small"
+              type="password"
+              autocomplete="off"
+            ></el-input>
+          </el-form-item>
+        </el-form>
+        <div class="bottom">
+          <el-button type="primary" @click="submitForm('regForm')">注册</el-button>
+        </div>
+      </el-tab-pane>
+    </el-tabs>
+    <div v-if="!isShow" class="find">
+      <el-row>
+        <el-col :span="8">
+          <i class="el-icon-arrow-left" @click="!showFind()"></i>
+        </el-col>
+        <el-col :span="8">
+          <div class="head-center">找回密码</div>
+        </el-col>
+      </el-row>
+>>>>>>> Stashed changes
       <el-form
         ref="forgotForm"
         :model="forgotForm"
@@ -65,6 +131,7 @@
         :hide-required-asterisk="true"
       >
         <el-form-item label="邮箱" prop="username">
+<<<<<<< Updated upstream
           <el-input v-model="forgotForm.username" size="small" type="text" autocomplete="off" ></el-input>
         </el-form-item>
         <el-form-item label="验证码" prop="code">
@@ -80,6 +147,39 @@
       </el-form>
       <div class="ebutton">
         <el-button type="primary" @click="submitForm('forgotForm')">提交</el-button>
+=======
+          <el-input
+            v-model="forgotForm.username"
+            size="small"
+            type="text"
+            autocomplete="off"
+          ></el-input>
+        </el-form-item>
+        <el-form-item label="验证码" prop="code">
+          <el-input
+            v-model="forgotForm.code"
+            class="code-input"
+            size="small"
+            oninput="value=value.replace(/[^\d]/g,'')"
+            maxlength="6"
+          ></el-input>
+          <el-button class="code-button" type="primary" size="small">
+            <span v-show="show" @click="getCode">发送验证码</span>
+            <span v-show="!show" class="count" >{{ count }} s</span>
+          </el-button>
+        </el-form-item>
+        <el-form-item label="新密码" prop="password" >
+          <el-input
+            v-model="forgotForm.password"
+            size="small"
+            type="password"
+            autocomplete="off"
+          ></el-input>
+        </el-form-item>
+      </el-form>
+      <div class="bottom">
+        <el-button type="primary" @click="submitForm('forgotForm')" >提交</el-button>
+>>>>>>> Stashed changes
       </div>
     </div>
   </div>
@@ -199,6 +299,7 @@ export default {
 
 <style lang="scss">
 #login {
+<<<<<<< Updated upstream
   padding-top: 5px;
 
   .el-tabs {
@@ -207,5 +308,57 @@ export default {
       margin: 0 auto;
     }
   }
+=======
+  padding: 5px 5px 10px;
+
+  .el-tabs__nav-scroll {
+    width: 50%;
+    margin: 0 auto;
+  }
+
+  .el-tabs__nav-wrap::after {
+    height: 0;
+  }
+
+  .bottom {
+    width: 40%;
+    margin: 0 auto;
+    text-align: center;
+
+    .el-button {
+      width: 100%;
+      height: 40px;
+      margin-bottom: 5px;
+    }
+  }
+
+  .find {
+    .el-row {
+      height: 20px;
+      margin: 10px;
+
+      .head-center {
+        text-align: center;
+      }
+    }
+
+    .code-input {
+      width: 70%;
+    }
+
+    .code-button {
+      width: 29%;
+      height: 31px;
+      padding-left: 0;
+      padding-right: 0;
+      margin-left: 1%;
+    }
+  }
+
+  .el-form {
+    width: 90%;
+    margin: 0 auto;
+  }
+>>>>>>> Stashed changes
 }
 </style>
