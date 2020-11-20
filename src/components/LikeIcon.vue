@@ -1,7 +1,7 @@
 <template>
   <div class="like-icon">
     <div class="love-icon">
-      <input id="like-toggle" type="checkbox" />
+      <input id="like-toggle" type="checkbox" @input="onChange($event.target.checked)" />
       <label for="like-toggle" class="heart"> </label>
       <div class="lines">
         <div class="line"></div>
@@ -17,11 +17,21 @@
 </template>
 
 <script>
-export default { name: 'LikeIcon' }
+export default {
+  name: 'LikeIcon',
+  data() {
+    return {}
+  },
+  methods: {
+    onChange(val) {
+      this.$emit('change', val)
+    },
+  },
+}
 </script>
 
 <style scoped lang="scss">
-$heart-color: #bdc3c7;
+$heart-color: #b7c0c5;
 $heart-active-color: hsl(354deg 81% 63%);
 
 .like-icon {

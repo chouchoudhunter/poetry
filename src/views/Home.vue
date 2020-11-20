@@ -2,6 +2,7 @@
   <div class="home">
     <div
       v-loading="everyPoemLoadingk"
+      element-loading-background="rgba(0, 0, 0, 0.1)"
       class="poem-content header-center"
       :class="{'animation-poem-move-down':!anims.serachModal&&!autoPlayAnim,
                'animation-poem-move-up':anims.serachModal&&!autoPlayAnim,
@@ -20,7 +21,7 @@
         content="我们会根据喜好给您推送诗句！">
         <div slot="reference" class="star animate__animated animate__bounce animate__delay-1s" @click="changeStar()">
           <!-- <i :class="isStar?'el-icon-star-on':'el-icon-star-off'"></i> -->
-          <LikeIcon></LikeIcon>
+          <LikeIcon @change="onStarChange"></LikeIcon>
         </div>
       </el-popover>
     </div>
@@ -73,6 +74,11 @@ export default {
         this.isStar = false
         this.poem = res.data
       })
+    },
+    onStarChange(val) {
+      if (val) {
+
+      }
     },
   },
 }
