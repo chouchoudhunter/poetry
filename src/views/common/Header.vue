@@ -5,7 +5,7 @@
         <SearchBox :showSearch.sync="searchShow"></SearchBox>
       </el-col>
       <el-col :span="8" class="header-center animate__animated animate__fadeInDown">
-        <div id="person-img" @click="personWindow()" >
+        <div id="person-img" @click="personWindow();changeindex()" >
           LOGO
         </div>
       </el-col>
@@ -50,7 +50,7 @@
             </div>
           </el-row>
         </div>
-        <h3 style="">我的喜欢</h3>
+        <h3 >我的喜欢</h3>
         <div class="table">
           <el-table
             :data="tableData"
@@ -71,6 +71,7 @@
   </div>
 </template>
 <script>
+import bus from '../eventBus'
 import SearchBox from '@/components/SearchBox'
 import Modal from '@/components/Modal'
 import PopBox from '@/components/PopBox'
@@ -83,6 +84,7 @@ export default {
     Modal,
     PopBox,
     Login,
+    bus,
   },
   data() {
     return {
@@ -110,6 +112,10 @@ export default {
     personWindow() {
       this.personShow = !this.personShow
     },
+    // changeindex: function() {
+    //   bus.$emit('userIndex1', true)
+    //   bus.$emit('userIndex2', false)
+    // },
   },
 }
 </script>

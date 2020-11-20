@@ -24,7 +24,8 @@ export default {
 }
 </script>
 <style lang="scss">
-.footer{
+
+.footer {
   text-align: center;
 }
 </style>

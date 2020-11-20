@@ -18,6 +18,7 @@
 
 <script>
 import Header from './views/common/Header'
+import Home from './views/Home'
 import Footer from './views/common/Footer'
 import '@/style/animation.scss'
 import { setToken } from './utils/auth.js'
@@ -26,6 +27,7 @@ export default {
   components: {
     Header,
     Footer,
+    Home,
   },
   data() {
     return { td: 'null' }

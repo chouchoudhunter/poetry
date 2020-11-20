@@ -25,9 +25,11 @@
 export default {}
 </script>
 <style lang="scss">
-.about{
+
+.about {
   text-align: left;
-  pre{
+
+  pre {
     font-size: 12px;
   }
 }

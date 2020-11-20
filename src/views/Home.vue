@@ -5,7 +5,9 @@
       class="poem-content header-center"
       :class="{'animation-poem-move-down':!anims.serachModal&&!autoPlayAnim,
                'animation-poem-move-up':anims.serachModal&&!autoPlayAnim,
-               'animate__animated animate__fadeInUp':autoPlayAnim
+               'animate__animated animate__fadeInUp':autoPlayAnim,
+               index1: isIndex1,
+               index2: isIndex2
       }"
     >
       <div class="poem-content-d" @click="getEverydayPoem()">
@@ -28,7 +30,8 @@
 
 <script>
 // eslint-disable-next-line
-import { everyPoem , everyPoemLoading } from '@/api/poem'
+ import bus from './eventBus'
+import { everyPoem, everyPoemLoading } from '@/api/poem'
 import '@/style/animation.scss'
 import { mapGetters } from 'vuex'
 export default {
@@ -43,6 +46,8 @@ export default {
         content: '众里寻他千百度，蓦然回首那人却在灯火阑珊处。',
         author: '苏轼',
       },
+      isIndex1: true,
+      isIndex2: false,
     }
   },
   computed: {
@@ -61,6 +66,12 @@ export default {
   },
   mounted() {
     this.getEverydayPoem()
+    // bus.$son('userIndex1', function(isIndex1) {
+    //   self.isIndex1 = isIndex1
+    // })
+    // bus.$son('useIndex2', function(isIndex2) {
+    //   self.inIndex2 = isIndex2
+    // })
   },
   methods: {
     changeStar() {
@@ -72,6 +83,11 @@ export default {
         this.poem = res.data
       })
     },
+
+    chngeSearchIndex() {
+      this.isIndex1 = false
+      this.isIndex2 = true
+    },
   },
 }
 </script>
@@ -81,15 +97,26 @@ export default {
   display: flex;
   flex-direction: row;
 
+  .index2 {
+    position: relative;
+    z-index: 102;
+  }
+
+  .index1 {
+    position: relative;
+    z-index: 0;
+  }
+
   .poem-content {
     align-self: center;
     margin: 0 auto;
-    z-index: 102;
+    //z-index: 102;
     cursor: pointer;
     pointer-events: none;
 
     .poem-content-d {
       pointer-events: auto;
+      position: relative;
     }
 
     .star {
