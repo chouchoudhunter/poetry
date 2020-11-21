@@ -6,7 +6,12 @@
       </el-header>
       <el-main>
         <transition name="slide-left" mode="out-in">
-          <router-view/>
+          <keep-alive>
+            <router-view v-if="$route.meta.keepAlive"/>
+          </keep-alive>
+        </transition>
+        <transition name="slide-left" mode="out-in">
+          <router-view v-if="!$route.meta.keepAlive"/>
         </transition>
       </el-main>
       <el-footer>
