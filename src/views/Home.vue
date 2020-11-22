@@ -2,6 +2,7 @@
   <div class="home">
     <div
       v-loading="everyPoemLoadingk"
+      :style="{'z-index':poemIndex?102:0}"
       class="poem-content header-center"
       :class="{'animation-poem-move-down':!anims.serachModal&&!autoPlayAnim,
                'animation-poem-move-up':anims.serachModal&&!autoPlayAnim,
@@ -37,6 +38,7 @@
 
 <script>
 // eslint-disable-next-line
+import VueEvent from '../model/VueEvent'
 import { everyPoem, everyPoemLoading } from '@/api/poem'
 import '@/style/animation.scss'
 import { mapGetters } from 'vuex'
@@ -45,6 +47,7 @@ export default {
   components: {},
   data() {
     return {
+      poemIndex: true, // 为true时z-index更高
       isStar: false,
       autoPlayAnim: true,
       poem: {
@@ -70,6 +73,10 @@ export default {
   },
   mounted() {
     this.getEverydayPoem()
+    VueEvent.$on('showPerson', function(msg) {
+      this.poemIndex = msg
+      console.log(this.poemIndex)
+    })
   },
   methods: {
     goContent() {
@@ -96,7 +103,7 @@ export default {
   .poem-content {
     align-self: center;
     margin: 0 auto;
-    z-index: 102;
+    // z-index: 102;
     width: 100%;
     position: relative;
 

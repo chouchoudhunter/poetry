@@ -5,7 +5,7 @@
         <SearchBox :showSearch.sync="searchShow"></SearchBox>
       </el-col>
       <el-col :span="8" class="header-center animate__animated animate__fadeInDown">
-        LOGO
+        <div @click="openPersonMadal()">LOGO</div>
       </el-col>
       <el-col :span="8" class="header-right animate__animated animate__fadeInRight">
         <div id="login-img" @click="openLoginWindow()">
@@ -35,9 +35,13 @@
     <PopBox :visible.sync="popBoxShow">
       <Login></Login>
     </PopBox>
+    <Modal :visible.sync="showPerson">
+      <div>person</div>
+    </Modal>
   </div>
 </template>
 <script>
+import VueEvent from '../../model/VueEvent'
 import SearchBox from '@/components/SearchBox'
 import Modal from '@/components/Modal'
 import PopBox from '@/components/PopBox'
@@ -56,6 +60,7 @@ export default {
       searchShow: false,
       popBoxShow: false,
       isStar: false,
+      showPerson: false,
     }
   },
   computed: { ...mapGetters('animationStatus', ['anims']) },
@@ -71,6 +76,10 @@ export default {
   methods: {
     openLoginWindow() {
       this.popBoxShow = !this.popBoxShow
+    },
+    openPersonMadal() {
+      VueEvent.$emit('showPerson', this.showPerson)
+      this.showPerson = !this.showPerson
     },
   },
 }
