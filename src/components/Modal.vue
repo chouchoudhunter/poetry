@@ -6,6 +6,7 @@
     <div
       v-show="visible"
       class="modal"
+      v-click-outside="close"
     >
       <div class="modal-bg">
         <div class="modal-content">
