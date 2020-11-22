@@ -1,6 +1,7 @@
 <template>
-  <div class="about">
-    <font face="隶书" size="3"><pre>
+  <marquee behavior="slide" direction="up">
+    <div class="about">
+      <font face="隶书" size="3"><pre>
       三五个字凝成故事，
       四五个韵独奏出岁月的回音。
   诗、词、曲即使横越过发落寞与复兴不断更替的时光，
@@ -18,21 +19,21 @@
       让我们记住贯穿在整个华夏大地的文化脉搏，
       或许一切都从未远去......
     </pre>
-    </font>
-    <hr>
-    <div>
+      </font>
+      <hr>
       <div>
-        <el-row :gutter="24">
-          <el-col :span="8" class="animate__animated animate__fadeInRight">
-            <div id="a" class="w" @click="openLoginWindow1()"><b>团队介绍</b></div>
-          </el-col>
-        </el-row>
-        <el-row :gutter="20">
-          <el-col :span="8" class="animate__animated animate__fadeInRight">
-            <div id="a" class="w" @click="openLoginWindow2()"><b>联系我们</b></div>
-          </el-col>
-        </el-row>
-        <PopBox name="团队介绍" :visible.sync="popBoxShow1"><pre>
+        <div>
+          <el-row :gutter="24">
+            <el-col :span="8" class="animate__animated animate__fadeInRight">
+              <div id="a" @click="openLoginWindow1()"><b>团队介绍</b></div>
+            </el-col>
+          </el-row>
+          <el-row :gutter="20">
+            <el-col :span="8" class="animate__animated animate__fadeInRight">
+              <div id="a" @click="openLoginWindow2()"><b>联系我们</b></div>
+            </el-col>
+          </el-row>
+          <PopBox name="团队介绍" :visible.sync="popBoxShow1"><pre>
         <ul>
           <li>吴之宇</li>
           <li>刘晓艳</li>
@@ -40,16 +41,16 @@
           <li>唐子淋</li>
         </ul>
         </pre></PopBox>
-        <PopBox :visible.sync="popBoxShow2"><pre>
+          <PopBox :visible.sync="popBoxShow2"><pre>
         <ul>
           <li>邮箱：xxxxxxxxxxx</li>
           <li>QQ:xxxxxxxxxx</li>
           <li>电话xxxxxx</li>
         </ul>
           </pre></PopBox>
+        </div>
       </div>
-    </div>
-  </div></template>
+    </div></marquee></template>
 <script>
 import PopBox from '@/components/PopBox'
 export default {
@@ -78,17 +79,8 @@ export default {
   overflow: hidden;
 }
 
-.w {
-  display: inline-block;
-}
-
 #a {
   padding-top: 10px;
   float: left;
-}
-
-#b {
-  padding-top: 10px;
-  float: right;
 }
 </style>
