@@ -9,6 +9,7 @@
                'animate__animated animate__fadeInUp':autoPlayAnim
       }"
     >
+    <div>logo</div>
       <i class="el-icon-arrow-left"></i>
       <div class="poem-center">
         <div class="poem-content-d">
