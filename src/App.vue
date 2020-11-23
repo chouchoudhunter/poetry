@@ -5,14 +5,10 @@
         <Header></Header>
       </el-header>
       <el-main>
-        <transition name="slide-left" mode="out-in">
-          <keep-alive>
-            <router-view v-if="$route.meta.keepAlive"/>
-          </keep-alive>
-        </transition>
-        <transition name="slide-left" mode="out-in">
-          <router-view v-if="!$route.meta.keepAlive"/>
-        </transition>
+        <keep-alive>
+          <router-view v-if="$route.meta.keepAlive"/>
+        </keep-alive>
+        <router-view v-if="!$route.meta.keepAlive"/>
       </el-main>
       <el-footer>
         <Footer></Footer>

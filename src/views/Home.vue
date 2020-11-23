@@ -13,7 +13,9 @@
       <div class="poem-center">
         <div class="poem-content-d">
           <h1><i @click="goContent()">{{ poem.content }}</i></h1>
-          <h4><i style="font-weight: lighter;" @click="goContent()">{{ poem.author }} {{ poem.title }}</i></h4>
+          <h4><i style="font-weight: lighter;" @click="goContent()">
+            {{ poem.author }} {{ poem.title }}
+          </i></h4>
         </div>
         <el-popover
           placement="bottom"
@@ -27,28 +29,19 @@
             class="star animate__animated animate__bounce animate__delay-1s"
             @click="changeStar()"
           >
-            <i :class="isStar?'el-icon-star-on':'el-icon-star-off'"></i>
+            <!-- <i :class="isStar?'el-icon-star-on':'el-icon-star-off'"></i> -->
+            <LikeIcon @change="onStarChange"></LikeIcon>
           </div>
         </el-popover>
       </div>
-      <el-popover
-        placement="bottom"
-        title="点亮星星"
-        width="200"
-        trigger="hover"
-        content="我们会根据喜好给您推送诗句！">
-        <div slot="reference" class="star animate__animated animate__bounce animate__delay-1s" @click="changeStar()">
-          <!-- <i :class="isStar?'el-icon-star-on':'el-icon-star-off'"></i> -->
-          <LikeIcon @change="onStarChange"></LikeIcon>
-        </div>
-      </el-popover>
+      <i class="el-icon-arrow-right" @click="getEverydayPoem()"></i>
     </div>
   </div>
 </template>
 
 <script>
 // eslint-disable-next-line
-import { everyPoem , everyPoemLoading } from '@/api/poem'
+import { everyPoem, everyPoemLoading } from '@/api/poem'
 import LikeIcon from '@/components/LikeIcon'
 import '@/style/animation.scss'
 import { mapGetters } from 'vuex'
@@ -84,6 +77,9 @@ export default {
     this.getEverydayPoem()
   },
   methods: {
+    goContent() {
+      this.$router.push('/content')
+    },
     changeStar() {
       this.isStar = !this.isStar
     },
@@ -111,6 +107,26 @@ export default {
     align-self: center;
     margin: 0 auto;
     z-index: 102;
+    width: 100%;
+    position: relative;
+
+    .el-icon-arrow-left {
+      position: absolute;
+      left: 0;
+      top: 40%;
+    }
+
+    .poem-center {
+      margin: 0 auto;
+    }
+
+    .el-icon-arrow-right {
+      pointer-events: auto;
+      position: absolute;
+      right: 0;
+      top: 40%;
+    }
+
     cursor: pointer;
     pointer-events: none;
 
@@ -136,5 +152,4 @@ export default {
     }
   }
 }
-
 </style>

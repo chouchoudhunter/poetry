@@ -1,5 +1,5 @@
 <template>
-  <div class="content">
+  <div class="content animation-content-in">
     <i class="el-icon-arrow-left" @click="goBack()"></i>
     <div>详情</div>
   </div>
