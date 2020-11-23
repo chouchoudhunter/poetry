@@ -90,6 +90,7 @@ export default {
           display: inline-block;
           position: relative;
           z-index: 110;
+          color: black;
         }
       }
     }
