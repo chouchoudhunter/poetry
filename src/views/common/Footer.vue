@@ -7,7 +7,7 @@
       </div>
       <div class="toolbar-item">
         <img src="@/assets/icon/dw-bt.svg" alt="">
-        <span>20°C</span>
+        <span>{{ temperature }}</span>
       </div>
       <div class="toolbar-item" @click="goAbout">
         <img src="@/assets/icon/about.svg" alt="">
@@ -17,10 +17,18 @@
   </div>
 </template>
 <script>
+import { weather } from '@/api/common'
 export default {
   name: 'Footer',
   data() {
-    return {}
+    return { temperature: '5°C-20°C' }
+  },
+  mounted() {
+    weather().then(res => {
+      let temperature = res.data.data.forecast[0]
+      temperature = temperature.low.split(' ')[1] + '-' + temperature.high.split(' ')[1]
+      this.temperature = temperature
+    })
   },
   methods: {
     goHome() {
