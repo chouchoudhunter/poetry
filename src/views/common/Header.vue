@@ -5,13 +5,13 @@
         <SearchBox :showSearch.sync="searchShow"></SearchBox>
       </el-col>
       <el-col :span="8" class="header-center animate__animated animate__fadeInDown">
-        <div id="person-img" @click="personWindow()" >
+        <div id="person-img" @click="personShow=!personShow" >
           LOGO
         </div>
       </el-col>
       <el-col :span="8" class="header-right animate__animated animate__fadeInRight">
-        <div id="login-img" @click="openLoginWindow()">
-          <div><i class="el-icon-user"></i></div>
+        <div id="login-img">
+          <div><i class="el-icon-user" @click="popBoxShow=!popBoxShow"></i></div>
         </div>
       </el-col>
     </el-row>
@@ -90,8 +90,8 @@ export default {
   },
   data() {
     return {
-      searchShow: false,
-      popBoxShow: false,
+      searchShow: false, // 搜索页
+      popBoxShow: false, // 登陆窗口
       isStar: false,
       personShow: false,
       str: '用户名<br/>',
@@ -102,24 +102,21 @@ export default {
   watch: {
     // 监听searhShow的值的变化修改searchModal状态的值
     searchShow: function(newVal, oldVal) {
+      if (newVal && this.personShow) {
+        this.personShow = false
+      }
       this.$store.commit('animationStatus/editAnimStatus', {
         name: 'serachModal',
         status: newVal,
       })
     },
-  },
-  methods: {
-    openLoginWindow() {
-      this.popBoxShow = !this.popBoxShow
+    personShow: function(newVal, oldVal) {
+      if (newVal && this.searchShow) {
+        this.searchShow = false
+      }
     },
-    personWindow() {
-      this.personShow = !this.personShow
-    },
-    // changeindex: function() {
-    //   bus.$emit('userIndex1', true)
-    //   bus.$emit('userIndex2', false)
-    // },
   },
+  methods: {},
 }
 </script>
 <style lang="scss">
@@ -231,9 +228,9 @@ export default {
     align-items: center;
     overflow: hidden;
     border-radius: 5px;
-    box-shadow: 0 2px 12px rgb(253, 215, 222);
+    // box-shadow: 0 2px 12px rgb(253, 215, 222);
     z-index: 8;
-    background-color: rgb(253, 215, 222);
+    //background-color: rgb(253, 215, 222);
 
     .img {
       width: 100px;

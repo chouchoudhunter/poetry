@@ -11,7 +11,7 @@ const codeMessage = {
 }
 
 const request = axios.create({
-  baseURL: '/api',
+  baseURL: process.env.NODE_ENV === 'production' ? 'http://api.poem.d-hunter.top' : '/api',
   timeout: 50000,
 })
 // 请求拦截，把链接的状态添加到store里

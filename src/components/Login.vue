@@ -281,6 +281,7 @@ export default {
 <style lang="scss">
 #login {
   padding: 5px 5px 10px;
+  color: #303133;
 
   .el-tabs__nav-scroll {
     width: 50%;

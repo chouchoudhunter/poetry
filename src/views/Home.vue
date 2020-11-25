@@ -8,6 +8,7 @@
                'animation-poem-move-up':anims.serachModal&&!autoPlayAnim,
                'animate__animated animate__fadeInUp':autoPlayAnim
       }"
+      :style="{'z-index':anims.serachModal?'102':'0'}"
     >
       <i class="el-icon-arrow-left"></i>
       <div class="poem-center">
@@ -106,7 +107,6 @@ export default {
   .poem-content {
     align-self: center;
     margin: 0 auto;
-    z-index: 102;
     width: 100%;
     position: relative;
 
