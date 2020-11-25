@@ -5,7 +5,7 @@
         <SearchBox :showSearch.sync="searchShow"></SearchBox>
       </el-col>
       <el-col :span="8" class="header-center animate__animated animate__fadeInDown">
-        <div id="person-img" @click="personWindow();changeindex()" >
+        <div id="person-img" @click="personWindow()" >
           LOGO
         </div>
       </el-col>
@@ -44,23 +44,25 @@
         <div class="title">
           <el-row>
             <div id="username">
-              <span>用户名</span>
-              <el-button size="mini" >修改密码</el-button>
-              <el-button size="mini">退出</el-button>
+              <span >用户名</span>
+              <el-button  type="primary" size="mini" >修改密码</el-button>
+              <el-button  type="primary" size="mini">退出</el-button>
             </div>
           </el-row>
         </div>
-        <h3 >我的喜欢</h3>
+        <h3 >我的喜欢</h3><LikeIcon></LikeIcon>
         <div class="table">
           <el-table
             :data="tableData"
             stripe
-            style="background: '#EEFFBB'; width: 100%;">
+            style="background-color: #efb; width: 100%;">
+            <div class="poem-center">
             <el-table-column
               align="center"
               prop="like"
               width="auto">
             </el-table-column>
+            </div>
           </el-table>
         </div>
       </div>
@@ -92,6 +94,7 @@ export default {
       popBoxShow: false,
       isStar: false,
       personShow: false,
+      str: '用户名<br/>',
       tableData: [{ like: ' 木瓜' }, { like: '望岳' }, { like: '题西林壁' }],
     }
   },
@@ -205,7 +208,7 @@ export default {
       color: white;
 
       i {
-        cursor: pointer;
+        cursor: pointer;//鼠标为手指状
       }
     }
 
@@ -228,8 +231,9 @@ export default {
     align-items: center;
     overflow: hidden;
     border-radius: 5px;
-    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 12px rgb(253, 215, 222);
     z-index: 8;
+    background-color: rgb(253, 215, 222);
 
     .img {
       width: 100px;
@@ -240,11 +244,13 @@ export default {
     .title {
       margin: 0;
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
     }
 
     .table {
-      width: 100%;
+      border-radius: 50%;
+      align-items: center;
+      width: 60%;
       height: 350px;
       text-align: center;
     }
