@@ -40,12 +40,7 @@ export default {
   },
   computed: {},
   mounted() {
-    // Event.$on('close-all-modal', () => {
-    //   console.log(123)
-    //   this.close()
-    // })
-    // Event.$emit('close-all-modal')
-    console.log('mounted')
+
   },
   methods: {
     switchCloseHover(status) {
