@@ -1,7 +1,7 @@
 <template>
   <div class="search-box" :class="{'animation-search-box':showSearch,'animation-search-box-hide':!showSearch&&autoPlay}">
     <input type="text" class="search-input">
-    <div @click="switchSearchBox()"><i class="el-icon-search" ></i></div>
+    <div @click="switchSearchBox()"><i :class="{'el-icon-search':!showSearch,'el-icon-close':showSearch}" ></i></div>
   </div>
 </template>
 <script>
