@@ -22,7 +22,6 @@ export default {
       if (this.showSearch === false) {
         this.autoPlay = true
       }
-      this.$emit('click-icon')
     },
   },
 }

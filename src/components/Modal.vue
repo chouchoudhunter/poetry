@@ -3,11 +3,7 @@
     enter-active-class="animation-modal-in"
     leave-active-class="animation-modal-out"
   >
-    <div
-      v-show="visible"
-      class="modal"
-      v-click-outside="close"
-    >
+    <div v-if="visible" class="modal">
       <div class="modal-bg">
         <div class="modal-content">
           <div class="modal-header">
@@ -29,6 +25,7 @@
 </template>
 <script>
 import '@/style/animation.scss'
+// import Event from '@/model/VueEvent'
 export default {
   name: 'Modal',
   props: {
@@ -42,6 +39,14 @@ export default {
     return { isCloseHover: false }
   },
   computed: {},
+  mounted() {
+    // Event.$on('close-all-modal', () => {
+    //   console.log(123)
+    //   this.close()
+    // })
+    // Event.$emit('close-all-modal')
+    console.log('mounted')
+  },
   methods: {
     switchCloseHover(status) {
       this.isCloseHover = status
