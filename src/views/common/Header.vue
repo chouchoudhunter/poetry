@@ -38,30 +38,36 @@
       <div class="person-item">
         <div class="demo-type">
           <div>
-            <el-avatar src="https://tse4-mm.cn.bing.net/th/id/OIP.AFdT2f5J-qTBY0Ni09S3-wAAAA?pid=Api&rs=1"></el-avatar>
+            <el-avatar :size="80" src="https://tse4-mm.cn.bing.net/th/id/OIP.AFdT2f5J-qTBY0Ni09S3-wAAAA?pid=Api&rs=1" @error="errorHandler">
+    </el-avatar>
           </div>
         </div>
         <div class="title">
           <el-row>
             <div id="username">
-              <span>用户名</span>
-              <el-button size="mini" >修改密码</el-button>
-              <el-button size="mini">退出</el-button>
+              <span >用户名</span>
+              <el-button  type="primary" size="mini" >修改密码</el-button>
+              <el-button  type="primary" size="mini">退出</el-button>
             </div>
           </el-row>
         </div>
-        <h3 >我的喜欢</h3>
+        <h3 >我的喜欢</h3><i class="el-icon-cold-drink"></i>
         <div class="table">
           <el-table
-            :data="tableData"
-            stripe
-            style="background: '#EEFFBB'; width: 100%;">
-            <el-table-column
-              align="center"
-              prop="like"
-              width="auto">
-            </el-table-column>
-          </el-table>
+           stripe
+      :data="data"
+      style="width: 100%;">
+      <el-table-column
+        prop="author"
+        label="诗人"
+        width="180">
+      </el-table-column>
+      <el-table-column
+        prop="content"
+        label="内容"
+        >
+      </el-table-column>
+    </el-table>
         </div>
       </div>
     </Modal>
@@ -71,12 +77,12 @@
   </div>
 </template>
 <script>
-// import bus from '../eventBus'
 import SearchBox from '@/components/SearchBox'
 import Modal from '@/components/Modal'
 import PopBox from '@/components/PopBox'
 import Login from '@/components/Login'
 import { mapGetters } from 'vuex'
+import LikeIcon from '../../components/LikeIcon.vue'
 export default {
   name: 'Header',
   components: {
@@ -84,15 +90,29 @@ export default {
     Modal,
     PopBox,
     Login,
-    // bus,
+    LikeIcon,
   },
   data() {
     return {
       searchShow: false, // 搜索页
       popBoxShow: false, // 登陆窗口
       isStar: false,
-      personShow: false, // 个人中心
-      tableData: [{ like: ' 木瓜' }, { like: '望岳' }, { like: '题西林壁' }],
+      personShow: false,
+      str: '用户名<br/>',
+      data: [
+        {
+          author: '李白',
+          content: '床前明月光，疑是地上霜。举头望明月，低头思故乡。',
+        },
+        {
+          author: '孟浩然',
+          content: '春眠不觉晓，处处闻啼鸟。夜来风雨声，花落知多少。',
+        },
+        {
+          author: '白居易',
+          content: '江南好，风景旧曾谙。日出江花红胜火，春来江水绿如蓝。能不忆江南？',
+        },
+      ],
     }
   },
   computed: { ...mapGetters('animationStatus', ['anims']) },
@@ -113,7 +133,16 @@ export default {
       }
     },
   },
-  methods: {},
+  methods: {
+    tableRowClassName({ row, rowIndex }) {
+      if (rowIndex + 1) {
+        return 'row'
+      }
+    },
+    errorHandler() {
+      return true
+    },
+  },
 }
 </script>
 <style lang="scss">
@@ -202,7 +231,7 @@ export default {
       color: white;
 
       i {
-        cursor: pointer;
+        cursor: pointer;//鼠标为手指状
       }
     }
 
@@ -219,14 +248,12 @@ export default {
   .person-item {
     margin: 0 auto;
     width: 100%;
-    height: 400px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    overflow: hidden;
-    border-radius: 5px;
-    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+    overflow: auto;
     z-index: 8;
+    //background-color: rgb(253, 215, 222);
 
     .img {
       width: 100px;
@@ -237,13 +264,21 @@ export default {
     .title {
       margin: 0;
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
     }
 
     .table {
       width: 100%;
-      height: 350px;
-      text-align: center;
+      display: flex;
+      flex-direction: column;
+
+      .el-table {
+        font-size: 12px;
+        color: rgb(247, 191, 201);
+        border-radius: 10px;
+        align-items: center;
+        width: 100%;
+      }
     }
   }
 }
