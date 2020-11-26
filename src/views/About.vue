@@ -23,34 +23,32 @@
       <hr>
       <div>
         <div>
-          <el-row :gutter="24">
-            <el-col :span="8" class="animate__animated animate__fadeInRight">
-              <div id="a" @click="openLoginWindow1()"><b>团队介绍</b></div>
-            </el-col>
-          </el-row>
-          <el-row :gutter="20">
-            <el-col :span="8" class="animate__animated animate__fadeInRight">
-              <div id="a" @click="openLoginWindow2()"><b>联系我们</b></div>
-            </el-col>
-          </el-row>
-          <PopBox name="团队介绍" :visible.sync="popBoxShow1"><pre>
-        <ul>
+          <div id="a" @click="openLoginWindow1()"><b>团队介绍</b></div>
+          <div id="b" @click="openLoginWindow2()"><b>联系我们</b></div>
+        </div>
+        <PopBox :visible.sync="popBoxShow1">
+          <pre>
+          <ul>
           <li>吴之宇</li>
           <li>刘晓艳</li>
           <li>王艳</li>
           <li>唐子淋</li>
-        </ul>
-        </pre></PopBox>
-          <PopBox :visible.sync="popBoxShow2"><pre>
-        <ul>
+          </ul>
+          </pre>
+        </PopBox>
+        <PopBox :visible.sync="popBoxShow2">
+          <pre>
+          <ul>
           <li>邮箱：xxxxxxxxxxx</li>
           <li>QQ:xxxxxxxxxx</li>
           <li>电话xxxxxx</li>
-        </ul>
-          </pre></PopBox>
-        </div>
+          </ul>
+          </pre>
+        </PopBox>
       </div>
-    </div></marquee></template>
+    </div>
+  </marquee>
+</template>
 <script>
 import PopBox from '@/components/PopBox'
 export default {
@@ -82,5 +80,10 @@ export default {
 #a {
   padding-top: 10px;
   float: left;
+}
+
+#b {
+  padding-top: 10px;
+  float: right;
 }
 </style>
