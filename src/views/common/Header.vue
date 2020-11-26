@@ -38,7 +38,8 @@
       <div class="person-item">
         <div class="demo-type">
           <div>
-            <el-avatar src="https://tse4-mm.cn.bing.net/th/id/OIP.AFdT2f5J-qTBY0Ni09S3-wAAAA?pid=Api&rs=1"></el-avatar>
+            <el-avatar :size="80" src="https://tse4-mm.cn.bing.net/th/id/OIP.AFdT2f5J-qTBY0Ni09S3-wAAAA?pid=Api&rs=1" @error="errorHandler">
+    </el-avatar>
           </div>
         </div>
         <div class="title">
@@ -50,20 +51,23 @@
             </div>
           </el-row>
         </div>
-        <h3 >我的喜欢</h3><LikeIcon></LikeIcon>
+        <h3 >我的喜欢</h3>
         <div class="table">
           <el-table
-            :data="tableData"
-            stripe
-            style="background-color: #efb; width: 100%;">
-            <div class="poem-center">
-            <el-table-column
-              align="center"
-              prop="like"
-              width="auto">
-            </el-table-column>
-            </div>
-          </el-table>
+           stripe
+      :data="data"
+      style="width: 100%;">
+      <el-table-column
+        prop="author"
+        label="诗人"
+        width="180">
+      </el-table-column>
+      <el-table-column
+        prop="content"
+        label="内容"
+        >
+      </el-table-column>
+    </el-table>
         </div>
       </div>
     </Modal>
@@ -73,7 +77,6 @@
   </div>
 </template>
 <script>
-// import bus from '../eventBus'
 import SearchBox from '@/components/SearchBox'
 import Modal from '@/components/Modal'
 import PopBox from '@/components/PopBox'
@@ -86,7 +89,6 @@ export default {
     Modal,
     PopBox,
     Login,
-    // bus,
   },
   data() {
     return {
@@ -95,7 +97,20 @@ export default {
       isStar: false,
       personShow: false,
       str: '用户名<br/>',
-      tableData: [{ like: ' 木瓜' }, { like: '望岳' }, { like: '题西林壁' }],
+      data: [
+        {
+          author: '李白',
+          content: '床前明月光，疑是地上霜。举头望明月，低头思故乡。',
+        },
+        {
+          author: '孟浩然',
+          content: '春眠不觉晓，处处闻啼鸟。夜来风雨声，花落知多少。',
+        },
+        {
+          author: '白居易',
+          content: '江南好，风景旧曾谙。日出江花红胜火，春来江水绿如蓝。能不忆江南？',
+        },
+      ],
     }
   },
   computed: { ...mapGetters('animationStatus', ['anims']) },
@@ -116,7 +131,16 @@ export default {
       }
     },
   },
-  methods: {},
+  methods: {
+    tableRowClassName({ row, rowIndex }) {
+      if (rowIndex + 1) {
+        return 'row'
+      }
+    },
+    errorHandler() {
+      return true
+    },
+  },
 }
 </script>
 <style lang="scss">
@@ -227,8 +251,6 @@ export default {
     flex-direction: column;
     align-items: center;
     overflow: hidden;
-    border-radius: 5px;
-    // box-shadow: 0 2px 12px rgb(253, 215, 222);
     z-index: 8;
     //background-color: rgb(253, 215, 222);
 
@@ -245,11 +267,16 @@ export default {
     }
 
     .table {
-      border-radius: 50%;
-      align-items: center;
       width: 60%;
-      height: 350px;
-      text-align: center;
+
+      .el-table {
+        font-size: 12px;
+        color: rgb(247, 191, 201);
+        border-radius: 10px;
+        align-items: center;
+        width: 100%;
+        text-align: center;
+      }
     }
   }
 }
