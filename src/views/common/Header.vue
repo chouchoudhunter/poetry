@@ -51,7 +51,7 @@
             </div>
           </el-row>
         </div>
-        <h3 >我的喜欢</h3>
+        <h3 >我的喜欢</h3><i class="el-icon-cold-drink"></i>
         <div class="table">
           <el-table
            stripe
@@ -82,6 +82,7 @@ import Modal from '@/components/Modal'
 import PopBox from '@/components/PopBox'
 import Login from '@/components/Login'
 import { mapGetters } from 'vuex'
+import LikeIcon from '../../components/LikeIcon.vue'
 export default {
   name: 'Header',
   components: {
@@ -89,6 +90,7 @@ export default {
     Modal,
     PopBox,
     Login,
+    LikeIcon,
   },
   data() {
     return {
@@ -246,11 +248,10 @@ export default {
   .person-item {
     margin: 0 auto;
     width: 100%;
-    height: 400px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    overflow: hidden;
+    overflow: auto;
     z-index: 8;
     //background-color: rgb(253, 215, 222);
 
@@ -267,7 +268,9 @@ export default {
     }
 
     .table {
-      width: 60%;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
 
       .el-table {
         font-size: 12px;
@@ -275,7 +278,6 @@ export default {
         border-radius: 10px;
         align-items: center;
         width: 100%;
-        text-align: center;
       }
     }
   }
