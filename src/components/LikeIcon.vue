@@ -92,8 +92,7 @@ $heart-active-color: hsl(354deg 81% 63%);
       top: 0;
       left: 0;
       width: 16px;
-      height: 1px;
-      opacity: 0.6;
+      height: 1.5px;
 
       &::before {
         position: absolute;
