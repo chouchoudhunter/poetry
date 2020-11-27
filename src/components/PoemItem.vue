@@ -35,114 +35,132 @@ export default {
   data() {
     return { isStar: false }
   },
+  mounted() {
+  },
 }
 </script>
 
 <style lang="scss">
-  .poem-item {
+:root {
+  --item-bg: url('../assets/bar/bg2.jpg');
+}
+
+.poem-item {
+  height: 90px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  margin: 0 5px;
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+  background: var(--item-bg) no-repeat center center / cover;
+  margin-bottom: 10px;
+
+  .poem-desc {
+    width: 100%;
+    font-size: 16px;
     height: 90px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-    margin: 0 5px;
-    border-radius: 5px;
-    overflow: hidden;
-    position: relative;
-    background: url('../assets/bar/bg.jpg') no-repeat center center / cover;
-    margin-bottom: 10px;
+    overflow: auto;
+    scrollbar-width: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    text-align: center;
+    z-index: 3;
+    white-space: pre-wrap;
+    opacity: 0;
+    transition: background-color 2s, opacity 1s;
+  }
 
-    .poem-desc {
-      width: 100%;
-      font-size: 16px;
-      height: 90px;
-      overflow: auto;
-      scrollbar-width: none;
-      position: absolute;
-      top: 0;
-      left: 0;
-      text-align: center;
-      z-index: 2;
-      white-space: pre-wrap;
-      opacity: 0;
-      transition: background-color 2s, opacity 1s;
-    }
+  &::before {
+    transition: filter 2s, margin 2s;
+    content: ' ';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
 
+  &::after {
+    content: ' ';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.1);
+    z-index: 1;
+  }
+
+  &:hover {
     &::before {
-      transition: filter 2s, margin 2s;
-      content: ' ';
+      background: var(--item-bg) no-repeat center center / cover;
+      filter: blur(5px);
+      margin: -30px;
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
       bottom: 0;
+      content: ' ';
+      z-index: 3;
     }
 
-    &:hover {
-      &::before {
-        background: url('../assets/bar/bg.jpg') no-repeat center center / cover;
-        filter: blur(5px);
-        margin: -30px;
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        content: ' ';
-        z-index: 1;
-      }
-
-      .poem-desc {
-        display: block;
-        background-color: rgba(0, 0, 0, 0.1);
-        opacity: 1;
-      }
-    }
-
-    .poem-top {
-      width: 100%;
-      z-index: 0;
-      position: relative;
-      height: 20px;
-
-      .poem-author {
-        font-size: 14px;
-        color: white;
-        margin: 3px 5px;
-        font-weight: bold;
-      }
-    }
-
-    .poem-center {
-      display: flex;
-      height: 50px;
-      flex-direction: row;
-      align-items: center;
-
-      .poem-title {
-        font-size: 18px;
-        font-weight: bold;
-      }
-
-      .poem-desc::-webkit-scrollbar {
-        display: none; /* Chrome Safari */
-      }
-    }
-
-    .poem-bottom {
-      width: 100%;
-      height: 20px;
-      z-index: 2;
-      //background-color: rgb(255, 147, 46);
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: flex-end;
-      color: white;
-
-      i {
-        cursor: pointer;//鼠标为手指状
-      }
+    .poem-desc {
+      display: block;
+      background-color: rgba(0, 0, 0, 0.2);
+      opacity: 1;
     }
   }
+
+  .poem-top {
+    width: 100%;
+    z-index: 2;
+    position: relative;
+    height: 20px;
+
+    .poem-author {
+      font-size: 14px;
+      color: white;
+      margin: 3px 5px;
+      font-weight: bold;
+    }
+  }
+
+  .poem-center {
+    display: flex;
+    height: 50px;
+    flex-direction: row;
+    align-items: center;
+
+    .poem-title {
+      font-size: 18px;
+      font-weight: bold;
+      z-index: 2;
+    }
+
+    .poem-desc::-webkit-scrollbar {
+      display: none; /* Chrome Safari */
+    }
+  }
+
+  .poem-bottom {
+    width: 100%;
+    height: 20px;
+    z-index: 3;
+    //background-color: rgb(255, 147, 46);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    color: white;
+
+    i {
+      cursor: pointer;//鼠标为手指状
+    }
+  }
+}
 </style>

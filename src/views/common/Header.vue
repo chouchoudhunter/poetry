@@ -16,7 +16,7 @@
       </el-col>
     </el-row>
     <Modal :visible.sync="searchShow">
-      <el-row :gutter="10">
+      <el-row :gutter="10" style="overflow: auto;">
         <el-col :xs="24" :span="12">
           <poem-item></poem-item>
         </el-col>
