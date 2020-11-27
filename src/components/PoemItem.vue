@@ -126,7 +126,7 @@ export default {
       font-size: 14px;
       color: white;
       margin: 3px 5px;
-      font-weight: bold;
+      font-weight: lighter;
     }
   }
 
@@ -138,7 +138,7 @@ export default {
 
     .poem-title {
       font-size: 18px;
-      font-weight: bold;
+      font-weight: lighter;
       z-index: 2;
     }
 
