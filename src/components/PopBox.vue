@@ -31,9 +31,9 @@ export default {
 </script>
 
 <style lang="scss">
-.pop-box{
+.pop-box {
   height: 100%;
-  width:100%;
+  width: 100%;
   position: absolute;
   z-index: 999;
   left: 0;
@@ -42,7 +42,8 @@ export default {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  .pop-box-bg{
+
+  .pop-box-bg {
     z-index: 998;
     top: 0;
     left: 0;
@@ -52,7 +53,8 @@ export default {
     background-color: rgba(97, 97, 97, 0.1);
     backdrop-filter: 20px;
   }
-  .pop-box-content{
+
+  .pop-box-content {
     z-index: 999;
     background-color: rgba(255, 255, 255);
     box-shadow: 0 0 7px 1px rgba(211, 211, 211, 0.7);

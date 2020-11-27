@@ -16,22 +16,7 @@
       </el-col>
     </el-row>
     <Modal :visible.sync="searchShow">
-      <div class="poem-item">
-        <div class="poem-left">
-          <div class="poem-left-box">
-            <div class="poem-author">李清照</div>
-          </div>
-        </div>
-        <div class="poem-center">
-          <div class="poem-title">点绛唇·蹴罢秋千</div>
-          <div class="poem-desc">
-            蹴罢秋千，起来慵整纤纤手。露浓花瘦，薄汗轻衣透。见客入来，袜刬金钗溜。和羞走，倚门回首，却把青梅嗅。
-          </div>
-        </div>
-        <div class="poem-right">
-          <i :class="isStar?'el-icon-star-on':'el-icon-star-off'" @click="isStar=!isStar"></i>
-        </div>
-      </div>
+      <poem-item></poem-item>
     </Modal>
     <Modal :visible.sync="personShow">
       <div class="person-item">
@@ -80,8 +65,9 @@ import SearchBox from '@/components/SearchBox'
 import Modal from '@/components/Modal'
 import PopBox from '@/components/PopBox'
 import Login from '@/components/Login'
+import PoemItem from '@/components/PoemItem'
 import { mapGetters } from 'vuex'
-import LikeIcon from '../../components/LikeIcon.vue'
+import LikeIcon from '@/components/LikeIcon.vue'
 export default {
   name: 'Header',
   components: {
@@ -90,6 +76,7 @@ export default {
     PopBox,
     Login,
     LikeIcon,
+    PoemItem,
   },
   data() {
     return {
@@ -156,86 +143,6 @@ export default {
 
   .header-right {
     text-align: right;
-  }
-
-  .poem-item {
-    height: 80px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
-    margin: 0 5px;
-    border-radius: 5px;
-    overflow: hidden;
-    z-index: 200;
-
-    .poem-left {
-      width: 200px;
-      height: 100%;
-      background-color: rgb(255, 147, 46);
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      margin-right: 15px;
-    }
-
-    .poem-left::after {
-      content: '';
-      height: 0;
-      width: 0;
-      position: absolute;
-      right: -19px;
-      top: 50%;
-      margin-top: -10px;
-      border: rgba(255, 255, 255, 0) 10px solid;
-      border-left: rgb(255, 147, 46) 10px solid;
-    }
-
-    .poem-center {
-      flex-grow: 1;
-
-      .poem-title {
-        font-size: 18px;
-        font-weight: bold;
-      }
-
-      .poem-desc {
-        font-size: 16px;
-        height: 40px;
-        overflow: auto;
-        scrollbar-width: none;
-      }
-
-      .poem-desc::-webkit-scrollbar {
-        display: none; /* Chrome Safari */
-      }
-    }
-
-    .poem-right {
-      width: 100px;
-      background-color: rgb(255, 147, 46);
-      height: 100%;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-      color: white;
-
-      i {
-        cursor: pointer;//鼠标为手指状
-      }
-    }
-
-    .poem-author {
-      font-size: 16px;
-      font-weight: bold;
-      height: 50px;
-      writing-mode: vertical-rl;
-      margin: 0 auto;
-      color: white;
-    }
   }
 
   .person-item {
