@@ -16,7 +16,6 @@
       </el-col>
     </el-row>
     <Modal :visible.sync="searchShow">
-      <div class="modal-padding"></div>
       <div class="poem-item">
         <div class="poem-left">
           <div class="poem-left-box">
@@ -39,35 +38,35 @@
         <div class="demo-type">
           <div>
             <el-avatar :size="80" src="https://tse4-mm.cn.bing.net/th/id/OIP.AFdT2f5J-qTBY0Ni09S3-wAAAA?pid=Api&rs=1" @error="errorHandler">
-    </el-avatar>
+            </el-avatar>
           </div>
         </div>
         <div class="title">
           <el-row>
             <div id="username">
               <span >用户名</span>
-              <el-button  type="primary" size="mini" >修改密码</el-button>
-              <el-button  type="primary" size="mini">退出</el-button>
+              <el-button type="primary" size="mini" >修改密码</el-button>
+              <el-button type="primary" size="mini">退出</el-button>
             </div>
           </el-row>
         </div>
         <h3 >我的喜欢</h3><i class="el-icon-cold-drink"></i>
         <div class="table">
           <el-table
-           stripe
-      :data="data"
-      style="width: 100%;">
-      <el-table-column
-        prop="author"
-        label="诗人"
-        width="180">
-      </el-table-column>
-      <el-table-column
-        prop="content"
-        label="内容"
-        >
-      </el-table-column>
-    </el-table>
+            stripe
+            :data="data"
+            style="width: 100%;">
+            <el-table-column
+              prop="author"
+              label="诗人"
+              width="180">
+            </el-table-column>
+            <el-table-column
+              prop="content"
+              label="内容"
+            >
+            </el-table-column>
+          </el-table>
         </div>
       </div>
     </Modal>
@@ -146,12 +145,6 @@ export default {
 }
 </script>
 <style lang="scss">
-.modal-padding {
-  height: 160px;
-  width: 100%;
-  display: block;
-}
-
 .header {
   i {
     font-size: 20px;

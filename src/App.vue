@@ -57,24 +57,12 @@ body {
   //color: #2c3e50;
   height: 100%;
   width: 100%;
-  // background: url('./assets/bg.jpg') no-repeat center center;
   background-image: linear-gradient(45deg, #cc6aa5, #3e91cc, #2dcca7);
   background-size: 600% 100%;
   animation: bg-pan-left 15s;
   animation-direction: alternate;
   animation-iteration-count: infinite;
-  //background-size: cover;
   color: white;
-
-  @keyframes bg-pan-left {
-    0% {
-      background-position: 100% 50%;
-    }
-
-    100% {
-      background-position: 0% 50%;
-    }
-  }
 
   .el-container {
     background-color: rgba(0, 0, 0, 0.1);

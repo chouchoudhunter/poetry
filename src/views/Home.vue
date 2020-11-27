@@ -4,11 +4,9 @@
       v-loading="everyPoemLoadingk"
       element-loading-background="rgba(0, 0, 0, 0.1)"
       class="poem-content header-center"
-      :class="{'animation-poem-move-down':!anims.serachModal&&!autoPlayAnim,
-               'animation-poem-move-up':anims.serachModal&&!autoPlayAnim,
-               'animate__animated animate__fadeInUp':autoPlayAnim
+      :class="{
+        'animate__animated animate__fadeInUp':autoPlayAnim
       }"
-      :style="{'z-index':anims.serachModal?'102':'0'}"
     >
       <i class="el-icon-arrow-left"></i>
       <div class="poem-center">
@@ -30,7 +28,6 @@
             class="star animate__animated animate__bounce animate__delay-1s"
             @click="changeStar()"
           >
-            <!-- <i :class="isStar?'el-icon-star-on':'el-icon-star-off'"></i> -->
             <LikeIcon @change="onStarChange"></LikeIcon>
           </div>
         </el-popover>
@@ -61,19 +58,12 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('animationStatus', ['anims']),
     ...mapGetters('requestStatus', ['links']),
     everyPoemLoadingk() {
       return !!this.links[everyPoemLoading]
     },
   },
-  watch: {
-    'anims.serachModal': function(newVal, oldVal) {
-      if (oldVal === false) {
-        this.autoPlayAnim = false
-      }
-    },
-  },
+  watch: {},
   mounted() {
     this.getEverydayPoem()
   },

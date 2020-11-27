@@ -77,20 +77,22 @@ export default {
       bottom: 0;
       left: 0;
       overflow: hidden;
-      background-color: rgba(0, 0, 0, 0.15);
+      box-shadow: 0 0 8px 2px rgba(54, 54, 54, 0.1);
+      background-image: linear-gradient(45deg, #3e91cc, #2dcca7);
+      background-size: 200% 100%;
 
-      &::before {
-        background: url('../assets/bg.jpg') fixed no-repeat center center / cover;
-        filter: blur(10px);
-        margin: -30px;
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        content: ' ';
-        z-index: -1;
-      }
+      // &::before {
+      //   background: url('../assets/bg.jpg') fixed no-repeat center center / cover;
+      //   filter: blur(10px);
+      //   margin: -30px;
+      //   position: absolute;
+      //   top: 0;
+      //   left: 0;
+      //   right: 0;
+      //   bottom: 0;
+      //   content: ' ';
+      //   z-index: -1;
+      // }
 
       .modal-header {
         display: flex;
