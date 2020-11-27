@@ -42,8 +42,12 @@
             </div>
           </el-row>
         </div>
-        <h3 >我的喜欢</h3><i class="el-icon-cold-drink"></i>
-        <div class="table">
+        <i class="el-icon-cold-drink"></i>
+         <div class="table">
+        <el-tabs type="border-card">
+  <el-tab-pane>
+    <span slot="label"><i class="el-icon-star-off"></i> 我的喜欢</span>
+    <div>
           <el-table
             stripe
             :data="data"
@@ -59,7 +63,13 @@
             >
             </el-table-column>
           </el-table>
-        </div>
+    </div>
+  </el-tab-pane>
+  <el-tab-pane>
+    <span slot="label"><i class="el-icon-s-home"></i> 个人资料</span>
+    个人资料
+  </el-tab-pane>
+</el-tabs></div>
       </div>
     </Modal>
     <PopBox :visible.sync="popBoxShow">
@@ -91,7 +101,6 @@ export default {
       popBoxShow: false, // 登陆窗口
       isStar: false,
       personShow: false,
-      str: '用户名<br/>',
       data: [
         {
           author: '李白',
@@ -139,6 +148,10 @@ export default {
 }
 </script>
 <style lang="scss">
+:root {
+  --item-bg: url('http://img.pptjia.com/image/20190523/d1985d0d72f5ace8bc3c8a5308580365.jpg');
+}
+
 .header {
   i {
     font-size: 20px;
@@ -178,6 +191,8 @@ export default {
       width: 100%;
       display: flex;
       flex-direction: column;
+      overflow: auto;
+      background: var(--item-bg) no-repeat center center / cover;
 
       .el-table {
         font-size: 12px;
