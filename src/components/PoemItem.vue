@@ -53,7 +53,7 @@ export default {
 
     .poem-desc {
       width: 100%;
-      font-size: 16px;
+      font-size: 18px;
       height: 90px;
       overflow: auto;
       scrollbar-width: none;
@@ -64,6 +64,16 @@ export default {
       z-index: 2;
       display: none;
       white-space: pre-wrap;
+    }
+
+    &::before {
+      transition: filter 2s, margin 2s;
+      content: ' ';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
     }
 
     &:hover {
