@@ -50,10 +50,11 @@ export default {
     overflow: hidden;
     position: relative;
     background: url('../assets/bar/bg.jpg') no-repeat center center / cover;
+    margin-bottom: 10px;
 
     .poem-desc {
       width: 100%;
-      font-size: 18px;
+      font-size: 16px;
       height: 90px;
       overflow: auto;
       scrollbar-width: none;
@@ -62,8 +63,9 @@ export default {
       left: 0;
       text-align: center;
       z-index: 2;
-      display: none;
       white-space: pre-wrap;
+      opacity: 0;
+      transition: background-color 2s, opacity 1s;
     }
 
     &::before {
@@ -92,6 +94,8 @@ export default {
 
       .poem-desc {
         display: block;
+        background-color: rgba(0, 0, 0, 0.1);
+        opacity: 1;
       }
     }
 

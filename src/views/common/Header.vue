@@ -16,7 +16,14 @@
       </el-col>
     </el-row>
     <Modal :visible.sync="searchShow">
-      <poem-item></poem-item>
+      <el-row :gutter="10">
+        <el-col :xs="24" :span="12">
+          <poem-item></poem-item>
+        </el-col>
+        <el-col :xs="24" :span="12">
+          <poem-item></poem-item>
+        </el-col>
+      </el-row>
     </Modal>
     <Modal :visible.sync="personShow">
       <div class="person-item">
