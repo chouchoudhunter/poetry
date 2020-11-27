@@ -76,7 +76,14 @@ body {
   .el-main {
     text-align: center;
     height: 100%;
-    overflow: hidden;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE 10+ */
+    // overflow: hidden;
+  }
+
+  .el-main::-webkit-scrollbar {
+    display: none; /* Chrome Safari */
+    -ms-overflow-style: none; /* IE 10+ */
   }
 }
 
