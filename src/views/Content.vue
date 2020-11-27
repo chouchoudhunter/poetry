@@ -62,6 +62,12 @@ export default {
   .el-icon-arrow-left {
     float: left;
     font-size: 20px;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    background-color: rgba(85, 85, 85, 0.2);
+    box-shadow: 0 0 8px 2px rgba(54, 54, 54, 0.1);
+    margin-bottom: 20px;
   }
 
   .poem-style {
@@ -94,9 +100,10 @@ export default {
   }
 
   .bg-padding {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(73, 73, 73, 0.1);
     padding: 10px 15px;
-    border-radius: 15px;
+    box-shadow: 0 0 8px 2px rgba(54, 54, 54, 0.1);
+    border-radius: 5px;
     overflow: hidden;
   }
 }
