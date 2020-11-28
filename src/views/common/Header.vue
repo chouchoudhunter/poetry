@@ -48,7 +48,7 @@
   <el-tab-pane>
     <span slot="label"><i class="el-icon-star-off"></i> 我的喜欢</span>
     <div>
-          <el-table
+          <!-- <el-table
             stripe
             :data="data"
             style="width: 100%;">
@@ -62,12 +62,20 @@
               label="内容"
             >
             </el-table-column>
-          </el-table>
+          </el-table> -->
+          <el-row :gutter="10" style="overflow: auto;">
+        <el-col :xs="24" :span="12">
+          <poem-item></poem-item>
+        </el-col>
+        <el-col :xs="24" :span="12">
+          <poem-item></poem-item>
+        </el-col>
+      </el-row>
     </div>
   </el-tab-pane>
   <el-tab-pane>
     <span slot="label"><i class="el-icon-s-home"></i> 个人资料</span>
-    个人资料
+    <div></div>
   </el-tab-pane>
 </el-tabs></div>
       </div>
