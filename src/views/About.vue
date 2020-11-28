@@ -1,7 +1,9 @@
 <template>
-  <marquee behavior="slide" direction="up">
-    <div class="about">
-      <font face="隶书" size="3"><pre>
+  <div>
+    <marquee behavior="slide" direction="up">
+      <div class="about">
+        <font size="3">
+          <pre>
       三五个字凝成故事，
       四五个韵独奏出岁月的回音。
   诗、词、曲即使横越过发落寞与复兴不断更替的时光，
@@ -18,16 +20,17 @@
       记住早已远去缥缈在眉间心上的哀愁与思念，
       让我们记住贯穿在整个华夏大地的文化脉搏，
       或许一切都从未远去......
-    </pre>
-      </font>
+          </pre>
+        </font>
+      </div>
+    </marquee>
+    <div id="dingwei" >
       <hr>
-      <div>
-        <div>
-          <div id="a" @click="openLoginWindow1()"><b>团队介绍</b></div>
-          <div id="b" @click="openLoginWindow2()"><b>联系我们</b></div>
-        </div>
-        <PopBox :visible.sync="popBoxShow1">
-          <pre>
+      <div id="a" @click="openLoginWindow1()"><b>团队介绍</b></div>
+      <div id="b" @click="openLoginWindow2()"><b>联系我们</b></div>
+    </div>
+    <PopBox :visible.sync="popBoxShow1">
+      <pre>
           <ul>
           <li>吴之宇</li>
           <li>刘晓艳</li>
@@ -35,19 +38,17 @@
           <li>唐子淋</li>
           </ul>
           </pre>
-        </PopBox>
-        <PopBox :visible.sync="popBoxShow2">
-          <pre>
+    </PopBox>
+    <PopBox :visible.sync="popBoxShow2">
+      <pre>
           <ul>
           <li>邮箱：xxxxxxxxxxx</li>
           <li>QQ:xxxxxxxxxx</li>
           <li>电话xxxxxx</li>
           </ul>
           </pre>
-        </PopBox>
-      </div>
-    </div>
-  </marquee>
+    </PopBox>
+  </div>
 </template>
 <script>
 import PopBox from '@/components/PopBox'
@@ -72,18 +73,32 @@ export default {
 </script>
 <style lang="scss">
 .about {
-  line-height: 180%;
+  height: 520px;
+  width: auto;
+  overflow: auto;
+  line-height: 185%;
   text-align: center;
-  overflow: hidden;
+  z-index: 0;
+}
+
+#dingwei {
+  position: fixed;
+  width: 100%;
+  height: 45px;
+  bottom: 80px;
+  left: 0;
+  z-index: 1;
 }
 
 #a {
   padding-top: 10px;
   float: left;
+  padding-left: 40px;
 }
 
 #b {
   padding-top: 10px;
   float: right;
+  padding-right: 40px;
 }
 </style>
