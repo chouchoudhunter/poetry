@@ -7,6 +7,9 @@ import './utils/directive'
 import './utils/filter'
 import 'element-ui/lib/theme-chalk/index.css'
 import 'animate.css'
+import moreTreeTable from 'more-tree-table'
+
+Vue.use(moreTreeTable)
 
 Vue.config.productionTip = false
 Vue.use(ElementUI)

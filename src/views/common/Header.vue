@@ -37,47 +37,33 @@
           <el-row>
             <div id="username">
               <span >用户名</span>
-              <el-button type="primary" size="mini" >修改密码</el-button>
+              <!-- <el-button type="primary" size="mini" >修改密码</el-button> -->
               <el-button type="primary" size="mini">退出</el-button>
             </div>
           </el-row>
         </div>
         <i class="el-icon-cold-drink"></i>
-         <div class="table">
-        <el-tabs type="border-card">
-  <el-tab-pane>
-    <span slot="label"><i class="el-icon-star-off"></i> 我的喜欢</span>
-    <div>
-          <!-- <el-table
-            stripe
-            :data="data"
-            style="width: 100%;">
-            <el-table-column
-              prop="author"
-              label="诗人"
-              width="180">
-            </el-table-column>
-            <el-table-column
-              prop="content"
-              label="内容"
-            >
-            </el-table-column>
-          </el-table> -->
-          <el-row :gutter="10" style="overflow: auto;">
-        <el-col :xs="24" :span="12">
-          <poem-item></poem-item>
-        </el-col>
-        <el-col :xs="24" :span="12">
-          <poem-item></poem-item>
-        </el-col>
-      </el-row>
-    </div>
-  </el-tab-pane>
-  <el-tab-pane>
-    <span slot="label"><i class="el-icon-s-home"></i> 个人资料</span>
-    <div></div>
-  </el-tab-pane>
-</el-tabs></div>
+        <div class="table">
+          <el-tabs type="border-card">
+            <el-tab-pane>
+              <span slot="label"><i class="el-icon-star-off"></i> 我的喜欢</span>
+              <div>
+                <el-row :gutter="10" style="overflow: auto;">
+                  <el-col :xs="24" :span="12">
+                    <poem-item></poem-item>
+                  </el-col>
+                  <el-col :xs="24" :span="12">
+                    <poem-item></poem-item>
+                  </el-col>
+                </el-row>
+              </div>
+            </el-tab-pane>
+            <el-tab-pane>
+              <span slot="label"><i class="el-icon-s-home"></i> 个人资料</span>
+              <div class="tree-table">
+                <more-tree-table :colData="colHead" :rowData="rowHead" :tableValue="tableValue1"></more-tree-table></div>
+            </el-tab-pane>
+          </el-tabs></div>
       </div>
     </Modal>
     <PopBox :visible.sync="popBoxShow">
@@ -121,6 +107,179 @@ export default {
         {
           author: '白居易',
           content: '江南好，风景旧曾谙。日出江花红胜火，春来江水绿如蓝。能不忆江南？',
+        },
+      ],
+      rowData: [
+        {
+          id: '1111',
+          name: '测试1',
+          children: [
+            {
+              id: '1111-1',
+              name: '测试1-1',
+              children: [
+                {
+                  id: '1111-1-2',
+                  name: '测试1-1-2',
+                },
+                {
+                  id: '1111-1-3',
+                  name: '测试1-1-4',
+                },
+              ],
+            },
+            {
+              id: '1111-2',
+              name: '测试1-2',
+              children: [
+                {
+                  id: '1111-2-2',
+                  name: '测试1-2-2',
+                },
+                {
+                  id: '1111-2-3',
+                  name: '测试1-2-4',
+                },
+              ],
+            },
+            {
+              id: '1111-3',
+              name: '测试1-3',
+              children: [
+                {
+                  id: '1111-3-2',
+                  name: '测试1-3-2',
+                },
+                {
+                  id: '1111-3-3',
+                  name: '测试1-3-4',
+                },
+              ],
+            },
+            {
+              id: '1111-4',
+              name: '测试1-4',
+            },
+
+          ],
+        },
+      ],
+      colData: [
+        {
+          id: '1111',
+          name: '测试1',
+          children: [
+            {
+              id: '1111-1',
+              name: '测试1-1',
+              children: [
+                {
+                  id: '1111-1-2',
+                  name: '测试1-1-2',
+                },
+                {
+                  id: '1111-1-3',
+                  name: '测试1-1-4',
+                },
+              ],
+            },
+            {
+              id: '1111-2',
+              name: '测试1-2',
+              children: [
+                {
+                  id: '1111-2-2',
+                  name: '测试1-2-2',
+                },
+                {
+                  id: '1111-2-3',
+                  name: '测试1-2-4',
+                },
+              ],
+            },
+            {
+              id: '1111-3',
+              name: '测试1-3',
+              children: [
+                {
+                  id: '1111-3-2',
+                  name: '测试1-3-2',
+                },
+                {
+                  id: '1111-3-3',
+                  name: '测试1-3-4',
+                },
+              ],
+            },
+            {
+              id: '1111-4',
+              name: '测试1-4',
+            },
+
+          ],
+        },
+        {
+          id: '2222',
+          name: '测试1',
+          children: [
+            {
+              id: '2222-1',
+              name: '测试1-1',
+              children: [
+                {
+                  id: '2222-1-2',
+                  name: '测试1-1-2',
+                },
+                {
+                  id: '2222-1-3',
+                  name: '测试1-1-4',
+                },
+              ],
+            },
+            {
+              id: '2222-2',
+              name: '测试1-2',
+              children: [
+                {
+                  id: '2222-2-2',
+                  name: '测试1-2-2',
+                },
+                {
+                  id: '2222-2-3',
+                  name: '测试1-2-4',
+                  children: [
+                    {
+                      id: '2222-2-3-1',
+                      name: '测试1-2-2',
+                    },
+                    {
+                      id: '2222-2-3-2',
+                      name: '测试1-2-2',
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              id: '2222-3',
+              name: '测试1-3',
+              children: [
+                {
+                  id: '2222-3-2',
+                  name: '测试1-3-2',
+                },
+                {
+                  id: '2222-3-3',
+                  name: '测试1-3-4',
+                },
+              ],
+            },
+            {
+              id: '2222-4',
+              name: '测试1-4',
+            },
+
+          ],
         },
       ],
     }
@@ -209,6 +368,10 @@ export default {
         align-items: center;
         width: 100%;
       }
+    }
+
+    .tree-table {
+      color: rgb(247, 191, 201);
     }
   }
 }
