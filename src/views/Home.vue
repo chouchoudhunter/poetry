@@ -57,6 +57,7 @@ export default {
           content: '众里寻他千百度，蓦然回首那人却在灯火阑珊处。',
           author: '苏轼',
         },
+      lastPoem: [],
     }
   },
   computed: {
@@ -86,10 +87,14 @@ export default {
       if (localStorage.length > 0) {
         this.leftArrow = true
       }
-      localStorage.setItem('lastPoem', JSON.stringify(this.poem))
+      this.lastPoem.push(this.poem)
+      localStorage.setItem('lastPoem', JSON.stringify(this.lastPoem))
     },
     getLast() {
-      this.poem = JSON.parse(localStorage.getItem('lastPoem'))
+      this.lastPoem = JSON.parse(localStorage.getItem('lastPoem')) // 获取
+      this.poem = this.lastPoem[this.lastPoem.length - 1]
+      this.lastPoem.splice(this.lastPoem.length - 1, 1) // 删除
+      localStorage.setItem('lastPoem', JSON.stringify(this.lastPoem))
     },
     onStarChange(val) {
       if (val) {
