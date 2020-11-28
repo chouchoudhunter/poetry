@@ -2,15 +2,15 @@
   <div class="footer">
     <div class="toolbar">
       <div class="toolbar-item" @click="goHome">
-        <img src="@/assets/icon/home.svg" alt="">
+        <img :class="isChoose?'img-choose':'img'" src="@/assets/icon/home.svg" alt="">
         <span>首页</span>
       </div>
       <div class="toolbar-item">
-        <img src="@/assets/icon/dw-bt.svg" alt="">
+        <img class="img" src="@/assets/icon/dw-bt.svg" alt="">
         <span>{{ temperature }}</span>
       </div>
       <div class="toolbar-item" @click="goAbout">
-        <img src="@/assets/icon/about.svg" alt="">
+        <img :class="isChoose?'img':'img-choose'" src="@/assets/icon/about.svg" alt="">
         <span>关于</span>
       </div>
     </div>
@@ -21,7 +21,10 @@ import { weather } from '@/api/common'
 export default {
   name: 'Footer',
   data() {
-    return { temperature: '5°C-20°C' }
+    return {
+      temperature: '5°C-20°C',
+      isChoose: true,
+    }
   },
   mounted() {
     weather().then(res => {
@@ -32,9 +35,11 @@ export default {
   },
   methods: {
     goHome() {
+      this.isChoose = !this.isChoose
       this.$router.push('/')
     },
     goAbout() {
+      this.isChoose = !this.isChoose
       this.$router.push('/about')
     },
   },
@@ -47,6 +52,7 @@ export default {
   justify-content: center;
   align-items: center;
   flex-direction: row;
+  margin-top: 10px;
 }
 
 .toolbar {
@@ -68,8 +74,12 @@ export default {
       margin-top: 5px;
     }
 
-    img {
+    .img {
       width: 20px;
+    }
+
+    .img-choose {
+      width: 25px;
     }
   }
 }

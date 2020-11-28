@@ -50,7 +50,7 @@ export default {
     return {
       isStar: false,
       autoPlayAnim: true,
-      leftArrow: true,
+      leftArrow: false,
       poem:
         {
           title: '《青玉案》',
