@@ -8,7 +8,7 @@
         'animate__animated animate__fadeInUp':autoPlayAnim
       }"
     >
-      <i class="el-icon-arrow-left"></i>
+      <i class="el-icon-arrow-left" v-if="leftArrow" @click="getLast()"></i>
       <div class="poem-center">
         <div class="poem-content-d">
           <h1><i @click="goContent()">{{ poem.content }}</i></h1>
@@ -32,7 +32,7 @@
           </div>
         </el-popover>
       </div>
-      <i class="el-icon-arrow-right" @click="getEverydayPoem()"></i>
+      <i class="el-icon-arrow-right" @click="getEverydayPoem(),saveLast()"></i>
     </div>
   </div>
 </template>
@@ -50,11 +50,13 @@ export default {
     return {
       isStar: false,
       autoPlayAnim: true,
-      poem: {
-        title: '《青玉案》',
-        content: '众里寻他千百度，蓦然回首那人却在灯火阑珊处。',
-        author: '苏轼',
-      },
+      leftArrow: true,
+      poem:
+        {
+          title: '《青玉案》',
+          content: '众里寻他千百度，蓦然回首那人却在灯火阑珊处。',
+          author: '苏轼',
+        },
     }
   },
   computed: {
@@ -79,6 +81,15 @@ export default {
         this.isStar = false
         this.poem = res.data
       })
+    },
+    saveLast() {
+      if (localStorage.length > 0) {
+        this.leftArrow = true
+      }
+      localStorage.setItem('lastPoem', JSON.stringify(this.poem))
+    },
+    getLast() {
+      this.poem = JSON.parse(localStorage.getItem('lastPoem'))
     },
     onStarChange(val) {
       if (val) {
@@ -118,7 +129,7 @@ export default {
     }
 
     cursor: pointer;
-    pointer-events: none;
+    // pointer-events: none;
 
     h1 {
       margin: 0;
