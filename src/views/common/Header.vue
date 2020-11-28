@@ -60,8 +60,41 @@
             </el-tab-pane>
             <el-tab-pane>
               <span slot="label"><i class="el-icon-s-home"></i> 个人资料</span>
-              <div class="tree-table">
-                <more-tree-table :colData="colHead" :rowData="rowHead" :tableValue="tableValue1"></more-tree-table></div>
+              <h4 style="color: black;">个人资料</h4>
+              <el-divider></el-divider>
+              <div class="person-img">
+                <table cellspacing="10">
+                  <tr>
+                    <td><span>头像</span></td>
+                    <td>
+                      <!-- <div class="img"> -->
+                      <el-image
+                        style="width: 100px; height: 100px;"
+                        :src="url"
+                        :preview-src-list="srcList">
+                      </el-image>
+                    </td>
+                    <td>
+                      <div class="img-right">
+                        <el-upload
+                          class="upload-demo"
+                          action="https://jsonplaceholder.typicode.com/posts/"
+                          :on-preview="handlePreview"
+                          :on-remove="handleRemove"
+                          :before-remove="beforeRemove"
+                          multiple
+                          :limit="1"
+                          :on-exceed="handleExceed"
+                          :file-list="fileList">
+                          <el-button size="small" type="primary">点击上传</el-button>
+                          <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+                        </el-upload>
+                      </div>
+                    </td>
+                    <!-- </div> -->
+                  </tr>
+                </table>
+              </div>
             </el-tab-pane>
           </el-tabs></div>
       </div>
@@ -109,179 +142,12 @@ export default {
           content: '江南好，风景旧曾谙。日出江花红胜火，春来江水绿如蓝。能不忆江南？',
         },
       ],
-      rowData: [
-        {
-          id: '1111',
-          name: '测试1',
-          children: [
-            {
-              id: '1111-1',
-              name: '测试1-1',
-              children: [
-                {
-                  id: '1111-1-2',
-                  name: '测试1-1-2',
-                },
-                {
-                  id: '1111-1-3',
-                  name: '测试1-1-4',
-                },
-              ],
-            },
-            {
-              id: '1111-2',
-              name: '测试1-2',
-              children: [
-                {
-                  id: '1111-2-2',
-                  name: '测试1-2-2',
-                },
-                {
-                  id: '1111-2-3',
-                  name: '测试1-2-4',
-                },
-              ],
-            },
-            {
-              id: '1111-3',
-              name: '测试1-3',
-              children: [
-                {
-                  id: '1111-3-2',
-                  name: '测试1-3-2',
-                },
-                {
-                  id: '1111-3-3',
-                  name: '测试1-3-4',
-                },
-              ],
-            },
-            {
-              id: '1111-4',
-              name: '测试1-4',
-            },
-
-          ],
-        },
+      url: 'https://tse4-mm.cn.bing.net/th/id/OIP.AFdT2f5J-qTBY0Ni09S3-wAAAA?pid=Api&rs=1',
+      srcList: [
+        'https://tse4-mm.cn.bing.net/th/id/OIP.AFdT2f5J-qTBY0Ni09S3-wAAAA?pid=Api&rs=1',
+        'https://tse4-mm.cn.bing.net/th/id/OIP.AFdT2f5J-qTBY0Ni09S3-wAAAA?pid=Api&rs=1',
       ],
-      colData: [
-        {
-          id: '1111',
-          name: '测试1',
-          children: [
-            {
-              id: '1111-1',
-              name: '测试1-1',
-              children: [
-                {
-                  id: '1111-1-2',
-                  name: '测试1-1-2',
-                },
-                {
-                  id: '1111-1-3',
-                  name: '测试1-1-4',
-                },
-              ],
-            },
-            {
-              id: '1111-2',
-              name: '测试1-2',
-              children: [
-                {
-                  id: '1111-2-2',
-                  name: '测试1-2-2',
-                },
-                {
-                  id: '1111-2-3',
-                  name: '测试1-2-4',
-                },
-              ],
-            },
-            {
-              id: '1111-3',
-              name: '测试1-3',
-              children: [
-                {
-                  id: '1111-3-2',
-                  name: '测试1-3-2',
-                },
-                {
-                  id: '1111-3-3',
-                  name: '测试1-3-4',
-                },
-              ],
-            },
-            {
-              id: '1111-4',
-              name: '测试1-4',
-            },
 
-          ],
-        },
-        {
-          id: '2222',
-          name: '测试1',
-          children: [
-            {
-              id: '2222-1',
-              name: '测试1-1',
-              children: [
-                {
-                  id: '2222-1-2',
-                  name: '测试1-1-2',
-                },
-                {
-                  id: '2222-1-3',
-                  name: '测试1-1-4',
-                },
-              ],
-            },
-            {
-              id: '2222-2',
-              name: '测试1-2',
-              children: [
-                {
-                  id: '2222-2-2',
-                  name: '测试1-2-2',
-                },
-                {
-                  id: '2222-2-3',
-                  name: '测试1-2-4',
-                  children: [
-                    {
-                      id: '2222-2-3-1',
-                      name: '测试1-2-2',
-                    },
-                    {
-                      id: '2222-2-3-2',
-                      name: '测试1-2-2',
-                    },
-                  ],
-                },
-              ],
-            },
-            {
-              id: '2222-3',
-              name: '测试1-3',
-              children: [
-                {
-                  id: '2222-3-2',
-                  name: '测试1-3-2',
-                },
-                {
-                  id: '2222-3-3',
-                  name: '测试1-3-4',
-                },
-              ],
-            },
-            {
-              id: '2222-4',
-              name: '测试1-4',
-            },
-
-          ],
-        },
-      ],
     }
   },
   computed: { ...mapGetters('animationStatus', ['anims']) },
@@ -370,8 +236,9 @@ export default {
       }
     }
 
-    .tree-table {
-      color: rgb(247, 191, 201);
+    .person-img {
+      color: black;
+      display: inline;
     }
   }
 }
