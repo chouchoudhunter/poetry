@@ -35,11 +35,11 @@ export default {
   },
   methods: {
     goHome() {
-      this.isChoose = !this.isChoose
+      this.isChoose = true
       this.$router.push('/')
     },
     goAbout() {
-      this.isChoose = !this.isChoose
+      this.isChoose = false
       this.$router.push('/about')
     },
   },
