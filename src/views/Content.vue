@@ -4,7 +4,7 @@
       <el-col :xs="24" :md="24">
         <i class="el-icon-arrow-left" @click="goBack()"></i>
       </el-col>
-      <el-col :xs="24" :md="8">
+      <el-col :xs="24" :md="8" class="animation-content-poem-in">
         <div class="bg-padding poem-style">
           <pre><span class="poem-title">将进酒</span>
                         李白
@@ -23,7 +23,7 @@
     与尔同销万古愁。</pre>
         </div>
       </el-col>
-      <el-col :xs="24" :md="16">
+      <el-col :xs="24" :md="16" class="animation-content-introduce-in">
         <div class="little-title">
           <div class="diamonds"></div>
           <div class="title">诗人介绍</div>
@@ -32,7 +32,7 @@
           李白（701年-762年）,字太白，号青莲居士，又号“谪仙人”，祖籍陇西成纪（今甘肃省秦安县），唐代伟大的浪漫主义诗人，被后人誉为“诗仙”，与杜甫合称为“大李杜”。李白爽朗大方，爱饮酒作诗，喜交友，深受黄老列庄思想影响，有《李太白集》传世，诗作中多以醉时写的。李白所作词赋，宋人已有传记（如文莹《湘山野录》卷上），就其开创意义及艺术成就而言，“李白词”享有极为崇高的地位。代表作有《望庐山瀑布》《行路难》《蜀道难》等。
         </div>
       </el-col>
-      <el-col :xs="24" :md="16">
+      <el-col :xs="24" :md="16" class="animation-content-introduce-in">
         <div class="little-title">
           <div class="diamonds"></div>
           <div class="title">诗歌赏析</div>
