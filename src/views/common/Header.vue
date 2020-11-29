@@ -43,7 +43,7 @@
           </el-row>
         </div>
         <i class="el-icon-cold-drink"></i>
-        <div class="table">
+        <div class="person-table">
           <el-tabs type="border-card">
             <el-tab-pane>
               <span slot="label"><i class="el-icon-star-off"></i> 我的喜欢</span>
@@ -63,18 +63,17 @@
               <h4 style="color: black;">个人资料</h4>
               <el-divider></el-divider>
               <div class="person-img">
-                <table cellspacing="10">
+                <table cellspacing="">
                   <tr>
                     <td><span>头像</span></td>
                     <td>
-                      <!-- <div class="img"> -->
                       <el-image
-                        style="width: 100px; height: 100px;"
+                        style="width: 50px; height: 50px;"
                         :src="url"
                         :preview-src-list="srcList">
                       </el-image>
                     </td>
-                    <td>
+                    <td colspan="2">
                       <div class="img-right">
                         <el-upload
                           class="upload-demo"
@@ -90,9 +89,26 @@
                           <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
                         </el-upload>
                       </div>
-                    </td>
-                    <!-- </div> -->
-                  </tr>
+                    </td><td></td></tr>
+                </table>
+                <el-divider></el-divider>
+                <table cellspacing="">
+                  <tr><td><span>用户名</span></td>
+                    <td><div class="person-name"><el-input
+                      v-model="input"
+                      placeholder="input"
+                      :disabled="true">
+                    </el-input></div></td>
+                    <td><el-button type="text" icon="el-icon-edit">修改</el-button></td></tr>
+                </table>
+                <el-divider></el-divider>
+                <table cellspacing="30"><tr><td><span>邮箱</span></td>
+                  <td><div class="person-email"><el-input
+                    v-model="email"
+                    placeholder="input"
+                    :disabled="true">
+                  </el-input></div></td>
+                  <td><el-button type="text" icon="el-icon-edit">修改</el-button></td></tr>
                 </table>
               </div>
             </el-tab-pane>
@@ -128,6 +144,8 @@ export default {
       popBoxShow: false, // 登陆窗口
       isStar: false,
       personShow: false,
+      input: '用户名',
+      email: '123456',
       data: [
         {
           author: '李白',
@@ -147,7 +165,7 @@ export default {
         'https://tse4-mm.cn.bing.net/th/id/OIP.AFdT2f5J-qTBY0Ni09S3-wAAAA?pid=Api&rs=1',
         'https://tse4-mm.cn.bing.net/th/id/OIP.AFdT2f5J-qTBY0Ni09S3-wAAAA?pid=Api&rs=1',
       ],
-
+      fileList: [],
     }
   },
   computed: { ...mapGetters('animationStatus', ['anims']) },
@@ -176,6 +194,18 @@ export default {
     },
     errorHandler() {
       return true
+    },
+    handleRemove(file, fileList) {
+      console.log(file, fileList)
+    },
+    handlePreview(file) {
+      console.log(file)
+    },
+    handleExceed(files, fileList) {
+      this.$message.warning(`当前限制选择 3 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`)
+    },
+    beforeRemove(file, fileList) {
+      return this.$confirm(`确定移除 ${file.name}？`)
     },
   },
 }
@@ -206,13 +236,6 @@ export default {
     align-items: center;
     overflow: auto;
     z-index: 8;
-    //background-color: rgb(253, 215, 222);
-
-    .img {
-      width: 100px;
-      height: 60px;
-      align-items: center;
-    }
 
     .title {
       margin: 0;
@@ -220,25 +243,25 @@ export default {
       flex-direction: column;
     }
 
-    .table {
+    .person-table {
       width: 100%;
       display: flex;
       flex-direction: column;
       overflow: auto;
       background: var(--item-bg) no-repeat center center / cover;
-
-      .el-table {
-        font-size: 12px;
-        color: rgb(247, 191, 201);
-        border-radius: 10px;
-        align-items: center;
-        width: 100%;
-      }
     }
 
     .person-img {
       color: black;
-      display: inline;
+      overflow: auto;
+
+      .table {
+        border-collapse: separate;
+
+        .td {
+          border: 0 20 0 20 solid white;
+        }
+      }
     }
   }
 }
