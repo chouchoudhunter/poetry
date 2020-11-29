@@ -2,24 +2,24 @@
   <div>
     <marquee behavior="slide" direction="up">
       <div class="about">
-        <font size="3">
+        <font size="3em">
           <pre>
-      三五个字凝成故事，
-      四五个韵独奏出岁月的回音。
-  诗、词、曲即使横越过发落寞与复兴不断更替的时光，
-      仍然具有其自己独特的哲学意味与民族价值，
-      那些少男少艾欲言又止的情愫，
-      那些名人志士们浩荡激昂的心神，
-      用尽一生也无法踏遍的山川奇秀，
-    一世都难以参破禅缘佛与都凝在那短短三言两语里。
-      本网站企图开启一场属于中华诗词的文艺再复兴，
-      新的媒体形式将作为全新的载体，
-      每日一诗词作为传达方式，
+        三五个字凝成故事，
+        四五个韵独奏出岁月的回音。
+诗、词、曲即使横越过发落寞与复兴不断更替的时光，
+        仍然具有其自己独特的哲学意味与民族价值，
+        那些少男少艾欲言又止的情愫，
+        那些名人志士们浩荡激昂的心神，
+        用尽一生也无法踏遍的山川奇秀，
+  一世都难以参破禅缘佛与都凝在那短短三言两语里。
+  本网站企图开启一场属于中华诗词的文艺再复兴，
+        新的媒体形式将作为全新的载体，
+         每日一诗词作为传达方式，
       所有人都是我们这场文化复兴之旅的目标对象，
-      让我们在文字里踏遍山川遍阅世事，
+        让我们在文字里踏遍山川遍阅世事，
       记住早已远去缥缈在眉间心上的哀愁与思念，
       让我们记住贯穿在整个华夏大地的文化脉搏，
-      或许一切都从未远去......
+        或许一切都从未远去......
           </pre>
         </font>
       </div>
@@ -73,32 +73,30 @@ export default {
 </script>
 <style lang="scss">
 .about {
-  height: 520px;
+  line-height: 200%;
+  text-align: center;
+  height: auto;
   width: auto;
   overflow: auto;
-  line-height: 185%;
-  text-align: center;
   z-index: 0;
 }
 
 #dingwei {
   position: fixed;
   width: 100%;
-  height: 45px;
-  bottom: 80px;
+  bottom: 15%;
   left: 0;
+  height: 0;
   z-index: 1;
 }
 
 #a {
-  padding-top: 10px;
   float: left;
-  padding-left: 40px;
+  padding-left: 10%;
 }
 
 #b {
-  padding-top: 10px;
   float: right;
-  padding-right: 40px;
+  padding-right: 10%;
 }
 </style>
