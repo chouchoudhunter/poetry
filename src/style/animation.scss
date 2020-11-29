@@ -1,5 +1,5 @@
 /* 搜索框动画 */
-$search-box-bg:rgba(218, 218, 218);
+$search-box-bg: rgba(73, 73, 73, 0.2);
 
 .animation-search-box {
   animation: search-show 1s linear;
@@ -181,8 +181,13 @@ $search-box-bg:rgba(218, 218, 218);
   animation-fill-mode: forwards;
 }
 
-.animation-content-in {
-  animation: fadeInUp 1s ease;
+.animation-content-poem-in {
+  animation: fadeInDown 1.5s ease;
+  animation-fill-mode: forwards;
+}
+
+.animation-content-introduce-in {
+  animation: fadeInUp 1.5s ease;
   animation-fill-mode: forwards;
 }
 

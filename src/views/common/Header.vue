@@ -5,9 +5,7 @@
         <SearchBox :showSearch.sync="searchShow"></SearchBox>
       </el-col>
       <el-col :span="8" class="header-center animate__animated animate__fadeInDown">
-        <div id="person-img" @click="personShow=!personShow" >
-          LOGO
-        </div>
+        <img src="@/assets/logo.png" @click="personShow=!personShow">
       </el-col>
       <el-col :span="8" class="header-right animate__animated animate__fadeInRight">
         <div id="login-img">
@@ -165,12 +163,25 @@ export default {
     font-size: 20px;
   }
 
+  .el-row {
+    position: relative;
+  }
+
   .header-center {
     text-align: center;
+    position: absolute;
+    top: -10px;
+    left: 33%;
+
+    img {
+      width: 40px;
+    }
   }
 
   .header-right {
     text-align: right;
+    position: absolute;
+    right: 0;
   }
 
   .person-item {
