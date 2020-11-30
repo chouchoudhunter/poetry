@@ -7,13 +7,18 @@
       <div class="modal-bg">
         <div class="modal-content">
           <div class="modal-header">
-            <i
-              class="el-icon-close"
-              :class="{'animation-rotate-right':isCloseHover,'animation-rotate-left':!isCloseHover}"
-              @mouseenter="switchCloseHover(true)"
-              @mouseleave="switchCloseHover(false)"
-              @click="close()"
-            ></i>
+            <div class="modal-header-left">
+              <slot name="header-left"></slot>
+            </div>
+            <div class="modal-header-right">
+              <i
+                class="el-icon-close"
+                :class="{'animation-rotate-right':isCloseHover,'animation-rotate-left':!isCloseHover}"
+                @mouseenter="switchCloseHover(true)"
+                @mouseleave="switchCloseHover(false)"
+                @click="close()"
+              ></i>
+            </div>
           </div>
           <div class="modal-main">
             <slot></slot>
@@ -81,17 +86,33 @@ export default {
       background-image: linear-gradient(45deg, #3e91cc, #2dcca7);
       background-size: 200% 100%;
 
+      .modal-main {
+        height: 100%;
+      }
+
       .modal-header {
         display: flex;
         flex-direction: row;
         justify-content: flex-end;
 
+        .modal-header-left,
+        .modal-header-right {
+          flex-grow: 1;
+          display: flex;
+          flex-direction: row;
+        }
+
+        .modal-header-left {
+          justify-content: flex-start;
+        }
+
+        .modal-header-right {
+          justify-content: flex-end;
+        }
+
         i {
           margin: 15px;
           font-size: 18px;
-          display: inline-block;
-          position: relative;
-          z-index: 110;
         }
       }
     }

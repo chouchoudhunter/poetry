@@ -1,115 +1,55 @@
 <template>
   <div class="person-item">
-    <el-row type="flex" justify="center">
-      <el-col :xs="24" :sm="16" :md="16">
-        <div class="top-tab">
-          <div class="top-tab-center"><el-button type="text" :class="change?'el-button-big':'el-button'" @click="changeLike()">我的喜欢</el-button> |<el-button type="text" :class="!change?'el-button-big':'el-button'" @click="changePer()">个人资料</el-button>
-          </div>
-          <div class="top-exit">
-            <el-button type="text" size="mini" icon="el-icon-s-promotion">退出</el-button>
-          </div>
+    <div class="content">
+      <div v-if="isLike" class="left">
+        <el-avatar :size="70" :src="userInfo.photo?userInfo.photo:defaultUserIcon"></el-avatar>
+        <div class="user-aliase"><span>{{ userInfo.aliase }}</span><i class="el-icon-edit-outline"></i></div>
+        <div class="user-info">
+          <el-form
+            label-width="50px"
+            size="mini"
+            label-position="left"
+            :rules="rules">
+            <el-form-item label="账号">
+              <el-input v-model="userInfo.username" class="custom-input" :disabled="true"></el-input>
+            </el-form-item>
+            <el-form-item label="昵称">
+              <el-input v-model="userInfo.aliase" :disabled="true"><i slot="suffix" class="el-input__icon el-icon-edit-outline" @click="test()"></i></el-input>
+            </el-form-item>
+            <el-form-item label="密码">
+              <el-input v-model="userInfo.username" :disabled="true"><i slot="suffix" class="el-input__icon el-icon-edit-outline" @click="test()"></i></el-input>
+
+            </el-form-item>
+          </el-form>
         </div>
-        <div class="line"></div>
-        <!-- 我的喜欢-->
-        <div v-if="change" class="my-like">
-          <el-row :gutter="10" style="overflow: auto;">
-            <el-col :xs="24" :span="12">
-              <poem-item></poem-item>
-            </el-col>
-            <el-col :xs="24" :span="12">
-              <poem-item></poem-item>
-            </el-col>
-          </el-row>
+      </div>
+      <div v-else class="right">
+        <div class="">
+          <poemItem></poemItem>
         </div>
-        <!-- 个人资料-->
-        <div v-if="!change" class="presonal-data">
-          <h3>个人资料</h3>
-          <!--头像-->
-          <table cellspacing="" width="400">
-            <tr>
-              <td><span>头 像</span></td>
-              <td>
-                <el-image style="width: 50px; height: 50px;" :src="url" :preview-src-list="srcList">
-                </el-image>
-                <el-popover
-                  placement="top-start"
-                  title="标题"
-                  width="200"
-                  trigger="hover"
-                  content="这是一段内容,这是一段内容,这是一段内容,这是一段内容。"
-                >
-                  <i class="el-icon-star-off"></i>
-                </el-popover>
-              </td>
-              <td colspan="">
-                <div class="img-right">
-                  <el-upload
-                    class="upload-demo"
-                    action="https://jsonplaceholder.typicode.com/posts/"
-                    :on-preview="handlePreview"
-                    :on-remove="handleRemove"
-                    :before-remove="beforeRemove"
-                    multiple
-                    :limit="1"
-                    :on-exceed="handleExceed"
-                    :file-list="fileList"
-                  >
-                    <el-button size="small" type="primary">点击上传</el-button>
-                    <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
-                  </el-upload>
-                </div>
-              </td>
-            </tr>
-          </table>
-          <div class="other-line"></div>
-          <!-- 昵称 -->
-          <el-row class="personal-item">
-            <el-col :xs="24" :sm="2" :md="2"><div class="left-title">昵 称</div></el-col>
-            <el-col :xs="15" :sm="12" :md="10">
-              <el-input v-model="username" placeholder="请输入昵称" :disabled="isInput"></el-input>
-            </el-col>
-            <el-col :xs="9" :sm="10" :md="12">
-              <div class="right-but">
-                <div v-if="isInput">
-                  <el-button type="text" icon="el-icon-edit" @click="toAlter()">修改</el-button>
-                </div>
-                <div v-if="!isInput">
-                  <el-button type="text" @click="toSave()">保存</el-button>
-                  <el-button type="text" @click="toCancle()">取消</el-button>
-                </div>
-              </div>
-            </el-col>
-          </el-row>
-          <div class="other-line"></div>
-          <!-- 邮箱 -->
-          <el-row class="personal-item">
-            <el-col :xs="24" :sm="2" :md="2"><div class="left-title">邮 箱</div></el-col>
-            <el-col :xs="15" :sm="12" :md="10">
-              <el-input v-model="email" :disabled="true"></el-input>
-            </el-col>
-          </el-row>
-          <div class="other-line"></div>
-          <!-- 密码 -->
-          <el-row class="personal-item">
-            <el-col :xs="24" :sm="2" :md="2"><div class="left-title">密 码</div></el-col>
-            <el-col :xs="15" :sm="12" :md="10">
-              <el-input v-model="password" placeholder="请输入密码" :disabled="isInput"></el-input>
-            </el-col>
-            <el-col :xs="9" :sm="10" :md="12">
-              <div class="right-but">
-                <div v-if="isInput">
-                  <el-button type="text" icon="el-icon-edit" @click="toAlter()">修改</el-button>
-                </div>
-                <div v-if="!isInput">
-                  <el-button type="text" @click="toSave()">保存</el-button>
-                  <el-button type="text" @click="toCancle()">取消</el-button>
-                </div>
-              </div>
-            </el-col>
-          </el-row>
+      </div>
+    </div>
+    <!-- 底部切换 -->
+    <div class="tabs">
+      <div class="left" :span="12">
+        <div
+          class="tabs-btn"
+          :class="{'tabs-btn-active':isLike}"
+          @click="isLike=true">
+          <img src="../assets/icon/myLike.svg">
+          <span>我的喜欢</span>
         </div>
-      </el-col>
-    </el-row>
+      </div>
+      <div class="right" :span="12">
+        <div
+          class="tabs-btn"
+          :class="{'tabs-btn-active':!isLike}"
+          @click="isLike=false,test()">
+          <img src="../assets/icon/myInfo.svg">
+          <span>个人资料</span>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -120,122 +60,143 @@ export default {
   components: { PoemItem },
   data() {
     return {
-      change: true,
-      isInput: true,
-      username: 'L',
-      email: '123456@qq.com',
-      password: '******',
-      url: 'https://tse4-mm.cn.bing.net/th/id/OIP.AFdT2f5J-qTBY0Ni09S3-wAAAA?pid=Api&rs=1',
-      srcList: [
-        'https://tse4-mm.cn.bing.net/th/id/OIP.AFdT2f5J-qTBY0Ni09S3-wAAAA?pid=Api&rs=1',
-        'https://tse4-mm.cn.bing.net/th/id/OIP.AFdT2f5J-qTBY0Ni09S3-wAAAA?pid=Api&rs=1',
-      ],
-      fileList: [],
+      isLike: true,
+      defaultUserIcon: require('@/assets/icon/userIcon.svg'),
+      userInfo: {},
+      rules: {
+        password: [
+          {
+            required: true,
+            message: '请输入密码',
+            trigger: ['blur', 'change'],
+          },
+          {
+            type: 'string',
+            pattern: /^(\w){8,16}$/,
+            message: '密码长度在8~16之间，只能包含字母、数字和下划线',
+            trigger: ['blur', 'change'],
+          },
+        ],
+        code: [
+          {
+            required: true,
+            message: '请输入验证码',
+            trigger: ['blur', 'change'],
+          },
+        ],
+      },
     }
   },
+  computed: {
+    getUserInfo() {
+      const userInfo = JSON.parse(localStorage.getItem('userInfo'))
+      return userInfo
+    },
+  },
+  mounted() {
+    this.userInfo = this.getUserInfo
+  },
   methods: {
-    changeLike() {
-      this.change = true
-    },
-    changePer() {
-      this.change = false
-    },
-    toAlter() {
-      this.isInput = false
-    },
-    toSave() {
-      this.isInput = true
-    },
-    toCancle() {
-      this.isInput = true
-    },
-    handleRemove(file, fileList) {
-      console.log(file, fileList)
-    },
-    handlePreview(file) {
-      console.log(file)
-    },
-    handleExceed(files, fileList) {
-      this.$message.warning(`当前限制选择 3 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`)
-    },
-    beforeRemove(file, fileList) {
-      return this.$confirm(`确定移除 ${file.name}？`)
+    test() {
+      console.log(this.isLike)
     },
   },
 }
 </script>
 
-<style lang="scss" >
+<style lang="scss">
 .person-item {
-  padding: 0 20px;
+  height: 100%;
 
-  .top-tab {
-    width: 100%;
-    margin: 0 auto;
+  .content {
+    height: 80%;
+    overflow: auto;
 
-    .top-tab-center {
-      font-size: 20px;
-      margin-right: 20px;
-      float: left;
+    .left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
 
-      .el-button {
-        // font-size: 20px;
-        color: #ffffff;
+      .user-aliase {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        margin: 8px 0;
+
+        span {
+          margin-right: 10px;
+        }
       }
 
-      .el-button-big {
-        font-size: 20px;
-        color: #ffffff;
-      }
-    }
+      .user-info {
+        margin-top: 20px;
 
-    .top-exit {
-      padding-top: 15px;
+        .el-input__suffix-inner {
+          color: white;
+        }
 
-      .el-button {
-        padding: 0;
-        color: #414040;
-      }
-    }
-  }
+        .el-form-item__label {
+          color: white;
+        }
 
-  .line {
-    height: 2px;
-    margin: 5px 0 15px;
-    background-color: rgb(255, 255, 255, 0.8);
-  }
+        .is-disabled {
+          .el-input__inner {
+            background-color: rgba(0, 0, 0, 0.2);
+            border: none;
+          }
+        }
 
-  .presonal-data {
-    .personal-item {
-      .left-title {
-        line-height: 40px;
-      }
-
-      .el-input {
-        float: left;
-      }
-
-      .el-input__inner {
-        background-color: rgba(73, 73, 73, 0.05);
-        color: #e1e5ec;
-        border: none;
-      }
-
-      .right-but {
-        margin-left: 10px;
-
-        .el-button--text {
-          padding: 0;
-          line-height: 40px;
-          color: #414040;
+        .el-input__inner {
+          background-color: rgba(0, 0, 0, 0.3);
+          border: none;
         }
       }
     }
+  }
 
-    .other-line {
-      height: 1px;
-      margin: 10px 0;
-      background-color: rgba(73, 73, 73, 0.2);
+  .tabs {
+    // position: absolute;
+    // bottom: 20px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    .left,
+    .right {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+
+      .tabs-btn {
+        background-color: rgba(0, 0, 0, 0.2);
+        padding: 5px 15px;
+        border-radius: 20px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        border: rgba(180, 180, 180, 0.2) 2px solid;
+        font-size: 16px;
+
+        img {
+          display: inline-block;
+          width: 25px;
+          margin-right: 10px;
+          filter: grayscale(100%);
+        }
+      }
+
+      .tabs-btn-active {
+        transition: background-color 1s;
+        background-color: rgb(255, 255, 255);
+        color: black;
+
+        img {
+          filter: grayscale(0);
+        }
+      }
     }
   }
 }

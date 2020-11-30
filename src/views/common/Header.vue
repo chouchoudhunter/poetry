@@ -1,14 +1,17 @@
 <template>
   <div class="header">
-    <el-row :gutter="24">
-      <el-col :span="8" class="animate__animated animate__fadeInLeft">
+    <el-row :gutter="15" type="flex" align="center">
+      <el-col :span="10" class="header-left animate__animated animate__fadeInLeft">
         <SearchBox :showSearch.sync="searchShow"></SearchBox>
       </el-col>
-      <el-col :span="8" class="header-center animate__animated animate__fadeInDown">
-        <img src="@/assets/logo.png" @click="personShow=!personShow">
+      <el-col :span="4" class="header-center animate__animated animate__fadeInDown">
+        <img src="@/assets/logo.png">
       </el-col>
-      <el-col :span="8" class="header-right animate__animated animate__fadeInRight">
-        <div id="login-img">
+      <el-col :span="10" class="header-right animate__animated animate__fadeInRight">
+        <div v-if="isLogin" class="login-img" @click="personShow=!personShow">
+          <el-avatar :size="28" :src="userInfo.photo?userInfo.photo:defaultUserIcon"></el-avatar>
+        </div>
+        <div v-else class="login-img">
           <div><i class="el-icon-user" @click="popBoxShow=!popBoxShow"></i></div>
         </div>
       </el-col>
@@ -24,10 +27,19 @@
       </el-row>
     </Modal>
     <Modal :visible.sync="personShow">
+      <div slot="header-left">
+        <i
+          class="el-icon-switch-button"
+          :class="{'animation-rotate-right':isCloseHover,'animation-rotate-left':!isCloseHover}"
+          @mouseenter="isCloseHover=true"
+          @mouseleave="isCloseHover=false"
+          @click="logOut()"
+        ></i>
+      </div>
       <person-item></person-item>
     </Modal>
     <PopBox :visible.sync="popBoxShow">
-      <Login></Login>
+      <Login @login-in="logIn"></Login>
     </PopBox>
   </div>
 </template>
@@ -40,6 +52,7 @@ import PoemItem from '@/components/PoemItem'
 import PersonItem from '@/components/PersonItem'
 import { mapGetters } from 'vuex'
 import LikeIcon from '@/components/LikeIcon.vue'
+import { removeToken, getToken } from '../../utils/auth'
 
 export default {
   name: 'Header',
@@ -56,8 +69,11 @@ export default {
     return {
       searchShow: false, // 搜索页
       popBoxShow: false, // 登陆窗口
-      isStar: false,
-      personShow: false,
+      isStar: false, // 点亮星星
+      personShow: false, // 个人中心
+      isCloseHover: false,
+      isLogin: false, //
+      defaultUserIcon: require('@/assets/icon/userIcon.svg'),
     }
   },
   computed: { ...mapGetters('animationStatus', ['anims']) },
@@ -78,6 +94,9 @@ export default {
       }
     },
   },
+  mounted() {
+    this.isLogin = !!localStorage.getItem('userInfo') && getToken()
+  },
   methods: {
     tableRowClassName({ row, rowIndex }) {
       if (rowIndex + 1) {
@@ -86,6 +105,20 @@ export default {
     },
     errorHandler() {
       return true
+    },
+    logOut() {
+      removeToken()
+      localStorage.removeItem('userInfo')
+      this.personShow = false
+      this.isLogin = false
+    },
+    logIn() {
+      this.isLogin = true
+      this.popBoxShow = false
+    },
+    userInfo() {
+      const userInfo = JSON.parse(localStorage.getItem('userInfo'))
+      return userInfo
     },
   },
 }
@@ -104,21 +137,36 @@ export default {
     position: relative;
   }
 
+  .header-left {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+  }
+
   .header-center {
     text-align: center;
-    position: absolute;
-    top: -10px;
-    left: 33%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 
     img {
-      width: 40px;
+      width: 28px;
     }
   }
 
   .header-right {
     text-align: right;
-    position: absolute;
-    right: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+
+    .login-img {
+      height: 28px;
+      width: 28px;
+    }
   }
 }
 </style>

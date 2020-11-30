@@ -256,6 +256,7 @@ export default {
         const { token, ...userInfo } = res.data
         localStorage.setItem('userInfo', JSON.stringify(userInfo))
         setToken(token)
+        this.$emit('login-in')
       })
     },
     getCode() {

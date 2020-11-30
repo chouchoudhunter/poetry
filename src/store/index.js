@@ -19,6 +19,7 @@ const requestStatus = {
     },
   },
 }
+// 管理动画状态
 const animationStatus = {
   namespaced: true,
   state: { anims: { serachModal: false } },
@@ -36,6 +37,7 @@ const animationStatus = {
     },
   },
 }
+
 const test = {
   namespaced: true,
   state: { b: 10 },
