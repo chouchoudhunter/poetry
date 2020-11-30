@@ -8,7 +8,7 @@
         'animate__animated animate__fadeInUp':autoPlayAnim
       }"
     >
-      <i class="el-icon-arrow-left" v-if="leftArrow" @click="getLast()"></i>
+      <i class="el-icon-arrow-left" v-if="leftArrow" @click="clickLeft()"></i>
       <div class="poem-center">
         <div class="poem-content-d">
           <h1><i @click="goContent()">{{ poem.content }}</i></h1>
@@ -32,7 +32,7 @@
           </div>
         </el-popover>
       </div>
-      <i class="el-icon-arrow-right" @click="getEverydayPoem(),saveLast()"></i>
+      <i class="el-icon-arrow-right" @click="getEverydayPoem(),clickRight()"></i>
     </div>
   </div>
 </template>
@@ -78,23 +78,34 @@ export default {
       this.isStar = !this.isStar
     },
     getEverydayPoem() {
-      everyPoem().then((res) => {
-        this.isStar = false
-        this.poem = res.data
-      })
-    },
-    saveLast() {
-      if (localStorage.length > 0) {
-        this.leftArrow = true
+      localStorage.setItem('lastPoem', JSON.stringify(this.lastPoem))
+      var nowIndex = this.lastPoem.findIndex((item) => item.content === this.poem.content) // 当前诗句的下标
+      if (nowIndex === this.lastPoem.length - 1) {
+        everyPoem().then((res) => {
+          this.isStar = false
+          this.poem = res.data
+          if (this.lastPoem.length < 10) {
+            this.lastPoem.push(this.poem)
+          } else {
+            this.lastPoem.splice(0, 1)
+            this.lastPoem.push(this.poem)
+          }
+          localStorage.setItem('lastPoem', JSON.stringify(this.lastPoem))
+        })
+      } else {
+        this.poem = this.lastPoem[nowIndex + 1]
       }
-      this.lastPoem.push(this.poem)
-      localStorage.setItem('lastPoem', JSON.stringify(this.lastPoem))
     },
-    getLast() {
-      this.lastPoem = JSON.parse(localStorage.getItem('lastPoem')) // 获取
-      this.poem = this.lastPoem[this.lastPoem.length - 1]
-      this.lastPoem.splice(this.lastPoem.length - 1, 1) // 删除
-      localStorage.setItem('lastPoem', JSON.stringify(this.lastPoem))
+    clickRight() {
+      this.leftArrow = true
+    },
+    clickLeft() {
+      this.lastPoem = JSON.parse(localStorage.getItem('lastPoem'))
+      var nowIndex = this.lastPoem.findIndex((item) => item.content === this.poem.content)
+      if (nowIndex === 1) {
+        this.leftArrow = false
+      }
+      this.poem = this.lastPoem[nowIndex - 1]
     },
     onStarChange(val) {
       if (val) {
