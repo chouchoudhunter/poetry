@@ -3,7 +3,15 @@
     <div class="content">
       <div v-if="isLike" class="left">
         <el-avatar :size="70" :src="userInfo.photo?userInfo.photo:defaultUserIcon"></el-avatar>
-        <div class="user-aliase"><span>{{ userInfo.aliase }}</span><i class="el-icon-edit-outline"></i></div>
+        <div class="user-aliase">
+          <el-input id="aliase" v-model="userInfo.aliase" size="mini" :disabled="inputDisable.aliase">
+          </el-input>
+          <i
+            slot="suffix"
+            class="el-input__icon"
+            :class="inputDisable.aliase?'el-icon-edit-outline':'el-icon-success'"
+            @click="editInfo('aliase',$event)"></i>
+        </div>
         <div class="user-info">
           <el-form
             label-width="50px"
@@ -13,12 +21,14 @@
             <el-form-item label="账号">
               <el-input v-model="userInfo.username" class="custom-input" :disabled="true"></el-input>
             </el-form-item>
-            <el-form-item label="昵称">
-              <el-input v-model="userInfo.aliase" :disabled="true"><i slot="suffix" class="el-input__icon el-icon-edit-outline" @click="test()"></i></el-input>
-            </el-form-item>
             <el-form-item label="密码">
-              <el-input v-model="userInfo.username" :disabled="true"><i slot="suffix" class="el-input__icon el-icon-edit-outline" @click="test()"></i></el-input>
-
+              <el-input id="password" v-model="changePassword.old" type="password" :disabled="inputDisable.password">
+                <i
+                  slot="suffix"
+                  class="el-input__icon"
+                  :class="inputDisable.password?'el-icon-edit-outline':'el-icon-success'"
+                  @click="editInfo('password',$event)"></i>
+              </el-input>
             </el-form-item>
           </el-form>
         </div>
@@ -34,8 +44,8 @@
       <div class="left" :span="12">
         <div
           class="tabs-btn"
-          :class="{'tabs-btn-active':isLike}"
-          @click="isLike=true">
+          :class="{'tabs-btn-active':!isLike}"
+          @click="isLike=false">
           <img src="../assets/icon/myLike.svg">
           <span>我的喜欢</span>
         </div>
@@ -43,8 +53,8 @@
       <div class="right" :span="12">
         <div
           class="tabs-btn"
-          :class="{'tabs-btn-active':!isLike}"
-          @click="isLike=false,test()">
+          :class="{'tabs-btn-active':isLike}"
+          @click="isLike=true">
           <img src="../assets/icon/myInfo.svg">
           <span>个人资料</span>
         </div>
@@ -63,6 +73,14 @@ export default {
       isLike: true,
       defaultUserIcon: require('@/assets/icon/userIcon.svg'),
       userInfo: {},
+      inputDisable: {
+        aliase: true,
+        password: true,
+      },
+      changePassword: {
+        new: '******',
+        old: '******',
+      },
       rules: {
         password: [
           {
@@ -97,8 +115,19 @@ export default {
     this.userInfo = this.getUserInfo
   },
   methods: {
-    test() {
-      console.log(this.isLike)
+    editInfo(id, e) {
+      if (id === 'password') {
+        this.inputDisable.password = false
+      } else if (id === 'aliase') {
+        if (this.inputDisable.aliase) {
+          this.inputDisable.aliase = false
+        } else {
+          // 修改昵称
+        }
+      }
+      setTimeout(function() {
+        document.getElementById(id).focus()
+      }, 200)
     },
   },
 }
@@ -124,6 +153,30 @@ export default {
         justify-content: center;
         align-items: center;
         margin: 8px 0;
+
+        .el-input__suffix-inner {
+          color: white;
+        }
+
+        .el-form-item__label {
+          color: white;
+        }
+
+        .is-disabled {
+          .el-input__inner {
+            background-color: rgba(0, 0, 0, 0);
+            border: none;
+          }
+        }
+
+        .el-input__inner {
+          background-color: rgba(0, 0, 0, 0.3);
+          border: none;
+          width: 50px;
+          padding: 0;
+          color: white;
+          padding-left: 5px;
+        }
 
         span {
           margin-right: 10px;
@@ -151,6 +204,7 @@ export default {
         .el-input__inner {
           background-color: rgba(0, 0, 0, 0.3);
           border: none;
+          color: white;
         }
       }
     }
