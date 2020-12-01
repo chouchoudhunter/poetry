@@ -2,7 +2,6 @@
   <div class="home">
     <div
       v-loading="everyPoemLoadingk"
-      element-loading-background="rgba(0, 0, 0, 0.1)"
       class="poem-content header-center"
       :class="{
         'animate__animated animate__fadeInUp':autoPlayAnim

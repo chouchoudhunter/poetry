@@ -56,8 +56,9 @@ export default {
 
   .pop-box-content {
     z-index: 999;
-    background-color: rgba(255, 255, 255);
-    box-shadow: 0 0 7px 1px rgba(211, 211, 211, 0.7);
+    background-image: linear-gradient(45deg, #cc6aa5, #3e91cc);
+    background-size: 200% 100%;
+    box-shadow: 0 0 8px 2px rgba(54, 54, 54, 0.1);
     width: 80%;
     min-width: 70%;
     min-height: 40%;

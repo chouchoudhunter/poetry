@@ -1,0 +1,25 @@
+.el-loading-mask {
+  background-color: rgba(0, 0, 0, 0.25) !important;
+  border-radius: 5px;
+}
+
+.el-input__suffix-inner {
+  color: white;
+}
+
+.el-form-item__label {
+  color: white;
+}
+
+.is-disabled {
+  .el-input__inner {
+    background-color: rgba(0, 0, 0, 0.2) !important;
+    border: none;
+  }
+}
+
+.el-input__inner {
+  background-color: rgba(0, 0, 0, 0.3) !important;
+  border: none;
+  color: white;
+}

@@ -9,5 +9,30 @@ const login = data => {
   })
 }
 const loginLoading = 'post/login'
+// 修改昵称
+const editAliase = data => {
+  return request({
+    url: '/user/editaliase',
+    method: 'post',
+    data: data,
+  })
+}
+const editAliaseLoading = 'post/user/editaliase'
 
-export { login, loginLoading }
+// 修改密码
+const editPassword = data => {
+  return request({
+    url: '/user/editpassword',
+    method: 'post',
+    data: data,
+  })
+}
+const editPasswordLoading = 'post/user/editpassword'
+export {
+  login,
+  loginLoading,
+  editAliase,
+  editAliaseLoading,
+  editPassword,
+  editPasswordLoading,
+}

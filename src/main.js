@@ -6,6 +6,7 @@ import ElementUI from 'element-ui'
 import './utils/directive'
 import './utils/filter'
 import 'element-ui/lib/theme-chalk/index.css'
+import './style/custom-element-ui.scss'
 import 'animate.css'
 
 Vue.config.productionTip = false
