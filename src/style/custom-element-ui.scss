@@ -3,6 +3,10 @@
   border-radius: 5px;
 }
 
+.el-tabs__item {
+  color: white !important;
+}
+
 .el-input__suffix-inner {
   color: white;
 }
@@ -21,5 +25,9 @@
 .el-input__inner {
   background-color: rgba(0, 0, 0, 0.3) !important;
   border: none;
+  color: white;
+}
+
+input {
   color: white;
 }

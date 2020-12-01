@@ -12,5 +12,13 @@ const everyPoem = data => {
   })
 }
 const everyPoemLoading = 'get/poem/everydaypoem'
-
-export { everyPoem, everyPoemLoading }
+// 搜索诗句
+const searchPoem = data => {
+  return request({
+    url: '/poem/searchpoem',
+    method: 'get',
+    params: data,
+  })
+}
+const searchPoemLoading = 'get/poem/searchpoem'
+export { everyPoem, everyPoemLoading, searchPoem, searchPoemLoading }

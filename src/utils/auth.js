@@ -3,7 +3,7 @@ import Cookies from 'js-cookie'
 const name = 'Token'
 
 function getToken() {
-  return Cookies.get(name) ? Cookies.get(name) : false
+  return Cookies.get(name) ? Cookies.get(name) : ' 0'
 }
 
 function setToken(val) {

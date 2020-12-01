@@ -2,7 +2,7 @@
   <div class="header">
     <el-row :gutter="15" type="flex" align="center">
       <el-col :span="10" class="header-left animate__animated animate__fadeInLeft">
-        <SearchBox :showSearch.sync="searchShow"></SearchBox>
+        <SearchBox :showSearch.sync="searchShow" @onEnterDown="bindSearchEnter"></SearchBox>
       </el-col>
       <el-col :span="4" class="header-center animate__animated animate__fadeInDown">
         <img src="@/assets/logo.png">
@@ -16,13 +16,11 @@
         </div>
       </el-col>
     </el-row>
-    <Modal :visible.sync="searchShow">
-      <el-row :gutter="10" style="overflow: auto;">
-        <el-col :xs="24" :span="12">
-          <poem-item></poem-item>
-        </el-col>
-        <el-col :xs="24" :span="12">
-          <poem-item></poem-item>
+    <Modal v-loading="searchPoemLoad" :visible.sync="searchShow">
+      <div v-if="!searchResult[0]" class="tips">请在左上角输入你想搜索的关键字,以空格分隔</div>
+      <el-row>
+        <el-col v-for="item in searchResult" :key="item.id" :xs="24" :span="12">
+          <poem-item :content="item.content" :title="item.title" :author="item.name"></poem-item>
         </el-col>
       </el-row>
     </Modal>
@@ -53,6 +51,7 @@ import PersonItem from '@/components/PersonItem'
 import { mapGetters } from 'vuex'
 import LikeIcon from '@/components/LikeIcon.vue'
 import { removeToken, getToken } from '../../utils/auth'
+import { searchPoem, searchPoemLoading } from '../../api/poem'
 
 export default {
   name: 'Header',
@@ -74,9 +73,16 @@ export default {
       isCloseHover: false,
       isLogin: false, //
       defaultUserIcon: require('@/assets/icon/userIcon.svg'),
+      searchResult: [],
     }
   },
-  computed: { ...mapGetters('animationStatus', ['anims']) },
+  computed: {
+    ...mapGetters('animationStatus', ['anims']),
+    ...mapGetters('requestStatus', ['links']),
+    searchPoemLoad() {
+      return !!this.links[searchPoemLoading]
+    },
+  },
   watch: {
     // 监听searhShow的值的变化修改searchModal状态的值
     searchShow: function(newVal, oldVal) {
@@ -98,14 +104,6 @@ export default {
     this.isLogin = !!localStorage.getItem('userInfo') && getToken()
   },
   methods: {
-    tableRowClassName({ row, rowIndex }) {
-      if (rowIndex + 1) {
-        return 'row'
-      }
-    },
-    errorHandler() {
-      return true
-    },
     logOut() {
       removeToken()
       localStorage.removeItem('userInfo')
@@ -120,12 +118,26 @@ export default {
       const userInfo = JSON.parse(localStorage.getItem('userInfo'))
       return userInfo
     },
+    // 绑定搜索事件
+    bindSearchEnter(val) {
+      searchPoem({
+        keywords: val.keywords,
+        page: 1,
+      }).then(res => {
+        this.searchResult = res.data
+      })
+    },
   },
 }
 </script>
 <style lang="scss">
 :root {
   --item-bg: url('http://img.pptjia.com/image/20190523/d1985d0d72f5ace8bc3c8a5308580365.jpg');
+}
+
+.tips {
+  text-align: center;
+  font-size: 12px;
 }
 
 .header {

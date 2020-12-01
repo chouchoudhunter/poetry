@@ -3,9 +3,9 @@ import Vue from 'vue'
 const customFilters = {
   formatPoem: function(val) {
     if (val) {
-      const value = val.split('。')
+      // const value = val.split('。')
       // console.log(newVal)
-      return value.join('。\n')
+      return JSON.parse(val).join('\n')
     }
   },
 }

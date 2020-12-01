@@ -87,13 +87,17 @@ export default {
       background-size: 200% 100%;
 
       .modal-main {
-        height: 100%;
+        height: 92%;
+        overflow-y: auto;
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: touch;
       }
 
       .modal-header {
         display: flex;
         flex-direction: row;
         justify-content: flex-end;
+        height: 8%;
 
         .modal-header-left,
         .modal-header-right {

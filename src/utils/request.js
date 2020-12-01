@@ -11,7 +11,7 @@ const codeMessage = {
 }
 
 const request = axios.create({
-  baseURL: process.env.NODE_ENV === 'production' ? 'http://api.poem.d-hunter.top' : '/api',
+  baseURL: process.env.NODE_ENV === 'production' ? 'https://api.poem.d-hunter.top' : '/api',
   timeout: 50000,
 })
 // 请求拦截，把链接的状态添加到store里
@@ -44,6 +44,11 @@ request.interceptors.response.use((res) => {
     // 401错误说明当前请求需要登陆或者需要重新登录
   } else if (err.response.status === 401) {
     // 重置状态，打开登录弹窗
+    localStorage.removeItem('userInfo')
+    Vue.prototype.$message({
+      message: '请登录',
+      type: 'error',
+    })
   } else {
     Vue.prototype.$message({
       message: codeMessage[err.response.status],

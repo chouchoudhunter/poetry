@@ -1,6 +1,6 @@
 <template>
   <div class="search-box" :class="{'animation-search-box':showSearch,'animation-search-box-hide':!showSearch&&autoPlay}">
-    <input type="text" class="search-input">
+    <input ref="searchEnter" v-model="keywords" type="text" class="search-input">
     <div @click="switchSearchBox()"><i :class="{'el-icon-search':!showSearch,'el-icon-close':showSearch}" ></i></div>
   </div>
 </template>
@@ -14,7 +14,13 @@ export default {
     },
   },
   data() {
-    return { autoPlay: false }
+    return {
+      autoPlay: false,
+      keywords: '',
+    }
+  },
+  mounted() {
+    this.searchEnter()
   },
   methods: {
     switchSearchBox() {
@@ -22,6 +28,14 @@ export default {
       if (this.showSearch === false) {
         this.autoPlay = true
       }
+    },
+    searchEnter() {
+      this.$refs.searchEnter.addEventListener('keydown', (e) => {
+        if (e.keyCode === 13) {
+          e.preventDefault()
+          this.$emit('onEnterDown', { keywords: this.keywords })
+        }
+      })
     },
   },
 }

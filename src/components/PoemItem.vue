@@ -1,7 +1,7 @@
 <template>
   <div class="poem-item">
     <div class="poem-top">
-      <div class="poem-author">{{ name }}</div>
+      <div class="poem-author">{{ author }}</div>
     </div>
     <div class="poem-center">
       <div class="poem-title">{{ title }}</div>
@@ -19,7 +19,7 @@
 export default {
   name: 'PoemItem',
   props: {
-    name: {
+    author: {
       default: '李清照',
       type: String,
     },
