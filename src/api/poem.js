@@ -21,4 +21,15 @@ const searchPoem = data => {
   })
 }
 const searchPoemLoading = 'get/poem/searchpoem'
-export { everyPoem, everyPoemLoading, searchPoem, searchPoemLoading }
+// 诗词详情
+const poemDesc = data => {
+  return request({
+    url: '/poem/getpoemcontent',
+    method: 'post',
+    data: data,
+  })
+}
+const poemDescLoading = 'post/poem/getpoemcontent'
+export {
+  everyPoem, everyPoemLoading, searchPoem, searchPoemLoading, poemDesc, poemDescLoading,
+}

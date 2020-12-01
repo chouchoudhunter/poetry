@@ -20,9 +20,11 @@
       <div v-if="!searchResult[0]" class="tips">请在左上角输入你想搜索的关键字,以空格分隔</div>
       <el-row>
         <el-col v-for="item in searchResult" :key="item.id" :xs="24" :span="12">
-          <poem-item :content="item.content" :title="item.title" :author="item.name"></poem-item>
+          <poem-item :content="item.content" :title="item.title" :author="item.name" @click="goPoemDesc()"></poem-item>
+          <!-- <div style="height: 200px; background-color: white;"></div> -->
         </el-col>
       </el-row>
+
     </Modal>
     <Modal :visible.sync="personShow">
       <div slot="header-left">
@@ -104,6 +106,9 @@ export default {
     this.isLogin = !!localStorage.getItem('userInfo') && getToken()
   },
   methods: {
+    goPoemDesc() {
+      this.$router.push('/content')
+    },
     logOut() {
       removeToken()
       localStorage.removeItem('userInfo')

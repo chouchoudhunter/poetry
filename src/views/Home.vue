@@ -55,6 +55,7 @@ export default {
           content: '众里寻他千百度，蓦然回首那人却在灯火阑珊处。',
           author: '苏轼',
           isStar: false,
+          poemData: { poemId: 0 },
         },
       lastPoem: [], // 诗句缓存
       nowPoemIndex: -1, // 当前诗句
@@ -89,7 +90,10 @@ export default {
       this.clickRight()
     },
     goContent() {
-      this.$router.push('/content')
+      this.$router.push({
+        name: 'Content',
+        params: { poemId: this.poem.poemData.poemId },
+      })
     },
     changeStar() {
       this.poem.isStar = !this.poem.isStar
