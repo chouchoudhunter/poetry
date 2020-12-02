@@ -230,8 +230,8 @@ export default {
   }
 
   .tabs {
-    // position: absolute;
-    // bottom: 20px;
+    position: absolute;
+    bottom: 20px;
     display: flex;
     align-items: center;
     width: 100%;
