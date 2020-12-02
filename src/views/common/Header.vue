@@ -18,12 +18,11 @@
     </el-row>
     <Modal v-loading="searchPoemLoad" :visible.sync="searchShow">
       <div v-if="!searchResult[0]" class="tips">请在左上角输入你想搜索的关键字,以空格分隔</div>
-      <el-row>
+      <el-row v-infinite-scroll="searchScrollLoad" infinite-scroll-immediate="false">
         <el-col v-for="item in searchResult" :key="item.id" :xs="24" :span="12">
           <poem-item :content="item.content" :title="item.title" :author="item.author" @click="goPoemDesc()"></poem-item>
         </el-col>
       </el-row>
-
     </Modal>
     <Modal :visible.sync="personShow">
       <div slot="header-left">
@@ -76,6 +75,8 @@ export default {
       isLogin: false, //
       defaultUserIcon: require('@/assets/icon/userIcon.svg'),
       searchResult: [],
+      keywords: '',
+      searchPage: 1, // 搜索结果的第几页
     }
   },
   computed: {
@@ -125,6 +126,20 @@ export default {
     },
     // 绑定搜索事件
     bindSearchEnter(val) {
+      let flag = true// 标记是下一页还是新的搜索
+      if (val) {
+        this.keywords = val.keywords
+        this.searchPage = 1
+        this.searchResult = []
+      } else {
+        if (!this.searchPage) {
+          return
+        }
+        flag = false
+        val = { keywords: this.keywords }
+        this.searchPage++
+      }
+
       // 添加转换后的繁体关键词，简繁同查，若输入的关键词没有繁体就不并入同查
       const temp = Chinese.s2t(val.keywords)
       if (temp !== val.keywords) {
@@ -132,10 +147,22 @@ export default {
       }
       searchPoem({
         keywords: val.keywords,
-        page: 1,
+        page: this.searchPage,
       }).then(res => {
-        this.searchResult = res.data
+        if (res.data.length <= 19) {
+          this.searchPage = 0
+        }
+        if (flag) {
+          this.searchResult = res.data
+        } else {
+          res.data.forEach(element => {
+            this.searchResult.push(element)
+          })
+        }
       })
+    },
+    searchScrollLoad() {
+      this.bindSearchEnter(false)
     },
   },
 }
