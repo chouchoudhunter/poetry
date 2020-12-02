@@ -27,7 +27,7 @@
             class="star animate__animated animate__bounce animate__delay-1s"
             @click="changeStar()"
           >
-            <LikeIcon :starController="poem.isStar" @click="onStarChange"></LikeIcon>
+            <LikeIcon v-loading="likePoemLoad" :starController="poem.isStar" @click="onStarChange"></LikeIcon>
           </div>
         </el-popover>
       </div>
@@ -38,7 +38,7 @@
 
 <script>
 // eslint-disable-next-line
-import { everyPoem, everyPoemLoading } from '@/api/poem'
+import { everyPoem, everyPoemLoading,likePoem,likePoemLoading } from '@/api/poem'
 import LikeIcon from '@/components/LikeIcon'
 import '@/style/animation.scss'
 import { mapGetters } from 'vuex'
@@ -65,6 +65,9 @@ export default {
     ...mapGetters('requestStatus', ['links']),
     everyPoemLoadingk() {
       return !!this.links[everyPoemLoading]
+    },
+    likePoemLoad() {
+      return !!this.links[likePoemLoading]
     },
   },
   watch: {},
@@ -97,7 +100,15 @@ export default {
     },
     changeStar() {
       this.poem.isStar = !this.poem.isStar
-      // this.poem.isStar = !this.poem.isStar
+      likePoem({
+        poemId: this.poem.poemData.poemId,
+        isLike: this.poem.isStar,
+      }).then(res => {
+        this.lastPoem[this.nowPoemIndex].isStar = this.poem.isStar
+        localStorage.setItem('lastPoem', JSON.stringify(this.lastPoem))
+      }).catch(() => {
+        this.poem.isStar = !this.poem.isStar
+      })
     },
     clickRight() {
       // 先判断现在是不是最新一条诗句

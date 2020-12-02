@@ -27,6 +27,34 @@ const poemDesc = data => {
   })
 }
 const poemDescLoading = 'post/poem/getpoemcontent'
+
+// 诗句喜欢不喜欢
+const likePoem = data => {
+  return request({
+    url: '/poem/likepoem',
+    method: 'post',
+    data: data,
+  })
+}
+const likePoemLoading = 'post/poem/likepoem'
+// 喜欢诗句列表
+const likePoemList = data => {
+  return request({
+    url: '/poem/likepoem',
+    method: 'post',
+    data: data,
+  })
+}
+const likePoemListLoading = 'post/poem/likepoem'
 export {
-  everyPoem, everyPoemLoading, searchPoem, searchPoemLoading, poemDesc, poemDescLoading,
+  everyPoem,
+  everyPoemLoading,
+  searchPoem,
+  searchPoemLoading,
+  poemDesc,
+  poemDescLoading,
+  likePoem,
+  likePoemLoading,
+  likePoemList,
+  likePoemListLoading,
 }

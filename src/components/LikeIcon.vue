@@ -40,6 +40,9 @@ $heart-active-color: hsl(354deg 81% 63%);
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 40px;
+  width: 40px;
+  z-index: 1;
 
   /* 爱心样式 */
   .love-icon {

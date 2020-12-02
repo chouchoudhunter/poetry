@@ -1,7 +1,7 @@
 <template>
   <div class="person-item">
     <div class="content">
-      <div v-if="isLike" class="left">
+      <div v-if="isNotLike" class="left">
         <el-avatar :size="70" :src="userInfo.photo?userInfo.photo:defaultUserIcon"></el-avatar>
         <div v-loading="editAliaseLoad" class="user-aliase">
           <el-input id="aliase" v-model="userInfo.aliase" size="mini" :disabled="inputDisable.aliase">
@@ -44,7 +44,11 @@
       </div>
       <div v-else class="right">
         <div class="">
-          <poemItem></poemItem>
+          <el-row v-infinite-scroll="searchScrollLoad" infinite-scroll-immediate="false">
+            <el-col v-for="item in likePoemList" :key="item.id" :xs="24" :span="12">
+              <poem-item :content="item.content" :title="item.title" :author="item.author" @click="goPoemDesc()"></poem-item>
+            </el-col>
+          </el-row>
         </div>
       </div>
     </div>
@@ -53,8 +57,8 @@
       <div class="left" :span="12">
         <div
           class="tabs-btn"
-          :class="{'tabs-btn-active':!isLike}"
-          @click="isLike=false">
+          :class="{'tabs-btn-active':!isNotLike}"
+          @click="isNotLike=false">
           <img src="../assets/icon/myLike.svg">
           <span>我的喜欢</span>
         </div>
@@ -62,8 +66,8 @@
       <div class="right" :span="12">
         <div
           class="tabs-btn"
-          :class="{'tabs-btn-active':isLike}"
-          @click="isLike=true">
+          :class="{'tabs-btn-active':isNotLike}"
+          @click="isNotLike=true">
           <img src="../assets/icon/myInfo.svg">
           <span>个人资料</span>
         </div>
@@ -75,22 +79,29 @@
 <script>
 import PoemItem from './PoemItem'
 import { mapGetters } from 'vuex'
-import { editAliase, editAliaseLoading, editPassword, editPasswordLoading } from '../api/user'
+import {
+  editAliase,
+  editAliaseLoading,
+  editPassword,
+  editPasswordLoading,
+  likePoemList,
+} from '../api/user'
 export default {
   name: 'PersonItem',
   components: { PoemItem },
   data() {
     return {
-      isLike: true,
-      defaultUserIcon: require('@/assets/icon/userIcon.svg'),
+      isNotLike: true, // 是否是我的喜欢页面
+      defaultUserIcon: require('@/assets/icon/userIcon.svg'), // 默认用户头像
+      likePoemList: [], // 我喜欢的诗句的列表
       userInfo: {
         aliase: '',
         photo: '',
-      },
+      }, // 用户信息
       inputDisable: {
         aliase: true,
         password: true,
-      },
+      }, // 输入框禁用状态
       changePassword: {
         new: '',
         old: '******',
@@ -139,10 +150,27 @@ export default {
       return userInfo
     },
   },
+  watch: {
+    isNotLike: function(val) {
+      if (!val) {
+        // this.getLikePoemList()
+      }
+    },
+  },
   mounted() {
     this.userInfo = this.getUserInfo
   },
   methods: {
+    // 获取我的喜欢
+    getLikePoemList() {
+      likePoemList().then(res => {
+        this.likePoemList = res.data
+      })
+    },
+    searchScrollLoad() {
+      //
+    },
+    // 修改信息
     editInfo(id, e) {
       if (id === 'password') {
         if (this.inputDisable.password) {
@@ -252,7 +280,7 @@ export default {
         justify-content: center;
         border: rgba(180, 180, 180, 0.2) 2px solid;
         font-size: 16px;
-        height: auto;
+        height: 25px;
 
         img {
           display: inline-block;
