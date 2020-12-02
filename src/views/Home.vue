@@ -27,7 +27,7 @@
             class="star animate__animated animate__bounce animate__delay-1s"
             @click="changeStar()"
           >
-            <LikeIcon @change="onStarChange"></LikeIcon>
+            <LikeIcon :starController="poem.isStar" @click="onStarChange"></LikeIcon>
           </div>
         </el-popover>
       </div>
@@ -97,11 +97,13 @@ export default {
     },
     changeStar() {
       this.poem.isStar = !this.poem.isStar
+      // this.poem.isStar = !this.poem.isStar
     },
     clickRight() {
       // 先判断现在是不是最新一条诗句
       if (this.nowPoemIndex === this.lastPoem.length - 1) {
-        everyPoem().then((res) => {
+        const withStarInfo = !!localStorage.getItem('userInfo')
+        everyPoem({ withStarInfo: withStarInfo }).then((res) => {
           // 新请求的诗句赋值
           this.poem = res.data
           this.poem.isStar = false
