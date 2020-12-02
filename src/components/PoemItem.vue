@@ -62,7 +62,6 @@ export default {
     width: 100%;
     font-size: 16px;
     height: 90px;
-    overflow: auto;
     scrollbar-width: none;
     position: absolute;
     top: 0;
@@ -113,6 +112,7 @@ export default {
       display: block;
       background-color: rgba(0, 0, 0, 0.2);
       opacity: 1;
+      overflow: auto;
     }
   }
 
