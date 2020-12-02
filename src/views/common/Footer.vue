@@ -28,6 +28,7 @@ export default {
   },
   mounted() {
     weather().then(res => {
+      console.log(res)
       let temperature = res.data.data.forecast[0]
       temperature = temperature.low.split(' ')[1] + '-' + temperature.high.split(' ')[1]
       this.temperature = temperature

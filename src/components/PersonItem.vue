@@ -252,6 +252,7 @@ export default {
         justify-content: center;
         border: rgba(180, 180, 180, 0.2) 2px solid;
         font-size: 16px;
+        height: auto;
 
         img {
           display: inline-block;

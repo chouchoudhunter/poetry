@@ -20,8 +20,7 @@
       <div v-if="!searchResult[0]" class="tips">请在左上角输入你想搜索的关键字,以空格分隔</div>
       <el-row>
         <el-col v-for="item in searchResult" :key="item.id" :xs="24" :span="12">
-          <poem-item :content="item.content" :title="item.title" :author="item.name" @click="goPoemDesc()"></poem-item>
-          <!-- <div style="height: 200px; background-color: white;"></div> -->
+          <poem-item :content="item.content" :title="item.title" :author="item.author" @click="goPoemDesc()"></poem-item>
         </el-col>
       </el-row>
 
@@ -54,6 +53,7 @@ import { mapGetters } from 'vuex'
 import LikeIcon from '@/components/LikeIcon.vue'
 import { removeToken, getToken } from '../../utils/auth'
 import { searchPoem, searchPoemLoading } from '../../api/poem'
+import Chinese from 'chinese-s2t'
 
 export default {
   name: 'Header',
@@ -125,6 +125,11 @@ export default {
     },
     // 绑定搜索事件
     bindSearchEnter(val) {
+      // 添加转换后的繁体关键词，简繁同查，若输入的关键词没有繁体就不并入同查
+      const temp = Chinese.s2t(val.keywords)
+      if (temp !== val.keywords) {
+        val.keywords = val.keywords + ' ' + temp
+      }
       searchPoem({
         keywords: val.keywords,
         page: 1,
