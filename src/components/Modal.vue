@@ -103,15 +103,15 @@ export default {
         .modal-header-right {
           flex-grow: 1;
           display: flex;
-          flex-direction: row;
+          flex-direction: column;
         }
 
         .modal-header-left {
-          justify-content: flex-start;
+          align-items: flex-start;
         }
 
         .modal-header-right {
-          justify-content: flex-end;
+          align-items: flex-end;
         }
 
         i {
