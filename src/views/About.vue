@@ -102,6 +102,7 @@ export default {
     .team {
       font-weight: bold;
       letter-spacing: 1px;
+      cursor: default;
     }
   }
 }
