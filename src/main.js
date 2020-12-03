@@ -8,9 +8,10 @@ import './utils/filter'
 import 'element-ui/lib/theme-chalk/index.css'
 import './style/custom-element-ui.scss'
 import 'animate.css'
-
+import VueBus from './store/bus'
 Vue.config.productionTip = false
 Vue.use(ElementUI)
+Vue.use(VueBus)
 new Vue({
   router,
   store,

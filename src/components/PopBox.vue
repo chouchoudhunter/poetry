@@ -22,6 +22,8 @@ export default {
   data() {
     return {}
   },
+  mounted() {
+  },
   methods: {
     close() {
       this.$emit('update:visible', false)
@@ -60,8 +62,7 @@ export default {
     background-size: 200% 100%;
     box-shadow: 0 0 8px 2px rgba(54, 54, 54, 0.1);
     width: 80%;
-    min-width: 70%;
-    min-height: 40%;
+    max-width: 500px;
   }
 }
 </style>

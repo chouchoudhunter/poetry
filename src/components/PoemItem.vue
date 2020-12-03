@@ -41,11 +41,13 @@ export default {
   },
   mounted() {
   },
+  beforeDestroy() {},
   methods: {
     goContent(poemId) {
+      this.$bus.emit('close-modal')
       this.$router.push({
-        name: 'Content',
-        params: { poemId: this.id },
+        path: '/content',
+        query: { poemId: this.id },
       })
     },
   },

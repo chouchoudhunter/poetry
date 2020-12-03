@@ -19,52 +19,7 @@ const requestStatus = {
     },
   },
 }
-// 管理动画状态
-const animationStatus = {
-  namespaced: true,
-  state: {
-    anims: {
-      serachModal: false,
-      personModal: false,
-    },
-  },
-  mutations: {
-    addAnimStatus(state, _ref) {
-      Vue.set(state.anims, _ref.name, _ref.status)
-    },
-    editAnimStatus(state, _ref) {
-      state.anims[_ref.name] = _ref.status
-    },
-  },
-  getters: {
-    anims(state) {
-      return state.anims
-    },
-  },
-}
-
-const test = {
-  namespaced: true,
-  state: { b: 10 },
-  mutations: {
-    edit(state, val) {
-      state.b = val
-    },
-    addLinks(state, _ref) {
-      state[_ref.linkName] = _ref.linkStatus
-    },
-  },
-  getters: {
-    getb(state) {
-      return state
-    },
-  },
-}
-const modules = {
-  requestStatus: requestStatus,
-  animationStatus: animationStatus,
-  test: test,
-}
+const modules = { requestStatus: requestStatus }
 
 const store = new Vuex.Store({ modules })
 export default store

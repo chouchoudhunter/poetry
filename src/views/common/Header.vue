@@ -80,7 +80,6 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('animationStatus', ['anims']),
     ...mapGetters('requestStatus', ['links']),
     searchPoemLoad() {
       return !!this.links[searchPoemLoading]
@@ -92,10 +91,6 @@ export default {
       if (newVal && this.personShow) {
         this.personShow = false
       }
-      this.$store.commit('animationStatus/editAnimStatus', {
-        name: 'serachModal',
-        status: newVal,
-      })
     },
     personShow: function(newVal, oldVal) {
       if (newVal && this.searchShow) {
@@ -105,6 +100,9 @@ export default {
   },
   mounted() {
     this.isLogin = !!localStorage.getItem('userInfo') && getToken()
+    this.$bus.on('login-pop', (isShow) => {
+      this.popBoxShow = isShow
+    })
   },
   methods: {
     goPoemDesc() {
@@ -162,7 +160,6 @@ export default {
       })
     },
     searchScrollLoad() {
-      console.log(1)
       this.bindSearchEnter(false)
     },
   },

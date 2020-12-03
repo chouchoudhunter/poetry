@@ -194,7 +194,6 @@ export default {
       })
     },
     likePoemScrollLoad() {
-      console.log(1)
       this.getLikePoemList(true)
     },
     // 修改信息
