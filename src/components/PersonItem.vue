@@ -43,10 +43,11 @@
         </div>
       </div>
       <div v-else class="right">
-        <div class="">
-          <el-row v-infinite-scroll="searchScrollLoad" infinite-scroll-immediate="false">
+        <div v-if="!likePoemList[0]" v-loading="myLikePoemsLoad" class="tips">还没有喜欢的诗词，快去点亮小心心吧</div>
+        <div class="peom-list">
+          <el-row v-if="likePoemList[0]" v-infinite-scroll="likePoemScrollLoad" v-loading="myLikePoemsLoad" infinite-scroll-immediate="false">
             <el-col v-for="item in likePoemList" :key="item.id" :xs="24" :span="12">
-              <poem-item :content="item.content" :title="item.title" :author="item.author" @click="goPoemDesc()"></poem-item>
+              <poem-item :id="item.id" :content="item.content" :title="item.title" :author="item.author" @click="goPoemDesc()"></poem-item>
             </el-col>
           </el-row>
         </div>
@@ -85,15 +86,17 @@ import {
   editPassword,
   editPasswordLoading,
 } from '../api/user'
-import { myLikePoems } from '../api/poem'
+import { myLikePoems, myLikePoemsLoading } from '../api/poem'
 export default {
   name: 'PersonItem',
   components: { PoemItem },
   data() {
     return {
+      likePage: 1,
       isNotLike: true, // 是否是我的喜欢页面
       defaultUserIcon: require('@/assets/icon/userIcon.svg'), // 默认用户头像
       likePoemList: [], // 我喜欢的诗句的列表
+      throttle: false, // 节流
       userInfo: {
         aliase: '',
         photo: '',
@@ -149,6 +152,9 @@ export default {
       const userInfo = JSON.parse(localStorage.getItem('userInfo'))
       return userInfo
     },
+    myLikePoemsLoad() {
+      return !!this.links[myLikePoemsLoading]
+    },
   },
   watch: {
     isNotLike: function(val) {
@@ -162,13 +168,34 @@ export default {
   },
   methods: {
     // 获取我的喜欢
-    getLikePoemList() {
-      myLikePoems().then(res => {
-        this.likePoemList = res.data
+    getLikePoemList(isScoll = false) {
+      if (this.throttle || !this.likePage) {
+        return
+      }
+      if (isScoll) {
+        this.likePage++
+      } else {
+        this.likePage = 1
+      }
+      this.throttle = true
+      myLikePoems({ page: this.likePage }).then(res => {
+        if (res.data.length <= 19) {
+          this.likePage = 0
+        }
+        if (isScoll) {
+          res.data.forEach(element => {
+            this.likePoemList.push(element)
+          })
+        } else {
+          this.likePoemList = res.data
+        }
+
+        this.throttle = false
       })
     },
-    searchScrollLoad() {
-      //
+    likePoemScrollLoad() {
+      console.log(1)
+      this.getLikePoemList(true)
     },
     // 修改信息
     editInfo(id, e) {
@@ -239,7 +266,7 @@ export default {
             color: white !important;
           }
         }
-        // stylelint-disable-next-line
+
         .el-input__inner {
           width: 50px;
           padding: 0;
@@ -253,6 +280,17 @@ export default {
 
       .user-info {
         margin-top: 20px;
+      }
+    }
+
+    .right {
+      .peom-list {
+        overflow-y: scroll;
+        height: 100%;
+
+        .el-row {
+          padding-top: 10px;
+        }
       }
     }
   }

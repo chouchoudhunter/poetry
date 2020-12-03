@@ -31,6 +31,7 @@ request.interceptors.response.use((res) => {
     Vue.prototype.$message({
       message: err.response.data.message,
       type: 'error',
+      center: true,
     })
     // 402代表token即将过期，使用新的token重新获取
   } else if (err.response.status === 402) {
@@ -48,11 +49,13 @@ request.interceptors.response.use((res) => {
     Vue.prototype.$message({
       message: '请登录',
       type: 'error',
+      center: true,
     })
   } else {
     Vue.prototype.$message({
       message: codeMessage[err.response.status],
       type: 'error',
+      center: true,
     })
   }
   return Promise.reject(err)

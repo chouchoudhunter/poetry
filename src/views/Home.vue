@@ -27,7 +27,7 @@
             class="star animate__animated animate__bounce animate__delay-1s"
             @click="changeStar()"
           >
-            <LikeIcon v-loading="likePoemLoad" :starController="poem.isStar" @click="onStarChange"></LikeIcon>
+            <LikeIcon v-loading="likePoemLoad" :starController="poem.isStar"></LikeIcon>
           </div>
         </el-popover>
       </div>
@@ -150,11 +150,6 @@ export default {
       }
       // 赋值当前诗句
       this.poem = this.lastPoem[this.nowPoemIndex]
-    },
-    onStarChange(val) {
-      if (val) {
-
-      }
     },
   },
 }

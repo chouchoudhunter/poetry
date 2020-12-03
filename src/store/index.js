@@ -22,7 +22,12 @@ const requestStatus = {
 // 管理动画状态
 const animationStatus = {
   namespaced: true,
-  state: { anims: { serachModal: false } },
+  state: {
+    anims: {
+      serachModal: false,
+      personModal: false,
+    },
+  },
   mutations: {
     addAnimStatus(state, _ref) {
       Vue.set(state.anims, _ref.name, _ref.status)

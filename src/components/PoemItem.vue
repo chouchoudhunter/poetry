@@ -3,7 +3,7 @@
     <div class="poem-top">
       <div class="poem-author">{{ author }}</div>
     </div>
-    <div class="poem-center">
+    <div class="poem-center" @click="goContent()">
       <div class="poem-title">{{ title }}</div>
       <div class="poem-desc">
         {{ content | formatPoem('val') }}
@@ -31,11 +31,23 @@ export default {
       default: '蹴罢秋千，起来慵整纤纤手。露浓花瘦，薄汗轻衣透。见客入来，袜刬金钗溜。和羞走，倚门回首，却把青梅嗅。',
       type: String,
     },
+    id: {
+      default: null,
+      type: Number,
+    },
   },
   data() {
     return { isStar: false }
   },
   mounted() {
+  },
+  methods: {
+    goContent(poemId) {
+      this.$router.push({
+        name: 'Content',
+        params: { poemId: this.id },
+      })
+    },
   },
 }
 </script>
@@ -90,7 +102,7 @@ export default {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0.3);
     z-index: 1;
   }
 

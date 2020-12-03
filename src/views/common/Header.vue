@@ -162,6 +162,7 @@ export default {
       })
     },
     searchScrollLoad() {
+      console.log(1)
       this.bindSearchEnter(false)
     },
   },
@@ -169,12 +170,7 @@ export default {
 </script>
 <style lang="scss">
 :root {
-  --item-bg: url('http://img.pptjia.com/image/20190523/d1985d0d72f5ace8bc3c8a5308580365.jpg');
-}
-
-.tips {
-  text-align: center;
-  font-size: 12px;
+  --item-bg: url('../../assets/bar/bg2.jpg');
 }
 
 .header {
