@@ -84,8 +84,8 @@ import {
   editAliaseLoading,
   editPassword,
   editPasswordLoading,
-  likePoemList,
 } from '../api/user'
+import { myLikePoems } from '../api/poem'
 export default {
   name: 'PersonItem',
   components: { PoemItem },
@@ -153,7 +153,7 @@ export default {
   watch: {
     isNotLike: function(val) {
       if (!val) {
-        // this.getLikePoemList()
+        this.getLikePoemList()
       }
     },
   },
@@ -163,7 +163,7 @@ export default {
   methods: {
     // 获取我的喜欢
     getLikePoemList() {
-      likePoemList().then(res => {
+      myLikePoems().then(res => {
         this.likePoemList = res.data
       })
     },
@@ -239,7 +239,7 @@ export default {
             color: white !important;
           }
         }
-
+        // stylelint-disable-next-line
         .el-input__inner {
           width: 50px;
           padding: 0;

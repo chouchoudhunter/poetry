@@ -38,14 +38,14 @@ const likePoem = data => {
 }
 const likePoemLoading = 'post/poem/likepoem'
 // 喜欢诗句列表
-const likePoemList = data => {
+const myLikePoems = data => {
   return request({
-    url: '/poem/likepoem',
+    url: '/poem/likepoemlist',
     method: 'post',
     data: data,
   })
 }
-const likePoemListLoading = 'post/poem/likepoem'
+const myLikePoemsLoading = 'post/poem/likepoemlist'
 export {
   everyPoem,
   everyPoemLoading,
@@ -55,6 +55,6 @@ export {
   poemDescLoading,
   likePoem,
   likePoemLoading,
-  likePoemList,
-  likePoemListLoading,
+  myLikePoems,
+  myLikePoemsLoading,
 }
