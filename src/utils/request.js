@@ -46,6 +46,7 @@ request.interceptors.response.use((res) => {
   } else if (err.response.status === 401) {
     // 重置状态，打开登录弹窗
     localStorage.removeItem('userInfo')
+    Vue.prototype.$bus.emit('login-pop', true)
     Vue.prototype.$message({
       message: '请登录',
       type: 'error',

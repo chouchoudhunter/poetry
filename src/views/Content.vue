@@ -53,13 +53,19 @@ export default {
       return !!this.links[poemDescLoading]
     },
   },
+  watch: {
+    '$route'(to, from) {
+      this.poemId = this.$route.query.poemId
+      this.initPoemDesc(this.poemId)
+    },
+  },
   mounted() {
-    this.poemId = this.$route.params.poemId
+    this.poemId = this.$route.query.poemId
     this.initPoemDesc(this.poemId)
   },
   methods: {
     goBack() {
-      this.$router.back(-1)
+      this.$router.push({ path: '/' })
     },
     initPoemDesc(id) {
       poemDesc({ id: id }).then(res => {

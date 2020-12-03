@@ -94,8 +94,8 @@ export default {
     },
     goContent() {
       this.$router.push({
-        name: 'Content',
-        params: { poemId: this.poem.poemData.poemId },
+        path: '/content',
+        query: { poemId: this.poem.poemData.poemId },
       })
     },
     changeStar() {
@@ -113,7 +113,7 @@ export default {
     clickRight() {
       // 先判断现在是不是最新一条诗句
       if (this.nowPoemIndex === this.lastPoem.length - 1) {
-        const withStarInfo = !!localStorage.getItem('userInfo')
+        const withStarInfo = localStorage.getItem('userInfo') ? 1 : 0
         everyPoem({ withStarInfo: withStarInfo }).then((res) => {
           // 新请求的诗句赋值
           this.poem = res.data

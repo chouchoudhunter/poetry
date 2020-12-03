@@ -45,7 +45,9 @@ export default {
   },
   computed: {},
   mounted() {
-
+    this.$bus.on('close-modal', () => {
+      this.close()
+    })
   },
   methods: {
     switchCloseHover(status) {
@@ -53,7 +55,6 @@ export default {
     },
     close() {
       this.$emit('update:visible', false)
-      this.$emit('close-modal')
     },
   },
 }
