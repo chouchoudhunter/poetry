@@ -20,7 +20,7 @@
       <div v-if="!searchResult[0]" class="tips">请在左上角输入你想搜索的关键字,以空格分隔</div>
       <el-row v-infinite-scroll="searchScrollLoad" infinite-scroll-immediate="false">
         <el-col v-for="item in searchResult" :key="item.id" :xs="24" :span="12">
-          <poem-item :content="item.content" :title="item.title" :author="item.author" @click="goPoemDesc()"></poem-item>
+          <poem-item :id="item.id" :content="item.content" :title="item.title" :author="item.author" @click="goPoemDesc()"></poem-item>
         </el-col>
       </el-row>
     </Modal>

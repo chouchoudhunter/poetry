@@ -69,6 +69,7 @@ export default {
     },
     initPoemDesc(id) {
       poemDesc({ id: id }).then(res => {
+        console.log(res)
         this.poemDesc = res.data
       })
     },
