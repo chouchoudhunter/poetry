@@ -32,7 +32,7 @@
           @mouseenter="isCloseHover=true"
           @mouseleave="isCloseHover=false"
           @click="logOut()"
-        ><span style="font-size: 15px;"> 退出登录</span></i>
+        ><span style="font-size: 15px; cursor: default;"> 退出登录</span></i>
       </div>
       <person-item></person-item>
     </Modal>

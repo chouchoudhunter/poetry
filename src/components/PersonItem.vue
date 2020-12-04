@@ -61,7 +61,7 @@
           :class="{'tabs-btn-active':!isNotLike}"
           @click="isNotLike=false">
           <img src="../assets/icon/myLike.svg">
-          <span>我的喜欢</span>
+          <span style="cursor: default;">我的喜欢</span>
         </div>
       </div>
       <div class="right" :span="12">
@@ -70,7 +70,7 @@
           :class="{'tabs-btn-active':isNotLike}"
           @click="isNotLike=true">
           <img src="../assets/icon/myInfo.svg">
-          <span>个人资料</span>
+          <span style="cursor: default;">个人资料</span>
         </div>
       </div>
     </div>
@@ -244,6 +244,8 @@ export default {
   .content {
     height: 80%;
     overflow: auto;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE 10+ */
 
     .left {
       display: flex;
@@ -286,12 +288,24 @@ export default {
       .peom-list {
         overflow-y: scroll;
         height: 100%;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE 10+ */
 
         .el-row {
           padding-top: 10px;
         }
       }
+
+      .peom-list::-webkit-scrollbar {
+        display: none; /* Chrome Safari */
+        -ms-overflow-style: none; /* IE 10+ */
+      }
     }
+  }
+
+  .content::-webkit-scrollbar {
+    display: none; /* Chrome Safari */
+    -ms-overflow-style: none; /* IE 10+ */
   }
 
   .tabs {

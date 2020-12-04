@@ -95,7 +95,7 @@ export default {
         scrollbar-width: none; /* Firefox */
       }
 
-      .el-main::-webkit-scrollbar {
+      .modal-main::-webkit-scrollbar {
         display: none; /* Chrome Safari */
         -ms-overflow-style: none; /* IE 10+ */
       }
