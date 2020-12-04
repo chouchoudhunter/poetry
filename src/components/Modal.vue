@@ -92,6 +92,12 @@ export default {
         overflow-y: auto;
         overflow-x: hidden;
         -webkit-overflow-scrolling: touch;
+        scrollbar-width: none; /* Firefox */
+      }
+
+      .el-main::-webkit-scrollbar {
+        display: none; /* Chrome Safari */
+        -ms-overflow-style: none; /* IE 10+ */
       }
 
       .modal-header {

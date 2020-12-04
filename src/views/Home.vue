@@ -169,18 +169,31 @@ export default {
     .el-icon-arrow-left {
       position: absolute;
       left: 0;
-      top: 40%;
+      top: 20%;
+      width: 40px;
+      height: 40px;
+      background-color: rgba(73, 73, 73, 0.2);
+      border-radius: 20px;
+      font-size: 20px;
+      line-height: 40px;
     }
 
     .poem-center {
       margin: 0 auto;
+      width: 90%;
     }
 
     .el-icon-arrow-right {
       pointer-events: auto;
       position: absolute;
       right: 0;
-      top: 40%;
+      top: 20%;
+      width: 40px;
+      height: 40px;
+      background-color: rgba(73, 73, 73, 0.2);
+      border-radius: 20px;
+      font-size: 20px;
+      line-height: 40px;
     }
 
     cursor: pointer;
