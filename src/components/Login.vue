@@ -1,10 +1,11 @@
 <template>
   <div id="login">
     <el-tabs
+      v-model="activeName"
       v-if="isShow"
       :stretch="true"
     >
-      <el-tab-pane label="登录">
+      <el-tab-pane label="登录" name="login">
         <el-form
           ref="loginForm"
           v-loading="loginLoad"
@@ -43,7 +44,7 @@
           >忘记密码</el-link>
         </div>
       </el-tab-pane>
-      <el-tab-pane label="注册">
+      <el-tab-pane label="注册" name="register">
         <el-form
           ref="regForm"
           v-loading="registerLoad"
@@ -176,6 +177,7 @@ export default {
   name: 'Login',
   data() {
     return {
+      activeName: 'login',
       isShow: true,
       show: true, // 倒计时按钮禁用状态
       count: '',
@@ -246,11 +248,13 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           register(this.regForm).then(res => {
-            console.log(res)
             this.$message({
-              message: '注册成功',
+              message: '注册成功，请登录',
               type: 'success',
             })
+            this.loginForm.username = this.regForm.username
+            this.loginForm.password = this.regForm.password
+            this.activeName = 'login'
           })
         } else {
           this.$message({

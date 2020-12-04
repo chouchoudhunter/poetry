@@ -8,7 +8,7 @@ const register = data => {
     data: data,
   })
 }
-const registerLoading = 'post/regiseter'
+const registerLoading = 'post/register'
 
 // 登陆
 const login = data => {
