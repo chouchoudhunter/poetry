@@ -1,5 +1,15 @@
 import request from '@/utils/request'
 
+// 注册
+const register = data => {
+  return request({
+    url: '/regiseter',
+    method: 'post',
+    data: data,
+  })
+}
+const registerLoading = 'post/regiseter'
+
 // 登陆
 const login = data => {
   return request({
@@ -35,4 +45,6 @@ export {
   editAliaseLoading,
   editPassword,
   editPasswordLoading,
+  register,
+  registerLoading,
 }

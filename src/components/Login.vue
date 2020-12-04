@@ -46,6 +46,7 @@
       <el-tab-pane label="注册">
         <el-form
           ref="regForm"
+          v-loading="registerLoad"
           :model="regForm"
           :status-icon="true"
           :rules="rules"
@@ -80,7 +81,7 @@
         <div class="bottom">
           <el-button
             type="primary"
-            @click="submitForm('regForm')"
+            @click="register('regForm')"
           >注册</el-button>
         </div>
       </el-tab-pane>
@@ -168,7 +169,7 @@
 
 <script>
 // eslint-disable-next-line no-unused-vars
-import { login, loginLoading } from '@/api/user.js'
+import { login, loginLoading, register, registerLoading } from '@/api/user.js'
 import { mapGetters } from 'vuex'
 import { setToken } from '@/utils/auth'
 export default {
@@ -233,15 +234,24 @@ export default {
     loginLoad() {
       return !!this.links[loginLoading]
     },
+    registerLoad() {
+      return !!this.links[registerLoading]
+    },
   },
   methods: {
     showFind() {
       this.isShow = !this.isShow
     },
-    submitForm(formName) {
+    register(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          return true
+          register(this.regForm).then(res => {
+            console.log(res)
+            this.$message({
+              message: '注册成功',
+              type: 'success',
+            })
+          })
         } else {
           this.$message({
             message: '请检查输入是否正确！',
