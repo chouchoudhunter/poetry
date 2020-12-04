@@ -17,7 +17,7 @@
         </div>
         <el-popover
           placement="bottom"
-          title="点亮星星"
+          title="点亮小心心"
           width="200"
           trigger="hover"
           content="我们会根据喜好给您推送诗句！"

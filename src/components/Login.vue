@@ -282,7 +282,13 @@ export default {
 <style lang="scss">
 #login {
   padding: 5px 5px 10px;
-  color: #303133;
+  color: white;
+
+  .el-button--primary {
+    background-color: rgba(0, 0, 0, 0.2);
+    border: none;
+    color: white;
+  }
 
   .el-tabs__nav-scroll {
     width: 50%;
@@ -291,6 +297,10 @@ export default {
 
   .el-tabs__nav-wrap::after {
     height: 0;
+  }
+
+  .el-tabs__active-bar {
+    background: white;
   }
 
   .bottom {
@@ -302,6 +312,10 @@ export default {
       width: 100%;
       height: 40px;
       margin-bottom: 5px;
+    }
+
+    .el-link {
+      color: rgb(45, 45, 45);
     }
   }
 
