@@ -2,7 +2,7 @@
   <div class="footer">
     <div class="toolbar">
       <div class="toolbar-item" @click="goHome">
-        <img :class="isChoose?'img-choose':'img'" src="@/assets/icon/home.svg" alt="">
+        <img :src="require('../../assets/icon/'+(change?'homeClick':'home')+'.svg')" alt="" @click="change=true">
         <span>首页</span>
       </div>
       <div class="toolbar-item">
@@ -10,7 +10,7 @@
         <span>{{ temperature }}</span>
       </div>
       <div class="toolbar-item" @click="goAbout">
-        <img :class="isChoose?'img':'img-choose'" src="@/assets/icon/about.svg" alt="">
+        <img :src="require('../../assets/icon/'+(change?'about':'aboutClick')+'.svg')" alt="" @click="change=false">
         <span>关于</span>
       </div>
     </div>
@@ -24,6 +24,7 @@ export default {
     return {
       temperature: '5°C-20°C',
       isChoose: true,
+      change: true,
     }
   },
   mounted() {
@@ -71,15 +72,10 @@ export default {
     span {
       font-weight: lighter;
       font-size: 10px;
-      margin-top: 5px;
     }
 
-    .img {
-      width: 20px;
-    }
-
-    .img-choose {
-      width: 25px;
+    img {
+      width: 30px;
     }
   }
 }
