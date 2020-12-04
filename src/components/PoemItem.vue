@@ -10,7 +10,7 @@
       </div>
     </div>
     <div class="poem-bottom">
-      <i :class="isStar?'el-icon-star-on':'el-icon-star-off'" @click="changeStar()"></i>
+      <img :src="require('../assets/icon/'+(isStar?'likeClick':'like')+'.svg')" @click="changeStar()">
     </div>
   </div>
 </template>
@@ -184,8 +184,9 @@ export default {
     justify-content: flex-end;
     color: white;
 
-    i {
-      cursor: pointer;//鼠标为手指状
+    img {
+      width: 25px;
+      margin: 0 3px 5px 0;
     }
   }
 }
