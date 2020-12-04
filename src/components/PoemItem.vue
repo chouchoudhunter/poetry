@@ -10,12 +10,13 @@
       </div>
     </div>
     <div class="poem-bottom">
-      <i :class="isStar?'el-icon-star-on':'el-icon-star-off'" @click="isStar=!isStar"></i>
+      <i :class="isStar?'el-icon-star-on':'el-icon-star-off'" @click="changeStar()"></i>
     </div>
   </div>
 </template>
 
 <script>
+import { likePoem } from '@/api/poem'
 export default {
   name: 'PoemItem',
   props: {
@@ -48,6 +49,17 @@ export default {
       this.$router.push({
         path: '/content',
         query: { poemId: this.id },
+      })
+    },
+    changeStar() {
+      this.isStar = !this.isStar
+      likePoem({
+        poemId: this.id,
+        isLike: this.isStar,
+      }).then(res => {
+        this.isStar = true
+      }).catch(() => {
+        this.isStar = !this.isStar
       })
     },
   },
