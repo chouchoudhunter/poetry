@@ -3,7 +3,7 @@ import request from '@/utils/request'
 // 注册
 const register = data => {
   return request({
-    url: '/regiseter',
+    url: '/register',
     method: 'post',
     data: data,
   })
