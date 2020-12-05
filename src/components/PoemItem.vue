@@ -1,6 +1,6 @@
 <template>
   <div class="poem-item">
-    <div class="poem-top-right" @click="tempMethod($e)"><i class="el-icon-info"></i></div>
+    <div class="poem-top-right" @click="tempMethod($event)"><i class="el-icon-info"></i></div>
     <div class="poem-top">
       <div class="poem-author">{{ author }}</div>
     </div>
@@ -17,7 +17,8 @@
 </template>
 
 <script>
-import { likePoem } from '@/api/poem'
+import { likePoem, likePoemLoading } from '@/api/poem'
+import { mapGetters } from 'vuex'
 export default {
   name: 'PoemItem',
   props: {
@@ -38,8 +39,14 @@ export default {
       type: Number,
     },
     isStar: {
-      default: true,
+      default: false,
       type: Boolean,
+    },
+  },
+  computed: {
+    ...mapGetters('requestStatus', ['links']),
+    likePoemLoad() {
+      return !!this.links[likePoemLoading]
     },
   },
   methods: {
@@ -51,11 +58,12 @@ export default {
       })
     },
     changeStar() {
-      console.log(1)
       this.$emit('update:isStar', !this.isStar)
       likePoem({
         poemId: this.id,
         isLike: !this.isStar,
+      }).then(res => {
+        this.$emit('change-star')
       }).catch(() => {
         this.$emit('isStar:update', !this.isStar)
       })

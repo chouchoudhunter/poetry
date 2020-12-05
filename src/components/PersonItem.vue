@@ -46,13 +46,15 @@
         <div v-if="!likePoemList[0]" v-loading="myLikePoemsLoad" class="tips">还没有喜欢的诗词，快去点亮小心心吧</div>
         <div class="peom-list">
           <el-row v-if="likePoemList[0]" v-infinite-scroll="likePoemScrollLoad" v-loading="myLikePoemsLoad" infinite-scroll-immediate="false">
-            <el-col v-for="item in likePoemList" :key="item.id" :xs="24" :span="12">
+            <el-col v-for="(item,index) in likePoemList" :key="item.id" :xs="24" :span="12">
               <poem-item
                 :id="item.id"
                 :content="item.content"
                 :title="item.title"
                 :author="item.author"
-                :isStar.sync="item.isStar"></poem-item>
+                :isStar.sync="item.isStar"
+                @change-star="deletPoemItem(index)"
+              ></poem-item>
             </el-col>
           </el-row>
         </div>
@@ -172,6 +174,9 @@ export default {
     this.userInfo = this.getUserInfo
   },
   methods: {
+    deletPoemItem(index) {
+      this.likePoemList.splice(index, 1)
+    },
     // 获取我的喜欢
     getLikePoemList(isScoll = false) {
       if (this.throttle || !this.likePage) {
