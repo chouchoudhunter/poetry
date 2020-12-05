@@ -25,7 +25,7 @@
             :content="item.content"
             :title="item.title"
             :author="item.author"
-            :isStar="item.isStar"
+            :isStar.sync="item.isStar"
             @click="goPoemDesc()"></poem-item>
         </el-col>
       </el-row>
