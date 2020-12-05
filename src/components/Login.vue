@@ -1,8 +1,8 @@
 <template>
   <div id="login">
     <el-tabs
-      v-model="activeName"
       v-if="isShow"
+      v-model="activeName"
       :stretch="true"
     >
       <el-tab-pane label="登录" name="login">
@@ -38,10 +38,11 @@
             type="primary"
             @click="login()"
           >登录</el-button>
-          <el-link
+
+          <!-- <el-link
             target="_blank"
             @click="showFind()"
-          >忘记密码</el-link>
+          >忘记密码</el-link> -->
         </div>
       </el-tab-pane>
       <el-tab-pane label="注册" name="register">
@@ -183,8 +184,8 @@ export default {
       count: '',
       timer: null,
       loginForm: {
-        username: '',
-        password: '',
+        username: 'diyyouxi',
+        password: '963028938',
       },
       regForm: {
         username: '',

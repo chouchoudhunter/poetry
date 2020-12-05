@@ -1,5 +1,6 @@
 <template>
   <div class="poem-item">
+    <div class="poem-top-right" @click="tempMethod($e)"><i class="el-icon-info"></i></div>
     <div class="poem-top">
       <div class="poem-author">{{ author }}</div>
     </div>
@@ -36,13 +37,11 @@ export default {
       default: null,
       type: Number,
     },
+    isStar: {
+      default: true,
+      type: Boolean,
+    },
   },
-  data() {
-    return { isStar: false }
-  },
-  mounted() {
-  },
-  beforeDestroy() {},
   methods: {
     goContent(poemId) {
       this.$bus.emit('close-modal')
@@ -52,18 +51,21 @@ export default {
       })
     },
     changeStar() {
-      this.isStar = !this.isStar
+      console.log(1)
+      this.$emit('update:isStar', !this.isStar)
       likePoem({
         poemId: this.id,
-        isLike: this.isStar,
-      }).then(res => {
-        this.isStar = true
+        isLike: !this.isStar,
       }).catch(() => {
-        this.isStar = !this.isStar
+        this.$emit('isStar:update', !this.isStar)
       })
+    },
+    tempMethod(e) {
+      e.preventDefault()
     },
   },
 }
+
 </script>
 
 <style lang="scss">
@@ -154,6 +156,13 @@ export default {
       margin: 3px 5px;
       font-weight: lighter;
     }
+  }
+
+  .poem-top-right {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    z-index: 4;
   }
 
   .poem-center {

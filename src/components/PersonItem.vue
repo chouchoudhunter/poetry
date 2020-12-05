@@ -47,7 +47,12 @@
         <div class="peom-list">
           <el-row v-if="likePoemList[0]" v-infinite-scroll="likePoemScrollLoad" v-loading="myLikePoemsLoad" infinite-scroll-immediate="false">
             <el-col v-for="item in likePoemList" :key="item.id" :xs="24" :span="12">
-              <poem-item :id="item.id" :content="item.content" :title="item.title" :author="item.author" @click="goPoemDesc()"></poem-item>
+              <poem-item
+                :id="item.id"
+                :content="item.content"
+                :title="item.title"
+                :author="item.author"
+                :isStar.sync="item.isStar"></poem-item>
             </el-col>
           </el-row>
         </div>
